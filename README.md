@@ -478,8 +478,8 @@ Checks whether the value is equal to another.
 
 ```
 $rules = [
-    'confirm_password' => [
-        'label' => 'Confirm Password',
+    'repeat_password' => [
+        'label' => 'Repeat Password',
         'rules' => [
             RuleEnum::EQUALS => ['password'],
         ],
