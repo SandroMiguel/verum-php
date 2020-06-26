@@ -2,7 +2,7 @@
 
 # Welcome to Verum PHP Validator
 
-[![license](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](LICENSE)
+[![License](https://poser.pugx.org/sandromiguel/verum-php/license)](//packagist.org/packages/sandromiguel/verum-php)
 [![Latest Stable Version](https://poser.pugx.org/sandromiguel/verum-php/v)](//packagist.org/packages/sandromiguel/verum-php)
 [![Dependents](https://poser.pugx.org/sandromiguel/verum-php/dependents)](//packagist.org/packages/sandromiguel/verum-php)
 
