@@ -1,23 +1,27 @@
 {
-  "name": "verum-php",
-  "scripts": {
-    "release": "standard-version"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    "name": "verum-php",
+    "scripts": {
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "lint:format": "prettier --write \"./**/*.{js,jsx,json}\"",
+        "release": "standard-version"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^9.0.1",
+        "@commitlint/config-conventional": "^9.0.1",
+        "cz-conventional-changelog": "^3.2.0",
+        "eslint-config-cecilia": "^2.0.3",
+        "husky": "^4.2.5",
+        "standard-version": "^8.0.0"
     }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
-    "@commitlint/config-conventional": "^9.0.1",
-    "cz-conventional-changelog": "^3.2.0",
-    "husky": "^4.2.5",
-    "standard-version": "^8.0.0"
-  }
 }
