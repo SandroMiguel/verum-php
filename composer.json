@@ -1,0 +1,52 @@
+{
+    "name": "sandromiguel/verum-php",
+    "description": "Server-Side Form Validation Library for PHP",
+    "homepage": "https://github.com/SandroMiguel/verum-php",
+    "keywords": [
+        "validator",
+        "validation",
+        "php",
+        "php-library"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sandro Miguel Marques",
+            "email": "sandromiguel@sandromiguel.com",
+            "homepage": "http://sandromiguel.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Verum\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "require-dev": {
+        "nunomaduro/phpinsights": "^1.14",
+        "phpmetrics/phpmetrics": "^2.6",
+        "phpstan/phpstan": "^0.12.31",
+        "phpunit/phpunit": "8",
+        "roave/security-advisories": "dev-master",
+        "vimeo/psalm": "^3.12"
+    },
+    "scripts": {
+        "phpcs": "phpcs -s src",
+        "phpinsights": "phpinsights analyse src -v",
+        "phpstan": "phpstan analyse src --level 7",
+        "psalm": "psalm",
+        "test": "phpunit --colors=always tests",
+        "test-coverage": "phpunit --coverage-html log/report"
+    },
+    "scripts-descriptions": {
+        "test": "Run all tests!",
+        "test-coverage": "Run code coverage"
+    }
+}

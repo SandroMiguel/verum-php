@@ -4,11 +4,13 @@
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "lint:format": "prettier --write \"./**/*.{js,jsx,json}\"",
+        "test:phpunit": "./vendor/bin/phpunit --colors=always tests",
         "release": "standard-version"
     },
     "husky": {
         "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-push": "yarn test && yarn test:phpunit"
         }
     },
     "config": {
