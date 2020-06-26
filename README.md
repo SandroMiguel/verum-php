@@ -17,9 +17,7 @@
 
 ### Installation
 
-Install Verum PHP.
-
-#### Install with Composer
+Install Verum PHP with Composer
 
 `composer require sandromiguel/verum-php`
 
@@ -27,7 +25,7 @@ Install Verum PHP.
 
 #### Simple usage example
 
-##### Validate a simple registration form
+Validate a simple registration form
 
 ```
 $rules = [
@@ -59,7 +57,7 @@ echo json_encode(
 );
 ```
 
-###### Valid form example
+##### Valid form example
 
 Input:
 
@@ -80,7 +78,7 @@ Output:
 }
 ```
 
-###### Invalid form example
+##### Invalid form example
 
 Input:
 
@@ -120,7 +118,7 @@ Output:
 }
 ```
 
-##### Use RuleEnum class
+#### Use RuleEnum class
 
 You can use the `RuleEnum` class to access all rule names.
 
@@ -135,7 +133,7 @@ $rules = [
 ];
 ```
 
-##### Specify the fields label
+#### Specify the fields label
 
 ```
 $rules = [
@@ -166,7 +164,7 @@ Output:
 }
 ```
 
-##### Specify field labels for each language
+#### Specify field labels for each language
 
 ```
 $rules = [
@@ -200,19 +198,19 @@ Output (pt-pt):
 }
 ```
 
-##### Specify the messages language
+#### Specify the messages language
 
 ```
 $validator = new Validator($_POST, $rules, 'pt-pt');
 ```
 
-##### Specify the messages language using the `LangEnum` class
+#### Specify the messages language using the `LangEnum` class
 
 ```
 $validator = new Validator($_POST, $rules, LangEnum::PT_PT);
 ```
 
-##### Specify a custom message
+#### Specify a custom message
 
 ```
 ...
@@ -238,7 +236,7 @@ Output example:
 }
 ```
 
-##### Specify a custom message with placeholders
+#### Specify a custom message with placeholders
 
 ```
 ...
@@ -264,7 +262,7 @@ Output example:
 }
 ```
 
-##### Specify a custom message for fields with and without a label
+#### Specify a custom message for fields with and without a label
 
 ```
 ...
@@ -311,7 +309,7 @@ Output - Field without label:
 }
 ```
 
-##### Specify multiple custom messages at once
+#### Specify multiple custom messages at once
 
 ```
 ...
@@ -326,7 +324,7 @@ $validator->addCustomMessages(
 ...
 ```
 
-##### Specify multiple custom messages at once for fields with and without a label
+#### Specify multiple custom messages at once for fields with and without a label
 
 ```
 ...
