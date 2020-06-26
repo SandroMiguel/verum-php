@@ -31,6 +31,8 @@ Install Verum PHP with Composer
 Validate a simple registration form
 
 ```
+use Verum\Validator;
+
 $rules = [
     'name' => [
         'rules' => [
@@ -126,6 +128,9 @@ Output:
 You can use the `RuleEnum` class to access all rule names.
 
 ```
+use Verum\Validator;
+use Verum\Enum\RuleEnum;
+
 $rules = [
     'name' => [
         'rules' => [
@@ -210,6 +215,11 @@ $validator = new Validator($_POST, $rules, 'pt-pt');
 #### Specify the messages language using the `LangEnum` class
 
 ```
+use Verum\Validator;
+use Verum\Enum\LangEnum;
+
+...
+
 $validator = new Validator($_POST, $rules, LangEnum::PT_PT);
 ```
 
