@@ -9,6 +9,7 @@
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
+1. [Available Rules](#available-rules)
 1. [Contributing](#contributing)
 1. [Questions](#questions)
 1. [License](#license)
@@ -118,7 +119,7 @@ Output:
 }
 ```
 
-#### Use RuleEnum class
+#### Use `RuleEnum` class
 
 You can use the `RuleEnum` class to access all rule names.
 
@@ -133,7 +134,7 @@ $rules = [
 ];
 ```
 
-#### Specify the fields label
+#### Specify the fields label (naming inputs)
 
 ```
 $rules = [
@@ -210,12 +211,15 @@ $validator = new Validator($_POST, $rules, 'pt-pt');
 $validator = new Validator($_POST, $rules, LangEnum::PT_PT);
 ```
 
-#### Specify a custom message
+#### Specify a custom error message
+
+-   Useful to override the default error message.
+-   Useful for localization.
 
 ```
 ...
 $validator = new Validator($_POST, $rules);
-$validator->addSimpleCustomMessage('min_length', 'Min Length rule custom message');
+$validator->addSimpleCustomMessage('min_length', 'Min Length rule custom error message');
 ...
 ```
 
@@ -228,7 +232,7 @@ Output example:
         "name": {
             "label": "Name",
             "rules": {
-                "min_length": "Min Length rule custom message"
+                "min_length": "Min Length rule custom error message"
             }
         },
         ...
@@ -236,7 +240,7 @@ Output example:
 }
 ```
 
-#### Specify a custom message with placeholders
+#### Specify a custom error message with placeholders
 
 ```
 ...
@@ -262,15 +266,15 @@ Output example:
 }
 ```
 
-#### Specify a custom message for fields with and without a label
+#### Specify a custom error message for fields with and without a label
 
 ```
 ...
 $validator = new Validator($_POST, $rules);
 $validator->addCustomMessage(
     'required',
-    'Custom message with label for required rule. Label: {param:1}.',
-    'Custom message without label for required rule.'
+    'Custom error message with label for required rule. Label: {param:1}.',
+    'Custom error message without label for required rule.'
 );
 ...
 ```
@@ -284,7 +288,7 @@ Output - Field with label:
         "name": {
             "label": "Name",
             "rules": {
-                "required": 'Custom message with label for required rule. Label: Name.'
+                "required": 'Custom error message with label for required rule. Label: Name.'
             }
         },
         ...
@@ -301,7 +305,7 @@ Output - Field without label:
         "name": {
             "label": null,
             "rules": {
-                "required": "Custom message without label for required rule."
+                "required": "Custom error message without label for required rule."
             }
         },
         ...
@@ -309,7 +313,7 @@ Output - Field without label:
 }
 ```
 
-#### Specify multiple custom messages at once
+#### Specify multiple custom error messages at once
 
 ```
 ...
@@ -324,7 +328,7 @@ $validator->addCustomMessages(
 ...
 ```
 
-#### Specify multiple custom messages at once for fields with and without a label
+#### Specify multiple custom error messages at once for fields with and without a label
 
 ```
 ...
@@ -343,6 +347,431 @@ $validator->addCustomMessages(
     ]
 );
 ...
+```
+
+## Available Rules
+
+### alpha
+
+Checks whether the value contains only alphabetic characters.
+
+```
+$rules = [
+    'nickname' => [
+        'label' => 'Nickname',
+        'rules' => [
+            RuleEnum::ALPHA,
+        ],
+    ],
+];
+```
+
+### alpha_numeric
+
+Checks whether the value contains only alphanumeric characters.
+
+```
+$rules = [
+    'nickname' => [
+        'label' => 'Nickname',
+        'rules' => [
+            RuleEnum::ALPHA_NUMERIC,
+        ],
+    ],
+];
+```
+
+### between
+
+Checks whether the value is between two values.
+
+```
+$rules = [
+    'age' => [
+        'label' => 'Age',
+        'rules' => [
+            RuleEnum::BETWEEN => [12, 29],
+        ],
+    ],
+];
+```
+
+### between_length
+
+Checks whether the number of characters of the value is between min and max values.
+
+```
+$rules = [
+    'nickname' => [
+        'label' => 'Nickname',
+        'rules' => [
+            RuleEnum::BETWEEN_LENGTH => [3, 15],
+        ],
+    ],
+];
+```
+
+### boolean_value
+
+Checks whether the value is a boolean value.
+Returns true for 1/0, '1'/'0', 'on'/'off', 'yes'/'no', true/false.
+
+```
+$rules = [
+    'light' => [
+        'label' => 'Light',
+        'rules' => [
+            RuleEnum::BOOLEAN_VALUE,
+        ],
+    ],
+];
+```
+
+### contains
+
+Checks whether the value is in an array.
+
+```
+$rules = [
+    'priority' => [
+        'label' => 'Priority',
+        'rules' => [
+            RuleEnum::CONTAINS => ['low', 'high'],
+        ],
+    ],
+];
+```
+
+### date
+
+Checks whether the value is a valid date (Y-m-d) or a custom format.
+
+```
+$rules = [
+    'dob' => [
+        'label' => 'Date of birth',
+        'rules' => [
+            RuleEnum::DATE,
+        ],
+    ],
+];
+```
+
+### email
+
+Checks whether the value has a valid email format.
+
+```
+$rules = [
+    'email' => [
+        'label' => 'Email',
+        'rules' => [
+            RuleEnum::EMAIL,
+        ],
+    ],
+];
+```
+
+### equals
+
+Checks whether the value is equal to another.
+
+```
+$rules = [
+    'confirm_password' => [
+        'label' => 'Confirm Password',
+        'rules' => [
+            RuleEnum::EQUALS => ['password'],
+        ],
+    ],
+];
+```
+
+### file_max_size
+
+Checks whether the file size does not exceed a given value.
+
+Enter a value in bytes.
+
+```
+$rules = [
+    'profile_photo' => [
+        'label' => 'Profile Photo',
+        'rules' => [
+            RuleEnum::FILE_MAX_SIZE => [102400],
+        ],
+    ],
+];
+```
+
+### file_mime_type
+
+Checks whether the file type is allowed.
+
+```
+$rules = [
+    'profile_photo' => [
+        'label' => 'Profile Photo',
+        'rules' => [
+            RuleEnum::FILE_MIME_TYPE => ['image/png', 'image/jpeg'],
+        ],
+    ],
+];
+```
+
+### float_number
+
+Checks whether the value is a floating point number.
+
+```
+$rules = [
+    'price' => [
+        'label' => 'Price',
+        'rules' => [
+            RuleEnum::FLOAT_NUMBER,
+        ],
+    ],
+];
+```
+
+### image_max_height
+
+Checks whether the image height does not exceed a given value.
+
+```
+$rules = [
+    'profile_photo' => [
+        'label' => 'Profile Photo',
+        'rules' => [
+            RuleEnum::IMAGE_MAX_HEIGHT => [600],
+        ],
+    ],
+];
+```
+
+### image_max_width
+
+Checks whether the image width does not exceed a given value.
+
+```
+$rules = [
+    'profile_photo' => [
+        'label' => 'Profile Photo',
+        'rules' => [
+            RuleEnum::IMAGE_MAX_WIDTH => [1000],
+        ],
+    ],
+];
+```
+
+### image_min_height
+
+Checks whether the image height is not less than a given value.
+
+```
+$rules = [
+    'profile_photo' => [
+        'label' => 'Profile Photo',
+        'rules' => [
+            RuleEnum::IMAGE_MIN_HEIGHT => [300],
+        ],
+    ],
+];
+```
+
+### image_min_width
+
+Checks whether the image width is not less than a given value.
+
+```
+$rules = [
+    'profile_photo' => [
+        'label' => 'Profile Photo',
+        'rules' => [
+            RuleEnum::IMAGE_MIN_WIDTH => [500],
+        ],
+    ],
+];
+```
+
+### ip
+
+Checks whether the value is a valid IP address.
+
+```
+$rules = [
+    'ip' => [
+        'label' => 'IP',
+        'rules' => [
+            RuleEnum::IP,
+        ],
+    ],
+];
+```
+
+### ipv4
+
+Checks whether the value is a valid IPv4 address.
+
+```
+$rules = [
+    'ipv4' => [
+        'label' => 'IPv4',
+        'rules' => [
+            RuleEnum::IPV4,
+        ],
+    ],
+];
+```
+
+### ipv6
+
+Checks whether the value is a valid IPv6 address.
+
+```
+$rules = [
+    'ipv6' => [
+        'label' => 'IPv6',
+        'rules' => [
+            RuleEnum::IPV6,
+        ],
+    ],
+];
+```
+
+### max
+
+Checks whether the value does not exceed a given value.
+
+```
+$rules = [
+    'people' => [
+        'label' => 'People',
+        'rules' => [
+            RuleEnum::MAX => [5],
+        ],
+    ],
+];
+```
+
+### max_length
+
+Checks whether the number of characters of the value does not exceed a given value.
+
+```
+$rules = [
+    'nickname' => [
+        'label' => 'Nickname',
+        'rules' => [
+            RuleEnum::MAX_LENGTH => [15],
+        ],
+    ],
+];
+```
+
+### min
+
+Checks whether the value is not less than a given value.
+
+```
+$rules = [
+    'people' => [
+        'label' => 'People',
+        'rules' => [
+            RuleEnum::MIN => [2],
+        ],
+    ],
+];
+```
+
+### min_length
+
+Checks whether the number of characters of the value is not less than a given value.
+
+```
+$rules = [
+    'nickname' => [
+        'label' => 'Nickname',
+        'rules' => [
+            RuleEnum::MIN_LENGTH => [2],
+        ],
+    ],
+];
+```
+
+### numeric
+
+Checks whether the value is numeric.
+
+```
+$rules = [
+    'age' => [
+        'label' => 'Age',
+        'rules' => [
+            RuleEnum::NUMERIC,
+        ],
+    ],
+];
+```
+
+### regex
+
+Checks whether the value matches a given regular expression.
+
+```
+$rules = [
+    'path' => [
+        'label' => 'Path',
+        'rules' => [
+            RuleEnum::REGEX => ['/client/[0-9a-f]+$'],
+        ],
+    ],
+];
+```
+
+### required
+
+Checks whether the value is not empty.
+
+```
+$rules = [
+    'name' => [
+        'label' => 'Name',
+        'rules' => [
+            RuleEnum::REQUIRED,
+        ],
+    ],
+];
+```
+
+### slug
+
+Checks whether the value is a valid Slug (e.g. hello-world_123).
+
+```
+$rules = [
+    'slug' => [
+        'label' => 'Slug',
+        'rules' => [
+            RuleEnum::SLUG,
+        ],
+    ],
+];
+```
+
+### url
+
+Checks whether the value is a valid URL.
+
+```
+$rules = [
+    'url' => [
+        'label' => 'URL',
+        'rules' => [
+            RuleEnum::URL,
+        ],
+    ],
+];
 ```
 
 ## Contributing
