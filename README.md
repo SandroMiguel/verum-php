@@ -22,7 +22,9 @@
 
 Install Verum PHP with Composer
 
-`composer require sandromiguel/verum-php`
+```sh
+composer require sandromiguel/verum-php
+```
 
 ### Usage
 
