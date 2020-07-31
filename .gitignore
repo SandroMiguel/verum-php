@@ -20,3 +20,4 @@ yarn-error.log*
 **/*.bak
 **/storage
 **/.misc
+.phpunit.result.cache
