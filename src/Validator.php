@@ -78,6 +78,8 @@ final class Validator
     /** @var string $language Language */
     private $language;
 
+    private $messagesPath;
+
     /**
      * Validator constructor.
      *
@@ -101,18 +103,23 @@ final class Validator
         if ($this->isEmptyArray($fieldRules)) {
             throw ValidatorException::noRules();
         }
-        if (!in_array($lang, LangEnum::getConstants())) {
-            throw ValidatorException::invalidArgument(
-                '$lang',
-                $lang,
-                'Language not available'
-            );
-        }
+        // if (!in_array($lang, LangEnum::getConstants())) {
+        //     throw ValidatorException::invalidArgument(
+        //         '$lang',
+        //         $lang,
+        //         'Language not available'
+        //     );
+        // }
 
         $this->fieldValues = $fieldValues;
         $this->fieldRules = $fieldRules;
         $this->language = $lang;
         $this->loadMessages($lang);
+    }
+
+    public function setMessagesPath(string $messagesPath): void
+    {
+        $this->messagesPath = $messagesPath;
     }
 
     /**
@@ -316,7 +323,7 @@ final class Validator
      */
     private function loadMessages(string $lang): void
     {
-        $messagesPath = __DIR__ . "/I18n/{$lang}.php";
+        $messagesPath = $this->messagesPath ?? __DIR__ . "/I18n/{$lang}.php";
         if (!file_exists($messagesPath)) {
             throw ValidatorException::noTranslation($lang);
         }
