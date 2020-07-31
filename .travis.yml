@@ -1,0 +1,11 @@
+language: php
+
+php:
+    - '7.2'
+
+install:
+    - composer install
+
+notifications:
+    on_success: always
+    on_failure: always
