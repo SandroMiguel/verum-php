@@ -21,6 +21,6 @@
         "@commitlint/config-conventional": "^9.0.1",
         "cz-conventional-changelog": "^3.2.0",
         "husky": "^4.2.5",
-        "standard-version": "^8.0.0"
+        "standard-version": "^8.0.1"
     }
 }
