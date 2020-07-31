@@ -95,7 +95,8 @@ final class Validator
     public function __construct(
         array $fieldValues,
         array $fieldRules,
-        string $lang = 'en'
+        string $lang = 'en',
+        $messagesPath = null
     ) {
         if ($this->isEmptyArray($fieldValues)) {
             throw ValidatorException::noFields();
@@ -103,23 +104,19 @@ final class Validator
         if ($this->isEmptyArray($fieldRules)) {
             throw ValidatorException::noRules();
         }
-        // if (!in_array($lang, LangEnum::getConstants())) {
-        //     throw ValidatorException::invalidArgument(
-        //         '$lang',
-        //         $lang,
-        //         'Language not available'
-        //     );
-        // }
+        if (!in_array($lang, LangEnum::getConstants()) && !$messagesPath) {
+            throw ValidatorException::invalidArgument(
+                '$lang',
+                $lang,
+                'Language not available'
+            );
+        }
 
         $this->fieldValues = $fieldValues;
         $this->fieldRules = $fieldRules;
         $this->language = $lang;
-        $this->loadMessages($lang);
-    }
-
-    public function setMessagesPath(string $messagesPath): void
-    {
         $this->messagesPath = $messagesPath;
+        $this->loadMessages($lang);
     }
 
     /**
