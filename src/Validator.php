@@ -54,7 +54,7 @@ final class Validator
      *      ...
      *  ]
      *
-     * @var array<string, array<string, string>|string> Error messages
+     * @var mixed Error messages
      */
     private $messages = [];
 
@@ -63,7 +63,8 @@ final class Validator
      *      'field_name_1' => [
      *          'label' => 'Field label 1',
      *          'rules' => [
-     *              'between_length' => 'The length must be between %1$s and %2$s characters.',
+     *              'between_length' =>
+     *                  'The length must be between %1$s and %2$s characters.',
      *              'required' => 'This field is required.',
      *          ],
      *      ],
@@ -78,6 +79,7 @@ final class Validator
     /** @var string $language Language */
     private $language;
 
+    /** @var string|null $messagesPath External messages file path */
     private $messagesPath;
 
     /**
@@ -86,6 +88,7 @@ final class Validator
      * @param array<mixed> $fieldValues Input field data.
      * @param array<mixed> $fieldRules Field rules.
      * @param string $lang Language.
+     * @param string $messagesPath External messages file path.
      *
      * @throws ValidatorException Validator Exception.
      *
@@ -96,7 +99,7 @@ final class Validator
         array $fieldValues,
         array $fieldRules,
         string $lang = 'en',
-        $messagesPath = null
+        string $messagesPath = null
     ) {
         if ($this->isEmptyArray($fieldValues)) {
             throw ValidatorException::noFields();
@@ -141,7 +144,8 @@ final class Validator
      *
      * @param string $rule Rule name.
      * @param string $messageWithLabel Message to show if the field has a label.
-     * @param string $messageWithoutLabel Message to show if the field does not have a label.
+     * @param string $messageWithoutLabel Message to show if the field does not
+     *                                    have a label.
      *
      * @version 2.0.0 (17/06/2020)
      * @since   Verum 1.0.0
@@ -290,7 +294,8 @@ final class Validator
      * @param string $ruleName Rule name.
      * @param array<mixed> $ruleValues Rule values.
      *
-     * @return array<string, string> Returns the array with the rule name and the error message.
+     * @return array<string, string> Returns the array with the rule name and
+     *                               the error message.
      *
      * @version 2.0.0 (16/06/2020)
      * @since   Verum 1.0.0
@@ -332,7 +337,8 @@ final class Validator
      *
      * @param string $fieldName Field name.
      * @param string $label Field label.
-     * @param array<string, string> $error Error message (e.g.: ['required' => 'This field is required']).
+     * @param array<string, string> $error Error message. Example:
+     *                                     ['required' => 'Field required']
      *
      * @version 1.0.1 (16/06/2020)
      * @since   Verum 1.0.0
@@ -359,7 +365,8 @@ final class Validator
      * @param string $ruleMessage Rule message.
      * @param array<string> $args Arguments.
      *
-     * @return string Returns the message with the placeholder values ​​filled in.
+     * @return string Returns the message with the
+     *                placeholder values ​​filled in.
      *
      * @throws ValidatorException Validator Exception.
      *
