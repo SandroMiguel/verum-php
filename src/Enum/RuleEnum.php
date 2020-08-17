@@ -51,4 +51,6 @@ abstract class RuleEnum
     public const REQUIRED = 'required';
     public const SLUG = 'slug';
     public const URL = 'url';
+    public const REQUIRED_IF = 'required_if';
+    public const REQUIRED_IF_NOT = 'required_if_not';
 }

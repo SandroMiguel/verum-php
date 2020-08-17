@@ -129,4 +129,12 @@ return [
         'withLabel' => 'The "{param:1}" field must be a valid URL.',
         'withoutLabel' => 'This field must be a valid URL.',
     ],
+    'required_if' => [
+        'withLabel' => 'The "{param:1}" field is required.',
+        'withoutLabel' => 'This field is required.',
+    ],
+    'required_if_not' => [
+        'withLabel' => 'The "{param:1}" field is required.',
+        'withoutLabel' => 'This field is required.',
+    ],
 ];

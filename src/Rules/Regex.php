@@ -64,6 +64,9 @@ final class Regex extends Rule
         $this->pattern = $this->ruleValues[0];
 
         try {
+            if (!is_string($this->fieldValue)) {
+                return false;
+            }
             if (!preg_match($this->pattern, $this->fieldValue)) {
                 return false;
             }
