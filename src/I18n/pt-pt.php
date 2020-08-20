@@ -129,4 +129,12 @@ return [
         'withLabel' => 'O campo "{param:1}" deve ser um URL válido.',
         'withoutLabel' => 'Este campo deve ser um URL válido.',
     ],
+    'required_if' => [
+        'withLabel' => 'O campo "{param:1}" é obrigatório.',
+        'withoutLabel' => 'Este campo é obrigatório.',
+    ],
+    'required_if_not' => [
+        'withLabel' => 'O campo "{param:1}" é obrigatório.',
+        'withoutLabel' => 'Este campo é obrigatório.',
+    ],
 ];

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Equals rule.
+ * RequiredIf rule.
  *
  * PHP Version 7.2.11-3
  *
@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.2 (25/06/2020)
+ * @version   1.1.2 (14/06/2020)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,34 +18,24 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
-
 /**
- * Class Equals | core/Verum/Rules/Equals.php
- * Checks whether the value is equal to another.
+ * Class RequiredIf | core/Verum/Rules/RequiredIf.php
+ * Checks whether the value is not empty, whenever other Fieldname is not empty
  */
-final class Equals extends Rule
+final class RequiredIf extends Rule
 {
     /** @var string Field Name to compare */
-    private $fieldNameToCompare;
+    private $fieldNameDepends;
 
     /** @var string Field value to compare */
-    private $fieldValueToCompare;
-
-    /** @var string First field label */
-    private $labelNameA;
-
-    /** @var string Second field label */
-    private $labelNameB;
+    private $fieldValueDepends;
 
     /**
-     * Equals constructor.
+     * RequiredIf constructor.
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @throws ValidatorException Validator Exception.
-     *
-     * @version 3.0.0 (09/06/2020)
+     * @version 1.0.0 (01/05/2020)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -58,9 +48,7 @@ final class Equals extends Rule
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
-     * @throws ValidatorException Validator Exception.
-     *
-     * @version 2.0.1 (25/06/2020)
+     * @version 1.0.1 (28/04/2020)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -69,39 +57,64 @@ final class Equals extends Rule
             throw ValidatorException::invalidArgument(
                 '$ruleValues',
                 $this->ruleValues[0] ?? 'null',
-                'Rule "equals": the rule value is mandatory'
+                'Rule "requiredIf": the rule value is mandatory'
             );
         }
-        $this->fieldNameToCompare = $this->ruleValues[0];
-
+        $this->fieldNameDepends = $this->ruleValues[0];
+        
         $fieldValues = $this->validator->getFieldValues();
-        if (array_key_exists($this->fieldNameToCompare, $fieldValues)) {
-            $this->fieldValueToCompare = $fieldValues[$this->fieldNameToCompare];
+        if (array_key_exists($this->fieldNameDepends, $fieldValues)) { 
+            $this->fieldValueDepends = $fieldValues[$this->fieldNameDepends];
+            $isEmptyDepends = $this->isEmpty($this->fieldValueDepends);
         } else {
             // no value was submitted for the dependent field (may be legit e.g. for an unchecked checkbox)
-            $this->fieldValueToCompare = null;
+            $isEmptyDepends = true;
         }
 
-        $this->labelNameA = $this
-            ->validator
-            ->getFieldRules()[$this->fieldNameToCompare]['label'] ?? null;
-        $this->labelNameB = $this
-            ->validator
-            ->getFieldRules()[$this->fieldNameUnderTest]['label'] ?? null;
-
-        return $this->fieldValue === $this->fieldValueToCompare;
-    }
+        if (! $isEmptyDepends) {
+            $isValid = ! $this->isEmpty($this->fieldValue);
+            return $isValid;
+        } else {
+            return true;
+        }
+     }
 
     /**
      * Error Message Parameters.
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 1.0.0 (15/05/2020)
+     * @version 1.0.1 (14/06/2020)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array
     {
-        return [$this->labelNameA, $this->labelNameB];
+        return [$this->fieldLabel];
     }
+
+
+
+    /** 
+     * Check whether the value is empty
+     *
+     * @param mixed $value Value to check.
+     * @return bool Returns TRUE if empty, FALSE otherwise.
+     *
+     * @version 1.0.0 (17/08/2020)
+     * @since   Verum 1.0.x
+     */
+    private function isEmpty($value): bool
+    {
+       if (
+            empty($value)
+            && $value !== '0'
+            && $value !== 0
+            && $value !== []
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
