@@ -57,7 +57,7 @@ final class RequiredIfNot extends Rule
             throw ValidatorException::invalidArgument(
                 '$ruleValues',
                 $this->ruleValues[0] ?? 'null',
-                'Rule "requiredIf": the rule value is mandatory'
+                'Rule "requiredIfNot": the rule value is mandatory'
             );
         }
         $this->fieldNameDepends = $this->ruleValues[0];
