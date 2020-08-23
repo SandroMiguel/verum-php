@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.2 (25/06/2020)
+ * @version   4.0.3 (2020/08/23)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -29,13 +29,13 @@ final class Equals extends Rule
     /** @var string Field Name to compare */
     private $fieldNameToCompare;
 
-    /** @var string Field value to compare */
+    /** @var string|null Field value to compare */
     private $fieldValueToCompare;
 
-    /** @var string First field label */
+    /** @var string|null First field label */
     private $labelNameA;
 
-    /** @var string Second field label */
+    /** @var string|null Second field label */
     private $labelNameB;
 
     /**
@@ -45,7 +45,7 @@ final class Equals extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 3.0.0 (09/06/2020)
+     * @version 3.0.0 (2020/06/09)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -60,7 +60,7 @@ final class Equals extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.0.1 (25/06/2020)
+     * @version 2.0.2 (2020/08/18)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -95,9 +95,9 @@ final class Equals extends Rule
     /**
      * Error Message Parameters.
      *
-     * @return array<int, string> Returns the parameters for the error message.
+     * @return array<int, string|null> Returns the parameters for the error message.
      *
-     * @version 1.0.0 (15/05/2020)
+     * @version 1.0.0 (2020/05/15)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array

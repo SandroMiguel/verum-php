@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.11.1 (16/06/2020)
+ * @version   1.11.2 (2020/08/23)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -36,11 +36,11 @@ final class RuleFactory
      * @param string $ruleName Rule name.
      * @param string|null $label Label.
      *
-     * @return Rule Returns a rule object.
+     * @return object Returns a rule object.
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.11.1 (16/06/2020)
+     * @version 1.11.2 (2020/08/23)
      * @since   Verum 1.0.0
      */
     public static function loadRule(
@@ -50,7 +50,7 @@ final class RuleFactory
         string $fieldName,
         string $ruleName,
         ?string $label
-    ): Rule {
+    ): object {
         $className = 'Verum\\Rules\\' . self::snakeCaseToPascalCase($ruleName);
         if (!class_exists($className)) {
             throw ValidatorException::ruleNotFound($ruleName);
