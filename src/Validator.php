@@ -54,7 +54,7 @@ final class Validator
      *      ...
      *  ]
      *
-     * @var array<string, array<string, string>|string> Error messages
+     * @var array<string, string|array<string, string>> Error messages
      */
     private $messages = [];
 
