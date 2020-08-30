@@ -58,13 +58,13 @@ class AlphaTest extends TestCase
     }
 
     /**
-     * The String ('some text 123') value should not pass validation.
+     * Null value should pass validation (ignored field).
      *
      * @return void
      */
-    public function testValidateAlphaNumeric(): void
+    public function testValidateNull(): void
     {
-        $this->assertFalse($this->validate('some text 123'));
+        $this->assertTrue($this->validate(null));
     }
 
     /**
@@ -78,6 +78,26 @@ class AlphaTest extends TestCase
     }
 
     /**
+     * A Zero String ('0') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroString(): void
+    {
+        $this->assertFalse($this->validate('0'));
+    }
+
+    /**
+     * The Zero Number (0) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroNumber(): void
+    {
+        $this->assertFalse($this->validate(0));
+    }
+
+    /**
      * The String ('hello') value should pass validation.
      *
      * @return void
@@ -85,5 +105,15 @@ class AlphaTest extends TestCase
     public function testValidateAlphabetic(): void
     {
         $this->assertTrue($this->validate('hello'));
+    }
+
+    /**
+     * The String ('some text 123') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateAlphaNumeric(): void
+    {
+        $this->assertFalse($this->validate('some text 123'));
     }
 }

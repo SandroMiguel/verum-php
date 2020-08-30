@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   3.1.2 (13/06/2020)
+ * @version   3.1.3 (2020/08/29)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -46,12 +46,12 @@ final class Alpha extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.2.1 (11/06/2020)
+     * @version 2.2.2 (2020/08/29)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
     {
-        if ($this->fieldValue === '') {
+        if ($this->fieldValue === '' || $this->fieldValue === null) {
             return true;
         }
 
