@@ -381,12 +381,18 @@ $rules = [
 ];
 ```
 
-| Value | alpha                                           | alpha + required                                |
-| ----- | ----------------------------------------------- | ----------------------------------------------- |
-| null  | :heavy_check_mark:                              | :x: This field is required.                     |
-| ''    | :heavy_check_mark:                              | :x: This field is required.                     |
-| '0'   | :x: This field must contain letters only (a-z). | :x: This field must contain letters only (a-z). |
-| 0     | :x: This field must contain letters only (a-z). | :x: This field must contain letters only (a-z). |
+| Value       | alpha              | alpha + required   |
+| ----------- | ------------------ | ------------------ |
+| null        | :heavy_check_mark: | :x:                |
+| ''          | :heavy_check_mark: | :x:                |
+| '0'         | :x:                | :x:                |
+| 0           | :x:                | :x:                |
+| false       | :x:                | :x:                |
+| []          | :x:                | :x:                |
+| -1          | :x:                | :x:                |
+| 1           | :x:                | :x:                |
+| true        | :x:                | :x:                |
+| 'some text' | :heavy_check_mark: | :heavy_check_mark: |
 
 ### alpha_numeric
 
