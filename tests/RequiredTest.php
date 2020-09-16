@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.0.1 (11/06/2020)
+ * @version   2.0.0 (2020/09/16)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -94,6 +94,16 @@ class RequiredTest extends TestCase
     public function testValidateZero(): void
     {
         $this->assertTrue($this->validate(0));
+    }
+
+    /**
+     * A Boolean (false) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateFalse(): void
+    {
+        $this->assertTrue($this->validate(false));
     }
 
     /**
