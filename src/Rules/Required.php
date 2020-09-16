@@ -51,6 +51,7 @@ final class Required extends Rule
             empty($this->fieldValue)
             && $this->fieldValue !== '0'
             && $this->fieldValue !== 0
+            && $this->fieldValue !== false
         ) {
             return false;
         }
