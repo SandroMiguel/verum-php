@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.2.2 (11/06/2020)
+ * @version   1.3.2 (2020/09/16)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,9 +18,7 @@ declare(strict_types=1);
 
 namespace Verum\Tests;
 
-use Verum\Rules\Alpha;
 use PHPUnit\Framework\TestCase;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
 
@@ -105,6 +103,16 @@ class AlphaTest extends TestCase
     public function testValidateAlphabetic(): void
     {
         $this->assertTrue($this->validate('hello'));
+    }
+
+    /**
+     * The String ('text with spaces') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateAlphabeticWithSpaces(): void
+    {
+        $this->assertFalse($this->validate('text with spaces'));
     }
 
     /**

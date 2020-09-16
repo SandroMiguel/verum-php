@@ -381,18 +381,19 @@ $rules = [
 ];
 ```
 
-| Value       | alpha              | alpha + required   |
-| ----------- | ------------------ | ------------------ |
-| null        | :heavy_check_mark: | :x:                |
-| ''          | :heavy_check_mark: | :x:                |
-| '0'         | :x:                | :x:                |
-| 0           | :x:                | :x:                |
-| false       | :x:                | :x:                |
-| []          | :x:                | :x:                |
-| -1          | :x:                | :x:                |
-| 1           | :x:                | :x:                |
-| true        | :x:                | :x:                |
-| 'some text' | :heavy_check_mark: | :heavy_check_mark: |
+| Value              | alpha              | alpha + required   |
+| ------------------ | ------------------ | ------------------ |
+| null               | :heavy_check_mark: | :x:                |
+| ''                 | :heavy_check_mark: | :x:                |
+| '0'                | :x:                | :x:                |
+| 0                  | :x:                | :x:                |
+| false              | :x:                | :x:                |
+| []                 | :x:                | :x:                |
+| -1                 | :x:                | :x:                |
+| 1                  | :x:                | :x:                |
+| true               | :x:                | :x:                |
+| 'text'             | :heavy_check_mark: | :heavy_check_mark: |
+| 'text with spaces' | :x:                | :x:                |
 
 ### alpha_numeric
 
