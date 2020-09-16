@@ -772,6 +772,19 @@ $rules = [
 ];
 ```
 
+| Value       | required           |
+| ----------- | ------------------ |
+| null        | :x:                |
+| ''          | :x:                |
+| '0'         | :heavy_check_mark: |
+| 0           | :heavy_check_mark: |
+| false       | :heavy_check_mark: |
+| []          | :x:                |
+| -1          | :heavy_check_mark: |
+| 1           | :heavy_check_mark: |
+| true        | :heavy_check_mark: |
+| 'some text' | :heavy_check_mark: |
+
 ### slug
 
 Checks whether the value is a valid Slug (e.g. hello-world_123).
