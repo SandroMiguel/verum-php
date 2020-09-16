@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.2 (14/06/2020)
+ * @version   2.0.0 (2020/19/16)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -29,7 +29,7 @@ final class Required extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 1.0.0 (01/05/2020)
+     * @version 1.0.0 (2020/05/01)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -42,7 +42,7 @@ final class Required extends Rule
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
-     * @version 1.0.1 (28/04/2020)
+     * @version 2.0.0 (2020/09/16)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -51,7 +51,6 @@ final class Required extends Rule
             empty($this->fieldValue)
             && $this->fieldValue !== '0'
             && $this->fieldValue !== 0
-            && $this->fieldValue !== []
         ) {
             return false;
         }
@@ -64,7 +63,7 @@ final class Required extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 1.0.1 (14/06/2020)
+     * @version 1.0.1 (2020/06/14)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array

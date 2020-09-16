@@ -97,13 +97,13 @@ class RequiredTest extends TestCase
     }
 
     /**
-     * An Empty Array ([]) value should pass validation.
+     * An Empty Array ([]) value should not pass validation.
      *
      * @return void
      */
     public function testValidateEmptyArray(): void
     {
-        $this->assertTrue($this->validate([]));
+        $this->assertFalse($this->validate([]));
     }
 
     /**
