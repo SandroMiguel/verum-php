@@ -147,6 +147,16 @@ class RequiredTest extends TestCase
     }
 
     /**
+     * A Boolean (true) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateTrue(): void
+    {
+        $this->assertTrue($this->validate(true));
+    }
+
+    /**
      * A String ('some text') value should pass validation.
      *
      * @return void
