@@ -410,6 +410,20 @@ $rules = [
 ];
 ```
 
+| Value              | alpha_numeric      | alpha_numeric + required |
+| ------------------ | ------------------ | ------------------------ |
+| null               | :heavy_check_mark: | :x:                      |
+| ''                 | :heavy_check_mark: | :x:                      |
+| '0'                | :heavy_check_mark: | :heavy_check_mark:       |
+| 0                  | :heavy_check_mark: | :heavy_check_mark:       |
+| false              | :x:                | :x:                      |
+| []                 | :x:                | :x:                      |
+| -1                 | :x:                | :x:                      |
+| 1                  | :heavy_check_mark: | :heavy_check_mark:       |
+| true               | :x:                | :x:                      |
+| 'text'             | :heavy_check_mark: | :heavy_check_mark:       |
+| 'text with spaces' | :x:                | :x:                      |
+
 ### between
 
 Checks whether the value is between two values.

@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.0.0 (10/05/2020)
+ * @version   1.1.0 (2020/09/17)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,7 +18,6 @@ declare(strict_types=1);
 
 namespace Verum\Tests;
 
-use Verum\Rules\AlphaNumeric;
 use PHPUnit\Framework\TestCase;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
@@ -57,13 +56,13 @@ class AlphaNumericTest extends TestCase
     }
 
     /**
-     * The String ('some-text-123') value should not pass validation.
+     * Null value should pass validation (ignored field).
      *
      * @return void
      */
-    public function testValidateSpecialChars(): void
+    public function testValidateNull(): void
     {
-        $this->assertFalse($this->validate('some-text-123'));
+        $this->assertTrue($this->validate(null));
     }
 
     /**
@@ -77,6 +76,76 @@ class AlphaNumericTest extends TestCase
     }
 
     /**
+     * A Zero String ('0') value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroString(): void
+    {
+        $this->assertTrue($this->validate('0'));
+    }
+
+    /**
+     * The Zero Number (0) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroNumber(): void
+    {
+        $this->assertTrue($this->validate(0));
+    }
+
+    /**
+     * A Boolean (false) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateFalse(): void
+    {
+        $this->assertFalse($this->validate(false));
+    }
+
+    /**
+     * An Empty Array ([]) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateEmptyArray(): void
+    {
+        $this->assertFalse($this->validate([]));
+    }
+
+    /**
+     * The Minus One (-1) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateMinusOne(): void
+    {
+        $this->assertFalse($this->validate(-1));
+    }
+
+    /**
+     * The One (1) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateOne(): void
+    {
+        $this->assertTrue($this->validate(1));
+    }
+
+    /**
+     * A Boolean (true) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateTrue(): void
+    {
+        $this->assertFalse($this->validate(true));
+    }
+
+    /**
      * The String ('hello123') value should pass validation.
      *
      * @return void
@@ -84,5 +153,25 @@ class AlphaNumericTest extends TestCase
     public function testValidateAlphaNumeric(): void
     {
         $this->assertTrue($this->validate('hello123'));
+    }
+
+    /**
+     * The String ('text with spaces') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateTextWithSpaces(): void
+    {
+        $this->assertFalse($this->validate('text with spaces'));
+    }
+
+    /**
+     * The String ('some-text-123') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateSpecialChars(): void
+    {
+        $this->assertFalse($this->validate('some-text-123'));
     }
 }
