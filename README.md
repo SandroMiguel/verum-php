@@ -441,16 +441,16 @@ $rules = [
 
 | Value       | between [1, 10]    | between [1, 10] + required |
 | ----------- | ------------------ | -------------------------- |
-| null        | :heavy_check_mark: | ?                          |
-| ''          | :heavy_check_mark: | ?                          |
-| '0'         | :x:                | ?                          |
-| 0           | :x:                | ?                          |
-| false       | :x:                | ?                          |
-| []          | :x:                | ?                          |
-| -1          | :x:                | ?                          |
-| 1           | :heavy_check_mark: | ?                          |
-| true        | :x:                | ?                          |
-| 'some text' | :x:                | ?                          |
+| null        | :heavy_check_mark: | :x:                        |
+| ''          | :heavy_check_mark: | :x:                        |
+| '0'         | :x:                | :x:                        |
+| 0           | :x:                | :x:                        |
+| false       | :x:                | :x:                        |
+| []          | :x:                | :x:                        |
+| -1          | :x:                | :x:                        |
+| 1           | :heavy_check_mark: | :heavy_check_mark:         |
+| true        | :x:                | :x:                        |
+| 'some text' | :x:                | :x:                        |
 
 ### between_length
 
