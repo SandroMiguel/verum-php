@@ -63,14 +63,14 @@ final class Between extends Rule
             throw ValidatorException::invalidArgument(
                 '$ruleValues',
                 $this->ruleValues[0] ?? 'null',
-                'Rule "between": the rule values are mandatory'
+                'The values min and max are mandatory on rule "between"'
             );
         }
         if (!isset($this->ruleValues[1])) {
             throw ValidatorException::invalidArgument(
                 '$ruleValues',
                 $this->ruleValues[1],
-                'Rule "between": the rule values are mandatory'
+                'The values min and max are mandatory on rule "between"'
             );
         }
         $this->minLength = $this->ruleValues[0];
