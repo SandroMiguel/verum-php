@@ -439,6 +439,19 @@ $rules = [
 ];
 ```
 
+| Value       | between [1, 10]    | between [1, 10] + required |
+| ----------- | ------------------ | -------------------------- |
+| null        | :heavy_check_mark: | ?                          |
+| ''          | :heavy_check_mark: | ?                          |
+| '0'         | :x:                | ?                          |
+| 0           | :x:                | ?                          |
+| false       | :x:                | ?                          |
+| []          | :x:                | ?                          |
+| -1          | :x:                | ?                          |
+| 1           | :heavy_check_mark: | ?                          |
+| true        | :x:                | ?                          |
+| 'some text' | :x:                | ?                          |
+
 ### between_length
 
 Checks whether the number of characters of the value is between min and max values.
