@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   2.0.3 (25/06/2020)
+ * @version   3.0.0 (2020/09/21)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -36,7 +36,7 @@ final class MinLength extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.0.0 (10/06/2020)
+     * @version 2.0.0 (2020/06/10)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -51,7 +51,7 @@ final class MinLength extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.1.2 (25/06/2020)
+     * @version 2.0.0 (2020/09/21)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -66,14 +66,21 @@ final class MinLength extends Rule
         if (!is_int($this->ruleValues[0])) {
             throw ValidatorException::noIntegerValue($this->ruleValues[0]);
         }
+
         $this->minLength = $this->ruleValues[0];
+
+        if ($this->fieldValue === null) {
+            return true;
+        }
 
         if (
             !isset($this->fieldValue)
-            || mb_strlen($this->fieldValue) < $this->minLength
+            || is_array($this->fieldValue)
+            || mb_strlen((string) $this->fieldValue) < $this->minLength
         ) {
             return false;
         }
+
         return true;
     }
 
@@ -82,7 +89,7 @@ final class MinLength extends Rule
      *
      * @return array<int, mixed> Returns the parameters for the error message.
      *
-     * @version 1.0.1 (14/06/2020)
+     * @version 1.0.1 (2020/06/14)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array
