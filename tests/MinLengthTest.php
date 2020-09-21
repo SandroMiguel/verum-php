@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.1 (25/06/2020)
+ * @version   1.2.0 (2020/06/25)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -72,13 +72,13 @@ class MinLengthTest extends TestCase
     }
 
     /**
-     * A Null (null) value should violate the rule.
+     * Null value should pass validation (ignored field).
      *
      * @return void
      */
     public function testValidateNull(): void
     {
-        $this->assertFalse($this->validate(null, [5]));
+        $this->assertTrue($this->validate(null, [5]));
     }
 
     /**
