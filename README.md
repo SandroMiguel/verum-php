@@ -467,6 +467,21 @@ $rules = [
 ];
 ```
 
+| Value                     | between_length [5,25] | between_length [5,25] + required |
+| ------------------------- | --------------------- | -------------------------------- |
+| null                      | :heavy_check_mark:    | ?                                |
+| ''                        | :heavy_check_mark:    | ?                                |
+| '0'                       | :x:                   | ?                                |
+| 0                         | :x:                   | ?                                |
+| false                     | :x:                   | ?                                |
+| []                        | :x:                   | ?                                |
+| -1                        | :x:                   | ?                                |
+| 1                         | :x:                   | ?                                |
+| 12345                     | :heavy_check_mark:    | ?                                |
+| true                      | :x:                   | ?                                |
+| 'text'                    | :x:                   | ?                                |
+| 'text with 23 characters' | :heavy_check_mark:    | ?                                |
+
 ### boolean_value
 
 Checks whether the value is a boolean value.
