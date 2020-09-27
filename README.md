@@ -381,19 +381,19 @@ $rules = [
 ];
 ```
 
-| Value              | alpha              | alpha + required   |
-| ------------------ | ------------------ | ------------------ |
-| null               | :heavy_check_mark: | :x:                |
-| ''                 | :heavy_check_mark: | :x:                |
-| '0'                | :x:                | :x:                |
-| 0                  | :x:                | :x:                |
-| false              | :x:                | :x:                |
-| []                 | :x:                | :x:                |
-| -1                 | :x:                | :x:                |
-| 1                  | :x:                | :x:                |
-| true               | :x:                | :x:                |
+| Value              |       alpha        |  alpha + required  |
+| ------------------ | :----------------: | :----------------: |
+| null               | :heavy_check_mark: |        :x:         |
+| ''                 | :heavy_check_mark: |        :x:         |
+| '0'                |        :x:         |        :x:         |
+| 0                  |        :x:         |        :x:         |
+| false              |        :x:         |        :x:         |
+| []                 |        :x:         |        :x:         |
+| -1                 |        :x:         |        :x:         |
+| 1                  |        :x:         |        :x:         |
+| true               |        :x:         |        :x:         |
 | 'text'             | :heavy_check_mark: | :heavy_check_mark: |
-| 'text with spaces' | :x:                | :x:                |
+| 'text with spaces' |        :x:         |        :x:         |
 
 ### alpha_numeric
 
@@ -410,19 +410,19 @@ $rules = [
 ];
 ```
 
-| Value              | alpha_numeric      | alpha_numeric + required |
-| ------------------ | ------------------ | ------------------------ |
-| null               | :heavy_check_mark: | :x:                      |
-| ''                 | :heavy_check_mark: | :x:                      |
-| '0'                | :heavy_check_mark: | :heavy_check_mark:       |
-| 0                  | :heavy_check_mark: | :heavy_check_mark:       |
-| false              | :x:                | :x:                      |
-| []                 | :x:                | :x:                      |
-| -1                 | :x:                | :x:                      |
-| 1                  | :heavy_check_mark: | :heavy_check_mark:       |
-| true               | :x:                | :x:                      |
-| 'text'             | :heavy_check_mark: | :heavy_check_mark:       |
-| 'text with spaces' | :x:                | :x:                      |
+| Value              |   alpha_numeric    | alpha_numeric + required |
+| ------------------ | :----------------: | :----------------------: |
+| null               | :heavy_check_mark: |           :x:            |
+| ''                 | :heavy_check_mark: |           :x:            |
+| '0'                | :heavy_check_mark: |    :heavy_check_mark:    |
+| 0                  | :heavy_check_mark: |    :heavy_check_mark:    |
+| false              |        :x:         |           :x:            |
+| []                 |        :x:         |           :x:            |
+| -1                 |        :x:         |           :x:            |
+| 1                  | :heavy_check_mark: |    :heavy_check_mark:    |
+| true               |        :x:         |           :x:            |
+| 'text'             | :heavy_check_mark: |    :heavy_check_mark:    |
+| 'text with spaces' |        :x:         |           :x:            |
 
 ### between
 
@@ -439,18 +439,18 @@ $rules = [
 ];
 ```
 
-| Value       | between [1, 10]    | between [1, 10] + required |
-| ----------- | ------------------ | -------------------------- |
-| null        | :heavy_check_mark: | :x:                        |
-| ''          | :heavy_check_mark: | :x:                        |
-| '0'         | :x:                | :x:                        |
-| 0           | :x:                | :x:                        |
-| false       | :x:                | :x:                        |
-| []          | :x:                | :x:                        |
-| -1          | :x:                | :x:                        |
-| 1           | :heavy_check_mark: | :heavy_check_mark:         |
-| true        | :x:                | :x:                        |
-| 'some text' | :x:                | :x:                        |
+| Value       |  between [1, 10]   | between [1, 10] + required |
+| ----------- | :----------------: | :------------------------: |
+| null        | :heavy_check_mark: |            :x:             |
+| ''          | :heavy_check_mark: |            :x:             |
+| '0'         |        :x:         |            :x:             |
+| 0           |        :x:         |            :x:             |
+| false       |        :x:         |            :x:             |
+| []          |        :x:         |            :x:             |
+| -1          |        :x:         |            :x:             |
+| 1           | :heavy_check_mark: |     :heavy_check_mark:     |
+| true        |        :x:         |            :x:             |
+| 'some text' |        :x:         |            :x:             |
 
 ### between_length
 
@@ -468,19 +468,19 @@ $rules = [
 ```
 
 | Value                     | between_length [5,25] | between_length [5,25] + required |
-| ------------------------- | --------------------- | -------------------------------- |
-| null                      | :heavy_check_mark:    | :x:                              |
-| ''                        | :heavy_check_mark:    | :x:                              |
-| '0'                       | :x:                   | :x:                              |
-| 0                         | :x:                   | :x:                              |
-| false                     | :x:                   | :x:                              |
-| []                        | :x:                   | :x:                              |
-| -1                        | :x:                   | :x:                              |
-| 1                         | :x:                   | :x:                              |
-| 12345                     | :heavy_check_mark:    | :heavy_check_mark:               |
-| true                      | :x:                   | :x:                              |
-| 'text'                    | :x:                   | :x:                              |
-| 'text with 23 characters' | :heavy_check_mark:    | :heavy_check_mark:               |
+| ------------------------- | :-------------------: | :------------------------------: |
+| null                      |  :heavy_check_mark:   |               :x:                |
+| ''                        |  :heavy_check_mark:   |               :x:                |
+| '0'                       |          :x:          |               :x:                |
+| 0                         |          :x:          |               :x:                |
+| false                     |          :x:          |               :x:                |
+| []                        |          :x:          |               :x:                |
+| -1                        |          :x:          |               :x:                |
+| 1                         |          :x:          |               :x:                |
+| 12345                     |  :heavy_check_mark:   |        :heavy_check_mark:        |
+| true                      |          :x:          |               :x:                |
+| 'text'                    |          :x:          |               :x:                |
+| 'text with 23 characters' |  :heavy_check_mark:   |        :heavy_check_mark:        |
 
 ### boolean_value
 
@@ -497,6 +497,22 @@ $rules = [
     ],
 ];
 ```
+
+| Value                     | boolean_value | boolean_value + required |
+| ------------------------- | :-----------: | :----------------------: |
+| null                      |       ?       |            ?             |
+| ''                        |       ?       |            ?             |
+| '0'                       |       ?       |            ?             |
+| 0                         |       ?       |            ?             |
+| false                     |       ?       |            ?             |
+| []                        |       ?       |            ?             |
+| -1                        |       ?       |            ?             |
+| '1'                       |       ?       |            ?             |
+| 1                         |       ?       |            ?             |
+| 12345                     |       ?       |            ?             |
+| true                      |       ?       |            ?             |
+| 'text'                    |       ?       |            ?             |
+| 'text with 23 characters' |       ?       |            ?             |
 
 ### contains
 
