@@ -498,23 +498,23 @@ $rules = [
 ];
 ```
 
-| Value  | boolean_value | boolean_value + required |
-| ------ | :-----------: | :----------------------: |
-| null   |       ?       |            ?             |
-| ''     |       ?       |            ?             |
-| '0'    |       ?       |            ?             |
-| 0      |       ?       |            ?             |
-| false  |       ?       |            ?             |
-| []     |       ?       |            ?             |
-| -1     |       ?       |            ?             |
-| '1'    |       ?       |            ?             |
-| 1      |       ?       |            ?             |
-| true   |       ?       |            ?             |
-| 'text' |       ?       |            ?             |
-| 'on'   |       ?       |            ?             |
-| 'off'  |       ?       |            ?             |
-| 'yes'  |       ?       |            ?             |
-| 'no'   |       ?       |            ?             |
+| Value  |   boolean_value    | boolean_value + required |
+| ------ | :----------------: | :----------------------: |
+| null   | :heavy_check_mark: |           :x:            |
+| ''     | :heavy_check_mark: |           :x:            |
+| '0'    | :heavy_check_mark: |    :heavy_check_mark:    |
+| 0      | :heavy_check_mark: |    :heavy_check_mark:    |
+| false  | :heavy_check_mark: |    :heavy_check_mark:    |
+| []     |        :x:         |           :x:            |
+| -1     |        :x:         |           :x:            |
+| '1'    | :heavy_check_mark: |    :heavy_check_mark:    |
+| 1      | :heavy_check_mark: |    :heavy_check_mark:    |
+| true   | :heavy_check_mark: |    :heavy_check_mark:    |
+| 'text' |        :x:         |           :x:            |
+| 'on'   | :heavy_check_mark: |    :heavy_check_mark:    |
+| 'off'  | :heavy_check_mark: |    :heavy_check_mark:    |
+| 'yes'  | :heavy_check_mark: |    :heavy_check_mark:    |
+| 'no'   | :heavy_check_mark: |    :heavy_check_mark:    |
 
 ### contains
 
