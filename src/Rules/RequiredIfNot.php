@@ -9,8 +9,8 @@
  * @license   MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
- * @since     Verum-PHP 1.0.0
- * @version   1.1.2 (14/06/2020)
+ * @since     Verum-PHP 2.0.0
+ * @version   1.0.0 (14/06/2020)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
