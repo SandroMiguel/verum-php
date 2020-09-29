@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Alpha | core/Verum/Rules/Alpha.php
+ * Class Alpha | src/Rules/Alpha.php
  * Checks whether the value contains only alphabetic characters.
  */
 final class Alpha extends Rule

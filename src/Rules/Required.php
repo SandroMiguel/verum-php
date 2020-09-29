@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Required | core/Verum/Rules/Required.php
+ * Class Required | src/Rules/Required.php
  * Checks whether the value is not empty.
  */
 final class Required extends Rule

@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Regex | core/Verum/Rules/Regex.php
+ * Class Regex | src/Rules/Regex.php
  * Checks whether the value matches a given regular expression.
  */
 final class Regex extends Rule

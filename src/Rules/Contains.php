@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Contains | core/Verum/Rules/Contains.php
+ * Class Contains | src/Rules/Contains.php
  * Checks whether the value is in an array.
  */
 final class Contains extends Rule

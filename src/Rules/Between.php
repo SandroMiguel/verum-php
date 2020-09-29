@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Between | core/Verum/Rules/Between.php
+ * Class Between | src/Rules/Between.php
  * Checks whether the value is between two values.
  */
 final class Between extends Rule

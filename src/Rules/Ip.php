@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Ip | core/Verum/Rules/Ip.php
+ * Class Ip | src/Rules/Ip.php
  * Checks whether the value is a valid IP address.
  */
 final class Ip extends Rule

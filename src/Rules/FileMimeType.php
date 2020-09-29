@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class FileMimeType | core/Verum/Rules/FileMimeType.php
+ * Class FileMimeType | src/Rules/FileMimeType.php
  * Checks whether the file type is allowed.
  */
 final class FileMimeType extends Rule

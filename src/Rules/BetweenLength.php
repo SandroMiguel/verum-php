@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class BetweenLength | core/Verum/Rules/BetweenLength.php
+ * Class BetweenLength | src/Rules/BetweenLength.php
  * Checks whether the number of characters of the value is between min and max values.
  */
 final class BetweenLength extends Rule

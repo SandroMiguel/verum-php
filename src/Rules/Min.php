@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Min | core/Verum/Rules/Min.php
+ * Class Min | src/Rules/Min.php
  * Checks whether the value is not less than a given value.
  */
 final class Min extends Rule

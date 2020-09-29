@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Url | core/Verum/Rules/Url.php
+ * Class Url | src/Rules/Url.php
  * Checks whether the value is a valid URL.
  */
 final class Url extends Rule

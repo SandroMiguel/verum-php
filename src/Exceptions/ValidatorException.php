@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Exceptions;
 
 /**
- * Class ValidatorException | core/Verum/Exception/ValidatorException.php
+ * Class ValidatorException | src/Exceptions/ValidatorException.php
  */
 final class ValidatorException extends \Exception
 {

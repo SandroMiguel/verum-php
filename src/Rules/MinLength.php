@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class MinLength | core/Verum/Rules/MinLength.php | MinLength rule
+ * Class MinLength | src/Rules/MinLength.php | MinLength rule
  * Checks whether the number of characters of the value is not less than a given value.
  */
 final class MinLength extends Rule

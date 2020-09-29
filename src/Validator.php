@@ -18,12 +18,13 @@ declare(strict_types=1);
 
 namespace Verum;
 
+use Verum\ArrayHelper;
 use Verum\Enum\LangEnum;
 use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 
 /**
- * Class Validator | core/Verum/Validator.php | Input validation
+ * Class Validator | src/Validator.php | Input validation
  */
 final class Validator
 {

@@ -18,8 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
+use Verum\Exceptions\ValidatorException;
+
 /**
- * Class RequiredIfNot | core/Verum/Rules/RequiredIfNot.php
+ * Class RequiredIfNot | src/Rules/RequiredIfNot.php
  * Checks whether the value is not empty, whenever other Fieldname is empty
  */
 final class RequiredIfNot extends Rule
@@ -36,7 +38,7 @@ final class RequiredIfNot extends Rule
      * @param mixed $fieldValue Field Value to validate.
      *
      * @version 1.0.0 (01/05/2020)
-     * @since   Verum 1.0.0
+     * @since   Verum 2.0.0
      */
     public function __construct($fieldValue)
     {
@@ -48,8 +50,10 @@ final class RequiredIfNot extends Rule
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
-     * @version 1.0.1 (28/04/2020)
-     * @since   Verum 1.0.0
+     * @throws ValidatorException Validator Exception.
+     *
+     * @version 1.0.0 (28/04/2020)
+     * @since   Verum 2.0.0
      */
     public function validate(): bool
     {
@@ -61,7 +65,7 @@ final class RequiredIfNot extends Rule
             );
         }
         $this->fieldNameDepends = $this->ruleValues[0];
- 
+
         $fieldValues = $this->validator->getFieldValues();
         if (array_key_exists($this->fieldNameDepends, $fieldValues)) {
             $this->fieldValueDepends = $fieldValues[$this->fieldNameDepends];
@@ -72,40 +76,39 @@ final class RequiredIfNot extends Rule
         }
 
         if ($isEmptyDepends) {
-            $isValid = ! $this->isEmpty($this->fieldValue);
+            $isValid = !$this->isEmpty($this->fieldValue);
             return $isValid;
         } else {
             return true;
         }
-     }
+    }
 
     /**
      * Error Message Parameters.
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 1.0.1 (14/06/2020)
-     * @since   Verum 1.0.0
+     * @version 1.0.0 (14/06/2020)
+     * @since   Verum 2.0.0
      */
     public function getErrorMessageParameters(): array
     {
         return [$this->fieldLabel];
     }
 
-
-
-    /** 
+    /**
      * Check whether the value is empty
      *
      * @param mixed $value Value to check.
+     *
      * @return bool Returns TRUE if empty, FALSE otherwise.
      *
      * @version 1.0.0 (17/08/2020)
-     * @since   Verum 1.0.x
+     * @since   Verum 2.0.0
      */
     private function isEmpty($value): bool
     {
-       if (
+        if (
             empty($value)
             && $value !== '0'
             && $value !== 0
@@ -115,6 +118,4 @@ final class RequiredIfNot extends Rule
         }
         return false;
     }
-
-
 }

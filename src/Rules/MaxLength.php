@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class MaxLength | core/Verum/Rules/MaxLength.php
+ * Class MaxLength | src/Rules/MaxLength.php
  * Checks whether the number of characters of the value does not exceed a given value.
  */
 final class MaxLength extends Rule

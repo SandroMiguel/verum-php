@@ -22,7 +22,7 @@ use Verum\Exceptions\ValidatorException;
 use Verum\Validator;
 
 /**
- * Class RuleFactory | core/Verum/Rules/RuleFactory.php | Rule factory
+ * Class RuleFactory | src/Rules/RuleFactory.php | Rule factory
  */
 final class RuleFactory
 {

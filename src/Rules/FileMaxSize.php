@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class FileMaxSize | core/Verum/Rules/FileMaxSize.php
+ * Class FileMaxSize | src/Rules/FileMaxSize.php
  * Checks whether the file size does not exceed a given value.
  */
 final class FileMaxSize extends Rule

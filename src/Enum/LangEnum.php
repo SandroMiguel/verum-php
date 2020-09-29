@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Enum;
 
 /**
- * Class LangEnum | core/Verum/Enum/LangEnum.php
+ * Class LangEnum | src/Enum/LangEnum.php
  */
 abstract class LangEnum
 {
