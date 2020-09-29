@@ -71,13 +71,13 @@ class ContainsTest extends TestCase
     }
 
     /**
-     * The String ('hello') value should not pass validation.
+     * Null value should pass validation (ignored field).
      *
      * @return void
      */
-    public function testValidateHelloLowerCase(): void
+    public function testValidateNull(): void
     {
-        $this->assertFalse($this->validate('hello', ['HELLO', 'WORLD']));
+        $this->assertTrue($this->validate(null, ['HELLO', 'WORLD']));
     }
 
     /**
@@ -88,6 +88,86 @@ class ContainsTest extends TestCase
     public function testValidateEmptyString(): void
     {
         $this->assertTrue($this->validate('', ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * A Zero String ('0') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroString(): void
+    {
+        $this->assertFalse($this->validate('0', ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The Zero Number (0) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroNumber(): void
+    {
+        $this->assertFalse($this->validate(0, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * A Boolean (false) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateFalse(): void
+    {
+        $this->assertFalse($this->validate(false, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * An Empty Array ([]) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateEmptyArray(): void
+    {
+        $this->assertFalse($this->validate([], ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The Minus One (-1) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateMinusOne(): void
+    {
+        $this->assertFalse($this->validate(-1, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The One (1) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateOne(): void
+    {
+        $this->assertFalse($this->validate(1, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * A Boolean (true) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateTrue(): void
+    {
+        $this->assertFalse($this->validate(true, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The String ('hello') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateHelloLowerCase(): void
+    {
+        $this->assertFalse($this->validate('hello', ['HELLO', 'WORLD']));
     }
 
     /**
