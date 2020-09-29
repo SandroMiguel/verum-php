@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.2 (25/06/2020)
+ * @version   4.0.3 (2020/09/29)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -354,19 +354,22 @@ final class Validator
      * Format Rule Message.
      *
      * @param string $ruleMessage Rule message.
-     * @param array<string> $args Arguments.
+     * @param array<int, mixed> $args Arguments - Error message parameters.
      *
      * @return string Returns the message with the placeholder values ​​filled in.
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.1.0 (03/05/2020)
+     * @version 1.1.1 (2020/09/29)
      * @since   Verum 1.0.0
      */
     private function formatMessage(string $ruleMessage, array $args): string
     {
         $format = preg_replace('/{param:(\d)}/', '%$1$s', $ruleMessage);
         try {
+            if (is_array($args[0])) {
+                $args[0] = ArrayHelper::arrayToString($args[0]);
+            }
             return vsprintf($format, $args);
         } catch (\Exception $ex) {
             throw ValidatorException::invalidRuleMessageArgument(
