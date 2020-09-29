@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.1 (25/06/2020)
+ * @version   4.0.2 (2020/09/29)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -34,7 +34,7 @@ final class Contains extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 2.0.0 (10/06/2020)
+     * @version 2.0.0 (2020/06/10)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -49,7 +49,7 @@ final class Contains extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.1.2 (25/06/2020)
+     * @version 2.1.3 (2020/09/29)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -63,7 +63,10 @@ final class Contains extends Rule
         }
         $this->valuesToCompare = $this->ruleValues;
 
-        if ($this->fieldValue === '') {
+        if ($this->fieldValue === 0 || $this->fieldValue === true) {
+            return false;
+        }
+        if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
 
@@ -74,8 +77,9 @@ final class Contains extends Rule
      * Error Message Parameters.
      *
      * @return array<int, string> Returns the parameters for the error message.
+     * [Field value, Placeholders, Field label]
      *
-     * @version 2.0.0 (16/06/2020)
+     * @version 2.0.1 (2020/09/29)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array
