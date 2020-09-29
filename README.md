@@ -531,6 +531,22 @@ $rules = [
 ];
 ```
 
+| Value    | contains ['low','high'] | contains ['low','high'] + required |
+| -------- | :---------------------: | :--------------------------------: |
+| `null`   |   :heavy_check_mark:    |                 ?                  |
+| `''`     |   :heavy_check_mark:    |                 ?                  |
+| `'0'`    |           :x:           |                 ?                  |
+| `0`      |           :x:           |                 ?                  |
+| `false`  |           :x:           |                 ?                  |
+| `[]`     |           :x:           |                 ?                  |
+| `-1`     |           :x:           |                 ?                  |
+| `'1'`    |           :x:           |                 ?                  |
+| `1`      |           :x:           |                 ?                  |
+| `true`   |           :x:           |                 ?                  |
+| `'text'` |           :x:           |                 ?                  |
+| `'low'`  |   :heavy_check_mark:    |                 ?                  |
+| `'high'` |   :heavy_check_mark:    |                 ?                  |
+
 ### date
 
 Checks whether the value is a valid date (Y-m-d) or a custom format.
