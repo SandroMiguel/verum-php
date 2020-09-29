@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Email | core/Verum/Rules/Email.php
+ * Class Email | src/Rules/Email.php
  * Checks whether the value has a valid email format.
  */
 final class Email extends Rule

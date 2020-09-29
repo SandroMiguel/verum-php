@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class FloatNumber | core/Verum/Rules/FloatNumber.php
+ * Class FloatNumber | src/Rules/FloatNumber.php
  * Checks whether the value is a floating point number.
  */
 final class FloatNumber extends Rule

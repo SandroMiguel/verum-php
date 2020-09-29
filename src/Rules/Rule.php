@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Validator;
 
 /**
- * Class Rule | core/Verum/Rules/Rule.php | Abstract class
+ * Class Rule | src/Rules/Rule.php | Abstract class
  */
 abstract class Rule implements RuleInterface
 {

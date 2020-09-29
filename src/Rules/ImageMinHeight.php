@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class ImageMinHeight | core/Verum/Rules/ImageMinHeight.php
+ * Class ImageMinHeight | src/Rules/ImageMinHeight.php
  * Checks whether the image height is not less than a given value.
  */
 final class ImageMinHeight extends Rule

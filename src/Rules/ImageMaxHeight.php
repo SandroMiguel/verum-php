@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class ImageMaxHeight | core/Verum/Rules/ImageMaxHeight.php
+ * Class ImageMaxHeight | src/Rules/ImageMaxHeight.php
  * Checks whether the image height does not exceed a given value.
  */
 final class ImageMaxHeight extends Rule

@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class RequiredIf | core/Verum/Rules/RequiredIf.php
+ * Class RequiredIf | src/Rules/RequiredIf.php
  * Checks whether the value is not empty, whenever other Fieldname is not empty
  */
 final class RequiredIf extends Rule

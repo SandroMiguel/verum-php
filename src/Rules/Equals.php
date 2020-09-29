@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Equals | core/Verum/Rules/Equals.php
+ * Class Equals | src/Rules/Equals.php
  * Checks whether the value is equal to another.
  */
 final class Equals extends Rule

@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Ipv4 | core/Verum/Rules/Ipv4.php
+ * Class Ipv4 | src/Rules/Ipv4.php
  * Checks whether the value is a valid IPv4 address.
  */
 final class Ipv4 extends Rule

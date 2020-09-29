@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Date | core/Verum/Rules/Date.php
+ * Class Date | src/Rules/Date.php
  * Checks whether the value is a valid date (Y-m-d) or a custom format.
  */
 final class Date extends Rule

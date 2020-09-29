@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Max | core/Verum/Rules/Max.php
+ * Class Max | src/Rules/Max.php
  * Checks whether the value does not exceed a given value.
  */
 final class Max extends Rule

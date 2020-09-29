@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class Slug | core/Verum/Rules/Slug.php
+ * Class Slug | src/Rules/Slug.php
  * Checks whether the value is a valid Slug (e.g. hello-world_123).
  */
 final class Slug extends Rule

@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Numeric | core/Verum/Rules/Numeric.php
+ * Class Numeric | src/Rules/Numeric.php
  * Checks whether the value is numeric.
  */
 final class Numeric extends Rule

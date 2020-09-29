@@ -21,7 +21,7 @@ namespace Verum\Rules;
 use Verum\Exceptions\ValidatorException;
 
 /**
- * Class AlphaNumeric | core/Verum/Rules/AlphaNumeric.php
+ * Class AlphaNumeric | src/Rules/AlphaNumeric.php
  * Checks whether the value contains only alphanumeric characters.
  */
 final class AlphaNumeric extends Rule

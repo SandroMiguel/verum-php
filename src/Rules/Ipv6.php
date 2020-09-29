@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Ipv6 | core/Verum/Rules/Ipv6.php
+ * Class Ipv6 | src/Rules/Ipv6.php
  * Checks whether the value is a valid IPv6 address.
  */
 final class Ipv6 extends Rule
