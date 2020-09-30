@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.0 (16/06/2020)
+ * @version   4.0.1 (2020/09/30)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -36,7 +36,7 @@ final class Date extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 2.0.0 (10/06/2020)
+     * @version 2.0.0 (2020/06/10)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -51,20 +51,31 @@ final class Date extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.1.1 (11/06/2020)
+     * @version 2.1.2 (2020/09/30)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
     {
-        if ($this->fieldValue === '') {
+        if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
 
         $this->format = $this->ruleValues[0] ?? self::DEFAULT_FORMAT;
-        $date = \DateTime::createFromFormat($this->format, $this->fieldValue);
+
+        if (is_array($this->fieldValue)) {
+            return false;
+        }
+
+        $date = \DateTime::createFromFormat(
+            $this->format,
+            (string) $this->fieldValue
+        );
         if (
             !$date
-            || $this->fieldValue !== date($this->format, $date->getTimestamp())
+            || (string) $this->fieldValue !== date(
+                $this->format,
+                $date->getTimestamp()
+            )
         ) {
             return false;
         }
@@ -77,7 +88,7 @@ final class Date extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 2.0.0 (16/06/2020)
+     * @version 2.0.0 (2020/06/16)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array
