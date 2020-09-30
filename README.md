@@ -576,19 +576,19 @@ $rules = [
 ];
 ```
 
-| Value          |        date        |  date + required   |
-| -------------- | :----------------: | :----------------: |
-| `null`         | :heavy_check_mark: |        :x:         |
-| `''`           | :heavy_check_mark: |        :x:         |
-| `'0'`          |        :x:         |        :x:         |
-| `0`            |        :x:         |        :x:         |
-| `false`        |        :x:         |        :x:         |
-| `[]`           |        :x:         |        :x:         |
-| `-1`           |        :x:         |        :x:         |
-| `1`            |        :x:         |        :x:         |
-| `true`         |        :x:         |        :x:         |
-| `'text'`       |        :x:         |        :x:         |
-| `'2020-09-30'` | :heavy_check_mark: | :heavy_check_mark: |
+| Value          |    date [Y-m-d]    | date [Y-m-d] + required |
+| -------------- | :----------------: | :---------------------: |
+| `null`         | :heavy_check_mark: |           :x:           |
+| `''`           | :heavy_check_mark: |           :x:           |
+| `'0'`          |        :x:         |           :x:           |
+| `0`            |        :x:         |           :x:           |
+| `false`        |        :x:         |           :x:           |
+| `[]`           |        :x:         |           :x:           |
+| `-1`           |        :x:         |           :x:           |
+| `1`            |        :x:         |           :x:           |
+| `true`         |        :x:         |           :x:           |
+| `'text'`       |        :x:         |           :x:           |
+| `'2020-09-30'` | :heavy_check_mark: |   :heavy_check_mark:    |
 
 ### email
 
