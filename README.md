@@ -540,7 +540,6 @@ $rules = [
 | `false`  |           :x:           |                :x:                 |
 | `[]`     |           :x:           |                :x:                 |
 | `-1`     |           :x:           |                :x:                 |
-| `'1'`    |           :x:           |                :x:                 |
 | `1`      |           :x:           |                :x:                 |
 | `true`   |           :x:           |                :x:                 |
 | `'text'` |           :x:           |                :x:                 |
@@ -550,6 +549,8 @@ $rules = [
 ### date
 
 Checks whether the value is a valid date (Y-m-d) or a custom format.
+
+#### Default format (Y-m-d)
 
 ```
 $rules = [
@@ -561,6 +562,33 @@ $rules = [
     ],
 ];
 ```
+
+#### Custom format (e.g. d.m.Y)
+
+```
+$rules = [
+    'dob' => [
+        'label' => 'Date of birth',
+        'rules' => [
+            RuleEnum::DATE => ['d.m.Y'],
+        ],
+    ],
+];
+```
+
+| Value          |        date        |  date + required   |
+| -------------- | :----------------: | :----------------: |
+| `null`         | :heavy_check_mark: |        :x:         |
+| `''`           | :heavy_check_mark: |        :x:         |
+| `'0'`          |        :x:         |        :x:         |
+| `0`            |        :x:         |        :x:         |
+| `false`        |        :x:         |        :x:         |
+| `[]`           |        :x:         |        :x:         |
+| `-1`           |        :x:         |        :x:         |
+| `1`            |        :x:         |        :x:         |
+| `true`         |        :x:         |        :x:         |
+| `'text'`       |        :x:         |        :x:         |
+| `'2020-09-30'` | :heavy_check_mark: | :heavy_check_mark: |
 
 ### email
 
