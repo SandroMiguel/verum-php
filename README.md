@@ -605,6 +605,20 @@ $rules = [
 ];
 ```
 
+| Value               |       email        |  email + required  |
+| ------------------- | :----------------: | :----------------: |
+| `null`              | :heavy_check_mark: |        :x:         |
+| `''`                | :heavy_check_mark: |        :x:         |
+| `'0'`               |        :x:         |        :x:         |
+| `0`                 |        :x:         |        :x:         |
+| `false`             |        :x:         |        :x:         |
+| `[]`                |        :x:         |        :x:         |
+| `-1`                |        :x:         |        :x:         |
+| `1`                 |        :x:         |        :x:         |
+| `true`              |        :x:         |        :x:         |
+| `'text'`            |        :x:         |        :x:         |
+| `'john@domain.com'` | :heavy_check_mark: | :heavy_check_mark: |
+
 ### equals
 
 Checks whether the value is equal to another.
