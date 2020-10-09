@@ -56,6 +56,16 @@ class EmailTest extends TestCase
     }
 
     /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null));
+    }
+
+    /**
      * The String ('invalid@domain') value should not pass validation.
      *
      * @return void
