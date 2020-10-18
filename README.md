@@ -634,6 +634,22 @@ $rules = [
 ];
 ```
 
+Comparison with `'text'`
+
+| Value            |       equals       | equals + required  |
+| ---------------- | :----------------: | :----------------: |
+| `null`           | :heavy_check_mark: |        :x:         |
+| `''`             | :heavy_check_mark: |        :x:         |
+| `'0'`            |        :x:         |        :x:         |
+| `0`              |        :x:         |        :x:         |
+| `false`          |        :x:         |        :x:         |
+| `[]`             |        :x:         |        :x:         |
+| `-1`             |        :x:         |        :x:         |
+| `1`              |        :x:         |        :x:         |
+| `true`           |        :x:         |        :x:         |
+| `'text'`         | :heavy_check_mark: | :heavy_check_mark: |
+| `'another text'` |        :x:         |        :x:         |
+
 ### file_max_size
 
 Checks whether the file size does not exceed a given value.
