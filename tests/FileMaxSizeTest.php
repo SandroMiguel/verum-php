@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.2.1 (25/06/2020)
+ * @version   1.3.0 (2020/10/18)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -55,6 +55,16 @@ class FileMaxSizeTest extends TestCase
         $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
 
         return $rule->validate();
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null, [102400]));
     }
 
     /**
