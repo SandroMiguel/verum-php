@@ -74,6 +74,10 @@ final class Equals extends Rule
         }
         $this->fieldNameToCompare = $this->ruleValues[0];
 
+        if ($this->fieldValue === null || $this->fieldValue === '') {
+            return true;
+        }
+
         $fieldValues = $this->validator->getFieldValues();
         if (array_key_exists($this->fieldNameToCompare, $fieldValues)) {
             $this->fieldValueToCompare = $fieldValues[$this->fieldNameToCompare];
