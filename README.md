@@ -667,6 +667,14 @@ $rules = [
 ];
 ```
 
+Comparison with `102400` bytes
+
+| Value    |   file_max_size    | file_max_size + required |
+| -------- | :----------------: | :----------------------: |
+| `null`   | :heavy_check_mark: |           :x:            |
+| `50000`  | :heavy_check_mark: |    :heavy_check_mark:    |
+| `150000` |        :x:         |           :x:            |
+
 ### file_mime_type
 
 Checks whether the file type is allowed.
