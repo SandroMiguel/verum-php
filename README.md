@@ -711,6 +711,22 @@ $rules = [
 ];
 ```
 
+| Value                |    float_number    | float_number + required |
+| -------------------- | :----------------: | :---------------------: |
+| `null`               | :heavy_check_mark: |           :x:           |
+| `''`                 | :heavy_check_mark: |           :x:           |
+| `'0'`                |        :x:         |           :x:           |
+| `0`                  |        :x:         |           :x:           |
+| `false`              |        :x:         |           :x:           |
+| `[]`                 |        :x:         |           :x:           |
+| `-1`                 |        :x:         |           :x:           |
+| `1`                  |        :x:         |           :x:           |
+| `12345`              |        :x:         |           :x:           |
+| `123.45`             | :heavy_check_mark: |   :heavy_check_mark:    |
+| `true`               |        :x:         |           :x:           |
+| `'text'`             |        :x:         |           :x:           |
+| `'text with spaces'` |        :x:         |           :x:           |
+
 ### image_max_height
 
 Checks whether the image height does not exceed a given value.
