@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.2 (25/06/2020)
+ * @version   1.1.3 (2020/06/25)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -78,7 +78,7 @@ class FileMimeTypeTest extends TestCase
      */
     public function testValidateNoFile(): void
     {
-        $this->assertTrue($this->validate([], ['image/png']));
+        $this->assertTrue($this->validate(null, ['image/png']));
     }
 
     /**
