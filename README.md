@@ -690,6 +690,12 @@ $rules = [
 ];
 ```
 
+| Value        |   file_mime_type   | file_mime_type + required |
+| ------------ | :----------------: | :-----------------------: |
+| `null`       | :heavy_check_mark: |            :x:            |
+| `image/png`  | :heavy_check_mark: |    :heavy_check_mark:     |
+| `text/plain` |        :x:         |            :x:            |
+
 ### float_number
 
 Checks whether the value is a floating point number.
