@@ -916,6 +916,21 @@ $rules = [
 ];
 ```
 
+| Value     |        max         |   max + required   |
+| --------- | :----------------: | :----------------: |
+| `null`    | :heavy_check_mark: |        :x:         |
+| `''`      | :heavy_check_mark: |        :x:         |
+| `'0'`     | :heavy_check_mark: | :heavy_check_mark: |
+| `0`       | :heavy_check_mark: | :heavy_check_mark: |
+| `false`   |        :x:         |        :x:         |
+| `[]`      |        :x:         |        :x:         |
+| `-1`      | :heavy_check_mark: | :heavy_check_mark: |
+| `1`       | :heavy_check_mark: | :heavy_check_mark: |
+| `true`    |        :x:         |        :x:         |
+| `'text'`  |        :x:         |        :x:         |
+| `12345`   |        :x:         |        :x:         |
+| `'12345'` |        :x:         |        :x:         |
+
 ### max_length
 
 Checks whether the number of characters of the value does not exceed a given value.
