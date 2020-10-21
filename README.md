@@ -856,6 +856,21 @@ $rules = [
 ];
 ```
 
+| Value                    |         ip         |   ip + required    |
+| ------------------------ | :----------------: | :----------------: |
+| `null`                   | :heavy_check_mark: |        :x:         |
+| `''`                     | :heavy_check_mark: |        :x:         |
+| `'0'`                    |        :x:         |        :x:         |
+| `0`                      |        :x:         |        :x:         |
+| `false`                  |        :x:         |        :x:         |
+| `[]`                     |        :x:         |        :x:         |
+| `-1`                     |        :x:         |        :x:         |
+| `1`                      |        :x:         |        :x:         |
+| `true`                   |        :x:         |        :x:         |
+| `'text'`                 |        :x:         |        :x:         |
+| `'10.10.10.10'`          | :heavy_check_mark: | :heavy_check_mark: |
+| `'2607:f0d0:1002:51::4'` |        :x:         |        :x:         |
+
 ### ipv6
 
 Checks whether the value is a valid IPv6 address.
