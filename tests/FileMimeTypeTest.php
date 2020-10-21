@@ -58,6 +58,16 @@ class FileMimeTypeTest extends TestCase
     }
 
     /**
+     * If there is no uploaded file, validation must pass.
+     *
+     * @return void
+     */
+    public function testValidateNoFile(): void
+    {
+        $this->assertTrue($this->validate(null, ['image/png']));
+    }
+
+    /**
      * If the Rule Values are not defined, an exception should be thrown.
      *
      * @return void
@@ -69,16 +79,6 @@ class FileMimeTypeTest extends TestCase
             'Invalid argument; Argument name: $ruleValues; Argument value: null; Rule "file_mime_type": the rule value is mandatory'
         );
         $this->validate(['size' => '102400'], []);
-    }
-
-    /**
-     * If there is no uploaded file, validation must pass.
-     *
-     * @return void
-     */
-    public function testValidateNoFile(): void
-    {
-        $this->assertTrue($this->validate(null, ['image/png']));
     }
 
     /**

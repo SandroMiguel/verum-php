@@ -64,6 +64,16 @@ class ImageMaxHeightTest extends TestCase
     }
 
     /**
+     * If there is no uploaded file, validation must pass.
+     *
+     * @return void
+     */
+    public function testValidateNoFile(): void
+    {
+        $this->assertTrue($this->validate([], [1000]));
+    }
+
+    /**
      * If the "Max Height" parameter is a (NULL) value, an exception should be thrown.
      *
      * @return void
@@ -85,16 +95,6 @@ class ImageMaxHeightTest extends TestCase
     public function testValidateGreaterThanMax(): void
     {
         $this->assertFalse($this->validate($this->fileMock, [100]));
-    }
-
-    /**
-     * If there is no uploaded file, validation must pass.
-     *
-     * @return void
-     */
-    public function testValidateNoFile(): void
-    {
-        $this->assertTrue($this->validate([], [1000]));
     }
 
     /**
