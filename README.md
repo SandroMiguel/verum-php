@@ -856,7 +856,7 @@ $rules = [
 ];
 ```
 
-| Value                    |         ip         |   ip + required    |
+| Value                    |        ipv4        |  ipv4 + required   |
 | ------------------------ | :----------------: | :----------------: |
 | `null`                   | :heavy_check_mark: |        :x:         |
 | `''`                     | :heavy_check_mark: |        :x:         |
@@ -885,6 +885,21 @@ $rules = [
     ],
 ];
 ```
+
+| Value                    |        ipv6        |  ipv6 + required   |
+| ------------------------ | :----------------: | :----------------: |
+| `null`                   | :heavy_check_mark: |        :x:         |
+| `''`                     | :heavy_check_mark: |        :x:         |
+| `'0'`                    |        :x:         |        :x:         |
+| `0`                      |        :x:         |        :x:         |
+| `false`                  |        :x:         |        :x:         |
+| `[]`                     |        :x:         |        :x:         |
+| `-1`                     |        :x:         |        :x:         |
+| `1`                      |        :x:         |        :x:         |
+| `true`                   |        :x:         |        :x:         |
+| `'text'`                 |        :x:         |        :x:         |
+| `'10.10.10.10'`          |        :x:         |        :x:         |
+| `'2607:f0d0:1002:51::4'` | :heavy_check_mark: | :heavy_check_mark: |
 
 ### max
 
