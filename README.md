@@ -742,6 +742,12 @@ $rules = [
 ];
 ```
 
+| Value  |  image_max_height  | image_max_height + required |
+| ------ | :----------------: | :-------------------------: |
+| `null` | :heavy_check_mark: |             :x:             |
+| 500px  | :heavy_check_mark: |     :heavy_check_mark:      |
+| 1000px |        :x:         |             :x:             |
+
 ### image_max_width
 
 Checks whether the image width does not exceed a given value.
@@ -756,6 +762,12 @@ $rules = [
     ],
 ];
 ```
+
+| Value  |  image_max_width   | image_max_width + required |
+| ------ | :----------------: | :------------------------: |
+| `null` | :heavy_check_mark: |            :x:             |
+| 500px  | :heavy_check_mark: |     :heavy_check_mark:     |
+| 1500px |        :x:         |            :x:             |
 
 ### image_min_height
 
@@ -772,6 +784,12 @@ $rules = [
 ];
 ```
 
+| Value  |  image_min_height  | image_min_height + required |
+| ------ | :----------------: | :-------------------------: |
+| `null` | :heavy_check_mark: |             :x:             |
+| 100px  |        :x:         |             :x:             |
+| 500px  | :heavy_check_mark: |     :heavy_check_mark:      |
+
 ### image_min_width
 
 Checks whether the image width is not less than a given value.
@@ -786,6 +804,12 @@ $rules = [
     ],
 ];
 ```
+
+| Value  |  image_min_width   | image_min_width + required |
+| ------ | :----------------: | :------------------------: |
+| `null` | :heavy_check_mark: |            :x:             |
+| 400px  |        :x:         |            :x:             |
+| 600px  | :heavy_check_mark: |     :heavy_check_mark:     |
 
 ### ip
 
