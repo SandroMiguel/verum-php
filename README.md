@@ -940,11 +940,26 @@ $rules = [
     'nickname' => [
         'label' => 'Nickname',
         'rules' => [
-            RuleEnum::MAX_LENGTH => [15],
+            RuleEnum::MAX_LENGTH => [2],
         ],
     ],
 ];
 ```
+
+| Value     |     max_length     | max_length + required |
+| --------- | :----------------: | :-------------------: |
+| `null`    | :heavy_check_mark: |          :x:          |
+| `''`      | :heavy_check_mark: |          :x:          |
+| `'0'`     | :heavy_check_mark: |  :heavy_check_mark:   |
+| `0`       | :heavy_check_mark: |  :heavy_check_mark:   |
+| `false`   | :heavy_check_mark: |  :heavy_check_mark:   |
+| `[]`      |        :x:         |          :x:          |
+| `-1`      | :heavy_check_mark: |  :heavy_check_mark:   |
+| `1`       | :heavy_check_mark: |  :heavy_check_mark:   |
+| `true`    | :heavy_check_mark: |  :heavy_check_mark:   |
+| `'text'`  |        :x:         |          :x:          |
+| `12345`   |        :x:         |          :x:          |
+| `'12345'` |        :x:         |          :x:          |
 
 ### min
 
