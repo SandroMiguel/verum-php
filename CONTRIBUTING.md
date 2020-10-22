@@ -13,3 +13,7 @@ Improvements to the documentation are always welcome.
 ## Pull Requests
 
 Please suggest an enhancement or report a bug first before embarking on any significant pull request.
+
+---
+
+Thank you for taking your time to improve this project :+1:
