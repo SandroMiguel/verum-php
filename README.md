@@ -976,6 +976,21 @@ $rules = [
 ];
 ```
 
+| Value     |        min         |   min + required   |
+| --------- | :----------------: | :----------------: |
+| `null`    | :heavy_check_mark: |        :x:         |
+| `''`      | :heavy_check_mark: |        :x:         |
+| `'0'`     |        :x:         |        :x:         |
+| `0`       |        :x:         |        :x:         |
+| `false`   |        :x:         |        :x:         |
+| `[]`      |        :x:         |        :x:         |
+| `-1`      |        :x:         |        :x:         |
+| `1`       |        :x:         |        :x:         |
+| `true`    |        :x:         |        :x:         |
+| `'text'`  |        :x:         |        :x:         |
+| `12345`   | :heavy_check_mark: | :heavy_check_mark: |
+| `'12345'` | :heavy_check_mark: | :heavy_check_mark: |
+
 ### min_length
 
 Checks whether the number of characters of the value is not less than a given value.
