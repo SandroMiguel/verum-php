@@ -1006,6 +1006,21 @@ $rules = [
 ];
 ```
 
+| Value     |     max_length     | max_length + required |
+| --------- | :----------------: | :-------------------: |
+| `null`    | :heavy_check_mark: |          :x:          |
+| `''`      |        :x:         |          :x:          |
+| `'0'`     |        :x:         |          :x:          |
+| `0`       |        :x:         |          :x:          |
+| `false`   |        :x:         |          :x:          |
+| `[]`      |        :x:         |          :x:          |
+| `-1`      | :heavy_check_mark: |  :heavy_check_mark:   |
+| `1`       |        :x:         |          :x:          |
+| `true`    |        :x:         |          :x:          |
+| `'text'`  | :heavy_check_mark: |  :heavy_check_mark:   |
+| `12345`   | :heavy_check_mark: |  :heavy_check_mark:   |
+| `'12345'` | :heavy_check_mark: |  :heavy_check_mark:   |
+
 ### numeric
 
 Checks whether the value is numeric.
