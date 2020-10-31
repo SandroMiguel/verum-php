@@ -86,6 +86,26 @@ class RegexTest extends TestCase
     }
 
     /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null, ['/hello/']));
+    }
+
+    /**
+     * An Empty String ('') value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateEmptyString(): void
+    {
+        $this->assertTrue($this->validate('', ['/hello/']));
+    }
+
+    /**
      * The String ('/hello/') value should not pass validation.
      *
      * @return void
