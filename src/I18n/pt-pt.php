@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.2.1 (20/06/2020)
+ * @version   1.2.2 (2020/10/31)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -114,8 +114,8 @@ return [
         'withoutLabel' => 'Este campo deve ser numérico',
     ],
     'regex' => [
-        'withLabel' => 'O campo "{param:2}" não corresponde ao padrão {param:1}.',
-        'withoutLabel' => 'Este campo não corresponde ao padrão {param:1}.',
+        'withLabel' => 'O campo "{param:2}" não corresponde ao padrão {param:1}',
+        'withoutLabel' => 'Este campo não corresponde ao padrão {param:1}',
     ],
     'required' => [
         'withLabel' => 'O campo "{param:1}" é obrigatório.',
