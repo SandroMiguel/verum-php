@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   3.0.1 (25/06/2020)
+ * @version   4.0.0 (2020/10/31)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -34,7 +34,7 @@ final class Regex extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 2.0.0 (10/06/2020)
+     * @version 2.0.0 (2020/06/10)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -49,7 +49,7 @@ final class Regex extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.1.2 (25/06/2020)
+     * @version 2.0.0 (2020/10/31)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -62,6 +62,10 @@ final class Regex extends Rule
             );
         }
         $this->pattern = $this->ruleValues[0];
+
+        if ($this->fieldValue === null || $this->fieldValue === '') {
+            return true;
+        }
 
         try {
             if (!is_string($this->fieldValue)) {
@@ -87,7 +91,7 @@ final class Regex extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 2.0.0 (16/06/2020)
+     * @version 2.0.0 (2020/06/16)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array
