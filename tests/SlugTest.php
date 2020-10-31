@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.1 (11/06/2020)
+ * @version   1.2.0 (2020/10/31)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -54,6 +54,26 @@ class SlugTest extends TestCase
         $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
 
         return $rule->validate();
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null));
+    }
+
+    /**
+     * An Empty String ('') value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateEmptyString(): void
+    {
+        $this->assertTrue($this->validate(''));
     }
 
     /**
@@ -114,16 +134,6 @@ class SlugTest extends TestCase
     public function testValidateDoubleUnderscore(): void
     {
         $this->assertFalse($this->validate('hello__world'));
-    }
-
-    /**
-     * An Empty String ('') value should pass validation (ignored field).
-     *
-     * @return void
-     */
-    public function testValidateEmptyString(): void
-    {
-        $this->assertTrue($this->validate(''));
     }
 
     /**
