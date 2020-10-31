@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.1 (25/06/2020)
+ * @version   1.2.0 (2020/10/31)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
