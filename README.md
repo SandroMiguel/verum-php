@@ -1064,6 +1064,23 @@ $rules = [
 ];
 ```
 
+Validation with the `'/\/client\/[0-9a-f]+$/'` pattern
+
+| Value                                        | regex | regex + required |
+| -------------------------------------------- | :---: | :--------------: |
+| `null`                                       |       |                  |
+| `''`                                         |       |                  |
+| `'0'`                                        |       |                  |
+| `0`                                          |       |                  |
+| `false`                                      |       |                  |
+| `[]`                                         |       |                  |
+| `-1`                                         |       |                  |
+| `1`                                          |       |                  |
+| `true`                                       |       |                  |
+| `'text'`                                     |       |                  |
+| `'/client/77c9e105d1f548b29958f0512967de87'` |       |                  |
+| `'/client/invalid-uuid'`                     |       |                  |
+
 ### required
 
 Checks whether the value is not empty.
