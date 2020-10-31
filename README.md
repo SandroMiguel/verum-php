@@ -1058,7 +1058,7 @@ $rules = [
     'path' => [
         'label' => 'Path',
         'rules' => [
-            RuleEnum::REGEX => ['/client/[0-9a-f]+$'],
+            RuleEnum::REGEX => ['/\/client\/[0-9a-f]+$/'],
         ],
     ],
 ];
