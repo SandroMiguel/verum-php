@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.2.1 (20/06/2020)
+ * @version   1.2.2 (2020/10/31)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -114,8 +114,8 @@ return [
         'withoutLabel' => 'This field must be numeric.',
     ],
     'regex' => [
-        'withLabel' => 'The "{param:2}" field does not match against pattern {param:1}.',
-        'withoutLabel' => 'This field does not match against pattern {param:1}.',
+        'withLabel' => 'The "{param:2}" field does not match against pattern {param:1}',
+        'withoutLabel' => 'This field does not match against pattern {param:1}',
     ],
     'required' => [
         'withLabel' => 'The "{param:1}" field is required.',
