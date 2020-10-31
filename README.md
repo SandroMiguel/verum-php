@@ -1096,18 +1096,18 @@ $rules = [
 ];
 ```
 
-| Value       | required           |
-| ----------- | ------------------ |
-| null        | :x:                |
-| ''          | :x:                |
-| '0'         | :heavy_check_mark: |
-| 0           | :heavy_check_mark: |
-| false       | :heavy_check_mark: |
-| []          | :x:                |
-| -1          | :heavy_check_mark: |
-| 1           | :heavy_check_mark: |
-| true        | :heavy_check_mark: |
-| 'some text' | :heavy_check_mark: |
+| Value         |      required      |
+| ------------- | :----------------: |
+| `null`        |        :x:         |
+| `''`          |        :x:         |
+| `'0'`         | :heavy_check_mark: |
+| `0`           | :heavy_check_mark: |
+| `false`       | :heavy_check_mark: |
+| `[]`          |        :x:         |
+| `-1`          | :heavy_check_mark: |
+| `1`           | :heavy_check_mark: |
+| `true`        | :heavy_check_mark: |
+| `'some text'` | :heavy_check_mark: |
 
 ### slug
 
@@ -1123,6 +1123,21 @@ $rules = [
     ],
 ];
 ```
+
+| Value                |        slug        |  slug + required   |
+| -------------------- | :----------------: | :----------------: |
+| `null`               | :heavy_check_mark: |        :x:         |
+| `''`                 | :heavy_check_mark: |        :x:         |
+| `'0'`                |        :x:         |        :x:         |
+| `0`                  |        :x:         |        :x:         |
+| `false`              |        :x:         |        :x:         |
+| `[]`                 |        :x:         |        :x:         |
+| `-1`                 |        :x:         |        :x:         |
+| `1`                  |        :x:         |        :x:         |
+| `true`               |        :x:         |        :x:         |
+| `'text'`             | :heavy_check_mark: | :heavy_check_mark: |
+| `'text with spaces'` |        :x:         |        :x:         |
+| `'hello-world_123'`  | :heavy_check_mark: | :heavy_check_mark: |
 
 ### url
 
