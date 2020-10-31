@@ -1066,20 +1066,20 @@ $rules = [
 
 Validation with the `'/\/client\/[0-9a-f]+$/'` pattern
 
-| Value                                        | regex | regex + required |
-| -------------------------------------------- | :---: | :--------------: |
-| `null`                                       |       |                  |
-| `''`                                         |       |                  |
-| `'0'`                                        |       |                  |
-| `0`                                          |       |                  |
-| `false`                                      |       |                  |
-| `[]`                                         |       |                  |
-| `-1`                                         |       |                  |
-| `1`                                          |       |                  |
-| `true`                                       |       |                  |
-| `'text'`                                     |       |                  |
-| `'/client/77c9e105d1f548b29958f0512967de87'` |       |                  |
-| `'/client/invalid-uuid'`                     |       |                  |
+| Value                                        |       regex        |  regex + required  |
+| -------------------------------------------- | :----------------: | :----------------: |
+| `null`                                       | :heavy_check_mark: |        :x:         |
+| `''`                                         | :heavy_check_mark: |        :x:         |
+| `'0'`                                        |        :x:         |        :x:         |
+| `0`                                          |        :x:         |        :x:         |
+| `false`                                      |        :x:         |        :x:         |
+| `[]`                                         |        :x:         |        :x:         |
+| `-1`                                         |        :x:         |        :x:         |
+| `1`                                          |        :x:         |        :x:         |
+| `true`                                       |        :x:         |        :x:         |
+| `'text'`                                     |        :x:         |        :x:         |
+| `'/client/77c9e105d1f548b29958f0512967de87'` | :heavy_check_mark: | :heavy_check_mark: |
+| `'/client/invalid-uuid'`                     |        :x:         |        :x:         |
 
 ### required
 
