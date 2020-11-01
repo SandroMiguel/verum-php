@@ -1154,6 +1154,20 @@ $rules = [
 ];
 ```
 
+| Value                          |        url         |   url + required   |
+| ------------------------------ | :----------------: | :----------------: |
+| `null`                         | :heavy_check_mark: |        :x:         |
+| `''`                           | :heavy_check_mark: |        :x:         |
+| `'0'`                          |        :x:         |        :x:         |
+| `0`                            |        :x:         |        :x:         |
+| `false`                        |        :x:         |        :x:         |
+| `[]`                           |        :x:         |        :x:         |
+| `-1`                           |        :x:         |        :x:         |
+| `1`                            |        :x:         |        :x:         |
+| `true`                         |        :x:         |        :x:         |
+| `'text'`                       |        :x:         |        :x:         |
+| `'http://www.some-domain.com'` | :heavy_check_mark: | :heavy_check_mark: |
+
 ## Contributing
 
 Want to contribute? All contributions are welcome. Read the
