@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.1 (11/06/2020)
+ * @version   1.2.0 (2020/11/01)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -57,13 +57,13 @@ class UrlTest extends TestCase
     }
 
     /**
-     * The String ('www.example.com') value should not pass validation.
+     * Null value should pass validation (ignored field).
      *
      * @return void
      */
-    public function testValidateInvalidUrl(): void
+    public function testValidateNull(): void
     {
-        $this->assertFalse($this->validate('www.example.com'));
+        $this->assertTrue($this->validate(null));
     }
 
     /**
@@ -74,6 +74,16 @@ class UrlTest extends TestCase
     public function testValidateEmptyString(): void
     {
         $this->assertTrue($this->validate(''));
+    }
+
+    /**
+     * The String ('www.example.com') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateInvalidUrl(): void
+    {
+        $this->assertFalse($this->validate('www.example.com'));
     }
 
     /**
