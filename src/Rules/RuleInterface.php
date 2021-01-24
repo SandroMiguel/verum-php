@@ -21,7 +21,7 @@ namespace Verum\Rules;
 interface RuleInterface
 {
     /**
-     * Check value.
+     * Validate.
      *
      * @version 1.1.0 (01/05/2020)
      * @since   Verum 1.0.0

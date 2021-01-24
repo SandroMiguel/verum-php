@@ -52,7 +52,14 @@ class BetweenTest extends TestCase
                 ],
             ]
         );
-        $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
+        $rule = RuleFactory::loadRule(
+            $validator,
+            $fieldValue,
+            $ruleValues,
+            $fieldLabel,
+            $ruleName,
+            ''
+        );
 
         return $rule->validate();
     }
@@ -69,6 +76,20 @@ class BetweenTest extends TestCase
             'Invalid argument; Argument name: $ruleValues; Argument value: null; The values min and max are mandatory on rule "between"'
         );
         $this->validate('10', []);
+    }
+
+    /**
+     * If the rule has only the first value defined, an exception must be thrown.
+     *
+     * @return void
+     */
+    public function testValidateWithOneRuleValue(): void
+    {
+        $this->expectException(ValidatorException::class);
+        $this->expectExceptionMessage(
+            'Invalid argument; Argument name: $ruleValues; Argument value: null; The values min and max are mandatory on rule "between"'
+        );
+        $this->validate('10', [1]);
     }
 
     /**
