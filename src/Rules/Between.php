@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.1 (25/06/2020)
+ * @version   4.0.2 (2021/01/23)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -26,11 +26,11 @@ use Verum\Exceptions\ValidatorException;
  */
 final class Between extends Rule
 {
-    /** @var int Min length value */
-    private $minLength;
+    /** @var int Min value */
+    private $minValue;
 
-    /** @var int Max length value */
-    private $maxLength;
+    /** @var int Max value */
+    private $maxValue;
 
     /**
      * Between constructor.
@@ -54,7 +54,7 @@ final class Between extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.0.3 (25/06/2020)
+     * @version 2.0.4 (2021/01/23)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -69,22 +69,23 @@ final class Between extends Rule
         if (!isset($this->ruleValues[1])) {
             throw ValidatorException::invalidArgument(
                 '$ruleValues',
-                $this->ruleValues[1],
+                $this->ruleValues[1] ?? 'null',
                 'The values min and max are mandatory on rule "between"'
             );
         }
-        $this->minLength = $this->ruleValues[0];
-        $this->maxLength = $this->ruleValues[1];
+        $this->minValue = $this->ruleValues[0];
+        $this->maxValue = $this->ruleValues[1];
 
         if ($this->fieldValue === '') {
             return true;
         }
 
-        $minLength = new Min($this->fieldValue);
-        $minLength->setRuleValues([$this->minLength]);
-        $maxLength = new Max($this->fieldValue);
-        $maxLength->setRuleValues([$this->maxLength]);
-        if (!$minLength->validate() || !$maxLength->validate()) {
+        $min = new Min($this->fieldValue);
+        $min->setRuleValues([$this->minValue]);
+        $max = new Max($this->fieldValue);
+        $max->setRuleValues([$this->maxValue]);
+
+        if (!$min->validate() || !$max->validate()) {
             return false;
         }
 
@@ -96,11 +97,11 @@ final class Between extends Rule
      *
      * @return array<int, mixed> Returns the parameters for the error message.
      *
-     * @version 2.0.0 (16/06/2020)
+     * @version 2.0.1 (2021/01/23)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array
     {
-        return [$this->minLength, $this->maxLength, $this->fieldLabel];
+        return [$this->minValue, $this->maxValue, $this->fieldLabel];
     }
 }

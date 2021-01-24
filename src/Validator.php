@@ -194,11 +194,11 @@ final class Validator
             }
 
             $label = $this->getLabel($fieldConfig['label'] ?? null);
+            $fieldValue = $this->fieldValues[$fieldName] ?? null;
 
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
-                $fieldValue = $this->fieldValues[$fieldName] ?? null;
                 $rule = RuleFactory::loadRule(
                     $this,
                     $fieldValue,
@@ -427,7 +427,7 @@ final class Validator
             $ruleName = $value;
             $ruleValues = [];
         } else {
-            // The rule has one or mores values.
+            // The rule has one or mores values (e.g. between => [3, 15]).
             $ruleName = $key;
             $ruleValues = is_array($value) ? $value : [$value];
         }

@@ -40,7 +40,7 @@ final class RuleFactory
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.11.1 (16/06/2020)
+     * @version 1.11.1 (2020/06/16)
      * @since   Verum 1.0.0
      */
     public static function loadRule(

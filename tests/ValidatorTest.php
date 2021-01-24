@@ -280,7 +280,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * Asserts the error message (with multiple labels).
+     * Asserts the error message (with multiple translated labels).
      * A message should be displayed with the label in a specific language.
      *
      * @return void
