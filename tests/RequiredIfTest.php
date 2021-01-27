@@ -28,7 +28,7 @@ use Verum\Validator;
 class RequiredIfTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param mixed $fieldDependValue Field Value of the Dependent "if" Field.
@@ -42,7 +42,7 @@ class RequiredIfTest extends TestCase
         $fieldDependName = 'depend_field_name';
         $fieldDependLabel = 'Depend Field Name';
         $ruleName = 'requiredIf';
-        $ruleValues = [ $fieldDependName ];
+        $ruleValues = [$fieldDependName];
         $validator = new Validator(
             [
                 $fieldName => $fieldValue,
@@ -60,7 +60,7 @@ class RequiredIfTest extends TestCase
         return $rule->validate();
     }
 
-   /**
+    /**
      * Value is not empty, DependValue is empty (null) -> should pass the validation
      *
      * @return void
@@ -70,7 +70,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate("val1", null));
     }
 
-   /**
+    /**
      * Value is not empty, DependValue is empty ("") -> should pass the validation
      *
      * @return void
@@ -80,7 +80,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate("val1", ""));
     }
 
-   /**
+    /**
      * Value is empty (null), DependValue is empty (null) -> should pass the validation
      *
      * @return void
@@ -90,7 +90,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate(null, null));
     }
 
-   /**
+    /**
      * Value is empty (""), DependValue is empty ("") -> should pass the validation
      *
      * @return void
@@ -100,7 +100,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate("", ""));
     }
 
-   /**
+    /**
      * Value is not empty ("val1"), DependValue is not empty ("val2") -> should pass the validation
      *
      * @return void
@@ -110,7 +110,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate("val1", "val2"));
     }
 
-   /**
+    /**
      * Value is not empty (true), DependValue is not empty ("val2") -> should pass the validation
      *
      * @return void
@@ -120,7 +120,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate(true, "val2"));
     }
 
-   /**
+    /**
      * Value is not empty (0), DependValue is not empty ("val2") -> should pass the validation
      *
      * @return void
@@ -130,7 +130,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate(0, "val2"));
     }
 
-   /**
+    /**
      * Value is not-empty-like empty array, DependValue is not empty ("val2") -> should pass the validation
      *
      * @return void
@@ -140,7 +140,7 @@ class RequiredIfTest extends TestCase
         $this->assertTrue($this->validate([], "val2"));
     }
 
-   /**
+    /**
      * Value is empty (null), DependValue is not empty ("val2") -> should NOT pass the validation
      *
      * @return void
@@ -150,7 +150,7 @@ class RequiredIfTest extends TestCase
         $this->assertFalse($this->validate(null, "val2"));
     }
 
-   /**
+    /**
      * Value is empty (""), DependValue is not empty ("val2") -> should NOT pass the validation
      *
      * @return void
@@ -160,7 +160,7 @@ class RequiredIfTest extends TestCase
         $this->assertFalse($this->validate("", "val2"));
     }
 
-   /**
+    /**
      * Value is empty-like false, DependValue is not empty ("val2") -> should NOT pass the validation
      *
      * @return void
@@ -169,5 +169,4 @@ class RequiredIfTest extends TestCase
     {
         $this->assertFalse($this->validate(false, "val2"));
     }
-
 }

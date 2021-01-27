@@ -28,7 +28,7 @@ use Verum\Validator;
 class UrlTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      *
