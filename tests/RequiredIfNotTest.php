@@ -28,7 +28,7 @@ use Verum\Validator;
 class RequiredIfNotTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param mixed $fieldDependValue Field Value of the Dependent "if not" Field.

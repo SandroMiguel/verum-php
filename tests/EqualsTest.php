@@ -29,7 +29,7 @@ use Verum\Validator;
 class EqualsTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValueUnderTest Field value to validate.
      * @param array $ruleValues Rule values.

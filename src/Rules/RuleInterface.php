@@ -21,7 +21,7 @@ namespace Verum\Rules;
 interface RuleInterface
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @version 1.1.0 (01/05/2020)
      * @since   Verum 1.0.0
