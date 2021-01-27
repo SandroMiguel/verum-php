@@ -32,6 +32,7 @@ interface RuleInterface
      * Error Message Parameters.
      *
      * @return array<int, string|mixed> Returns the parameters for the error message.
+     * ['param 1', 'param 2', ...]
      *
      * @version 1.0.0 (15/05/2020)
      * @since   Verum 1.0.0

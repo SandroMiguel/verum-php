@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.2.1 (25/06/2020)
+ * @version   1.3.0 (2021/01/27)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -30,10 +30,16 @@ use PHPUnit\Framework\TestCase;
 class ValidatorTest extends TestCase
 {
 
-    /** @var array One field value NOK */
+    /** @var array One field value OK */
     private $someField = ['some_field' => 'some value'];
 
-    /** @var array One field value NOK */
+    /** @var array Two fields value OK */
+    private $twoFields = [
+        'some_field_a' => '',
+        'some_field_b' => 'some value B',
+    ];
+
+    /** @var array One field value OK */
     private $oneFieldValueOk = ['name' => 'John'];
 
     /** @var array One field value NOK */
@@ -68,6 +74,18 @@ class ValidatorTest extends TestCase
     private $nameFieldRequiredRule = [
         'name' => [
             'label' => 'Name',
+            'rules' => [RuleEnum::REQUIRED],
+        ],
+    ];
+
+    /** @var array Fields with "required" rule */
+    private $someFieldsRequiredRule = [
+        'some_field_a' => [
+            'label' => 'Some field A',
+            'rules' => [RuleEnum::REQUIRED],
+        ],
+        'some_field_b' => [
+            'label' => 'Some field B',
             'rules' => [RuleEnum::REQUIRED],
         ],
     ];
@@ -303,7 +321,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * Asserts the error message (pt-PT language).
+     * Asserts the error message (pt-pt language).
      *
      * @return void
      */
@@ -580,6 +598,21 @@ class ValidatorTest extends TestCase
         $validator = new Validator($this->someField, $this->nameFieldFileMaxSizeRule);
         $isValid = $validator->validate();
         $this->assertTrue($isValid);
+    }
+
+    /**
+     * ?
+     *
+     * @return void
+     */
+    public function testValidateTwoFields(): void
+    {
+        $validator = new Validator(
+            $this->twoFields,
+            $this->someFieldsRequiredRule
+        );
+        $isValid = $validator->validate();
+        $this->assertFalse($isValid);
     }
 
     /**
