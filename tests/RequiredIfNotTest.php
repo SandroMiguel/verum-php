@@ -40,9 +40,8 @@ class RequiredIfNotTest extends TestCase
         $fieldName = 'some_field_name';
         $fieldLabel = 'Some Field Name';
         $fieldDependName = 'depend_field_name';
-        $fieldDependLabel = 'Depend Field Name';
         $ruleName = 'requiredIfNot';
-        $ruleValues = [ $fieldDependName ];
+        $ruleValues = [$fieldDependName];
         $validator = new Validator(
             [
                 $fieldName => $fieldValue,
@@ -60,7 +59,7 @@ class RequiredIfNotTest extends TestCase
         return $rule->validate();
     }
 
-   /**
+    /**
      * Value is not empty ("val1"), DependValue is empty (null) -> should pass the validation
      *
      * @return void
@@ -70,7 +69,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertTrue($this->validate("val1", null));
     }
 
-   /**
+    /**
      * Value is not empty ("val1"), DependValue is empty ("") -> should pass the validation
      *
      * @return void
@@ -80,7 +79,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertTrue($this->validate("val1", ""));
     }
 
-   /**
+    /**
      * Value is not empty (0), DependValue is empty (null) -> should pass the validation
      *
      * @return void
@@ -90,7 +89,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertTrue($this->validate(0, null));
     }
 
-   /**
+    /**
      * Value is empty (null), DependValue is empty (null) -> should NOT pass the validation
      *
      * @return void
@@ -100,7 +99,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertFalse($this->validate(null, null));
     }
 
-   /**
+    /**
      * Value is empty (""), DependValue is empty ("") -> should NOT pass the validation
      *
      * @return void
@@ -110,7 +109,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertFalse($this->validate("", ""));
     }
 
-   /**
+    /**
      * Value is empty (null), DependValue is empty-like false -> should NOT pass the validation
      *
      * @return void
@@ -120,7 +119,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertFalse($this->validate(null, false));
     }
 
-   /**
+    /**
      * Value is not empty ("val1"), DependValue is not empty ("val2") -> should pass the validation
      *
      * @return void
@@ -130,7 +129,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertTrue($this->validate("val1", "val2"));
     }
 
-   /**
+    /**
      * Value is not empty ("val1"), DependValue is not empty (true) -> should pass the validation
      *
      * @return void
@@ -140,7 +139,7 @@ class RequiredIfNotTest extends TestCase
         $this->assertTrue($this->validate("val1", true));
     }
 
-   /**
+    /**
      * Value is empty (null), DependValue is not empty ("val2") -> should pass the validation
      *
      * @return void
@@ -149,5 +148,4 @@ class RequiredIfNotTest extends TestCase
     {
         $this->assertTrue($this->validate(null, "val2"));
     }
-
 }

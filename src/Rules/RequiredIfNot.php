@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 2.0.0
- * @version   1.0.0 (14/06/2020)
+ * @version   1.0.1 (2021/01/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -52,7 +52,7 @@ final class RequiredIfNot extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.0.0 (28/04/2020)
+     * @version 1.0.1 (2021/01/26)
      * @since   Verum 2.0.0
      */
     public function validate(): bool
@@ -78,9 +78,8 @@ final class RequiredIfNot extends Rule
         if ($isEmptyDepends) {
             $isValid = !$this->isEmpty($this->fieldValue);
             return $isValid;
-        } else {
-            return true;
         }
+        return true;
     }
 
     /**
@@ -97,7 +96,7 @@ final class RequiredIfNot extends Rule
     }
 
     /**
-     * Check whether the value is empty
+     * Checks whether the value is empty
      *
      * @param mixed $value Value to check.
      *

@@ -98,8 +98,8 @@ final class RequiredIf extends Rule
 
 
 
-    /** 
-     * Check whether the value is empty
+    /**
+     * Checks whether the value is empty.
      *
      * @param mixed $value Value to check.
      *

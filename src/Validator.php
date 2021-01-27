@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.3 (2020/09/29)
+ * @version   4.0.4 (2021/01/25)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -28,7 +28,14 @@ use Verum\Rules\RuleFactory;
  */
 final class Validator
 {
-    /** @var array<mixed> Input field data */
+    /**
+     * [
+     *   'some_field_a' => 'some value A',
+     *   'some_field_b' => 'some value B',
+     * ]
+     *
+     * @var array<mixed> Input field data
+     * */
     private $fieldValues = [];
 
     /**
@@ -445,15 +452,11 @@ final class Validator
      *
      * @return string|null Returns the label or NULL.
      *
-     * @version 1.0.0 (17/06/2020)
+     * @version 1.0.1 (2021/01/25)
      * @since   Verum 1.0.0
      */
-    private function getLabel($label): ?string
+    private function getLabel($label = null): ?string
     {
-        if (!isset($label)) {
-            return null;
-        }
-
         if (is_array($label)) {
             return $label[$this->language];
         }
