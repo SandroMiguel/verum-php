@@ -20,7 +20,7 @@ namespace Verum;
 
 use Verum\ArrayHelper;
 use Verum\Enum\LangEnum;
-use Verum\Exceptions\ValidatorException;
+use Verum\Exception\ValidatorException;
 use Verum\Rules\RuleFactory;
 
 /**
@@ -57,8 +57,14 @@ final class Validator
 
     /**
      *  [
-     *      'required' => 'This field is required',
-     *      'min_length' => 'The length must be at least %1$s characters',
+     *      'required' => [
+     *           'withLabel' => 'The "{param:1}" field is required.',
+     *           'withoutLabel' => 'This field is required.',
+     *      ],
+     *      'min_length' => [
+     *           'withLabel' => 'The "{param:2}" field must be at least {param:1} characters long.',
+     *           'withoutLabel' => 'This field must be at least {param:1} characters long.',
+     *      ],
      *      ...
      *  ]
      *

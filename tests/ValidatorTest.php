@@ -20,7 +20,7 @@ namespace Verum\Tests;
 
 use Verum\Enum\LangEnum;
 use Verum\Enum\RuleEnum;
-use Verum\Exceptions\ValidatorException;
+use Verum\Exception\ValidatorException;
 use Verum\Validator;
 use PHPUnit\Framework\TestCase;
 

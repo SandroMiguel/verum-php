@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\Exception\ValidatorException;
 
 /**
  * Class RequiredIfNot | src/Rules/RequiredIfNot.php

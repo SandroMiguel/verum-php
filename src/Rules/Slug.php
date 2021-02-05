@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\Exception\ValidatorException;
 
 /**
  * Class Slug | src/Rules/Slug.php

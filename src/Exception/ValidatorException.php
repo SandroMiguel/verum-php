@@ -16,10 +16,10 @@
 
 declare(strict_types=1);
 
-namespace Verum\Exceptions;
+namespace Verum\Exception;
 
 /**
- * Class ValidatorException | src/Exceptions/ValidatorException.php
+ * ValidatorException class
  */
 final class ValidatorException extends \Exception
 {
