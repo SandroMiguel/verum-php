@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exception\ValidatorException;
+use Verum\ValidatorException;
 
 /**
  * Class Between | src/Rules/Between.php

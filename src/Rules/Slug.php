@@ -18,8 +18,6 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exception\ValidatorException;
-
 /**
  * Class Slug | src/Rules/Slug.php
  * Checks whether the value is a valid Slug (e.g. hello-world_123).

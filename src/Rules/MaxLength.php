@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exception\ValidatorException;
+use Verum\ValidatorException;
 
 /**
  * Class MaxLength | src/Rules/MaxLength.php

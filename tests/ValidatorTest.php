@@ -18,11 +18,11 @@ declare(strict_types=1);
 
 namespace Verum\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Verum\Enum\LangEnum;
 use Verum\Enum\RuleEnum;
-use Verum\Exception\ValidatorException;
 use Verum\Validator;
-use PHPUnit\Framework\TestCase;
+use Verum\ValidatorException;
 
 /**
  * Class ValidatorTest | tests/ValidatorTest.php | Test for Validator

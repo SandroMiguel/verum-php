@@ -18,8 +18,6 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exception\ValidatorException;
-
 /**
  * Class AlphaNumeric | src/Rules/AlphaNumeric.php
  * Checks whether the value contains only alphanumeric characters.

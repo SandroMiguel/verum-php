@@ -19,9 +19,9 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Verum\Exception\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class ContainsTest | tests/ContainsTest.php | Test for Contains
