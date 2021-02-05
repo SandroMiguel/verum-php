@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace Verum\Tests;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\Exception\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Rules\RuleInterface;
 use PHPUnit\Framework\TestCase;
