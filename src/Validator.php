@@ -20,7 +20,6 @@ namespace Verum;
 
 use Verum\ArrayHelper;
 use Verum\Enum\LangEnum;
-use Verum\Exception\ValidatorException;
 use Verum\Rules\RuleFactory;
 
 /**

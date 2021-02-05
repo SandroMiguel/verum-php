@@ -16,7 +16,7 @@
 
 declare(strict_types=1);
 
-namespace Verum\Exception;
+namespace Verum;
 
 /**
  * ValidatorException class

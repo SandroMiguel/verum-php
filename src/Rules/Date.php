@@ -18,8 +18,6 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exception\ValidatorException;
-
 /**
  * Class Date | src/Rules/Date.php
  * Checks whether the value is a valid date (Y-m-d) or a custom format.

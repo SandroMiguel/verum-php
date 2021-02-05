@@ -18,8 +18,8 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exception\ValidatorException;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class RuleFactory | src/Rules/RuleFactory.php | Rule factory

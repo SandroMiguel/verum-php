@@ -18,8 +18,6 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exception\ValidatorException;
-
 /**
  * Class RequiredIf | src/Rules/RequiredIf.php
  * Checks whether the value is not empty, whenever other Fieldname is not empty
