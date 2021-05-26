@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.4 (2021/01/25)
+ * @version   4.1.0 (2021/05/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -343,10 +343,10 @@ final class Validator
      * @param string $label Field label.
      * @param array<string, string> $error Error message (e.g.: ['required' => 'This field is required']).
      *
-     * @version 1.0.1 (16/06/2020)
-     * @since   Verum 1.0.0
+     * @version 1.1.0 (2021/05/26)
+     * @since Verum 1.0.0
      */
-    private function addError(
+    public function addError(
         string $fieldName,
         ?string $label,
         array $error
