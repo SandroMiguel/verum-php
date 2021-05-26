@@ -382,8 +382,9 @@ final class Validator
             if (is_array($args[0])) {
                 $args[0] = ArrayHelper::arrayToString($args[0]);
             }
+
             return vsprintf($format, $args);
-        } catch (\Exception $ex) {
+        } catch (\Throwable $ex) {
             throw ValidatorException::invalidRuleMessageArgument(
                 $ruleMessage,
                 $args,

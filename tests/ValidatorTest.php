@@ -208,7 +208,7 @@ class ValidatorTest extends TestCase
     {
         $this->expectException(ValidatorException::class);
         $this->expectExceptionMessage(
-            'vsprintf(): Too few arguments; Message: Message "min_length" rule. val1 = {param:1}, val2 = {param:2}, val3 = {param:3}.; Arguments: 5,Name'
+            'The arguments array must contain 3 items, 2 given; Message: Message "min_length" rule. val1 = {param:1}, val2 = {param:2}, val3 = {param:3}.; Arguments: 5,Name'
         );
         $validator = new Validator($this->oneFieldValueNok, $this->nameFieldMinLengthRule);
         $validator->addSimpleCustomMessage(
