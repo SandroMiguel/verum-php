@@ -8,9 +8,9 @@
  * @package   Verum-PHP
  * @license   MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
- * @copyright 2020 Sandro
+ * @copyright 2021 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.2 (25/06/2020)
+ * @version   1.2.0 (2021/05/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -161,6 +161,16 @@ class ContainsTest extends TestCase
     }
 
     /**
+     * A Boolean (true) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateBooleanTrue(): void
+    {
+        $this->assertTrue($this->validate(true, [true]));
+    }
+
+    /**
      * The String ('hello') value should not pass validation.
      *
      * @return void
@@ -171,7 +181,7 @@ class ContainsTest extends TestCase
     }
 
     /**
-     * The String ('HELLO') value should not pass validation.
+     * The String ('HELLO') value should pass validation.
      *
      * @return void
      */
