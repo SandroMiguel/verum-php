@@ -18,6 +18,8 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
+use Verum\ValidatorException;
+
 /**
  * Class RequiredIfNot | src/Rules/RequiredIfNot.php
  * Checks whether the value is not empty, whenever other Fieldname is empty

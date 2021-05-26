@@ -75,7 +75,7 @@ final class Regex extends Rule
                 return false;
             }
             return true;
-        } catch (\Exception $ex) {
+        } catch (\Throwable $ex) {
             throw ValidatorException::invalidArgument(
                 'pattern',
                 $this->pattern,
