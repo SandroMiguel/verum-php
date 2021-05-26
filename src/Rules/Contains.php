@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.2 (2020/09/29)
+ * @version   4.0.3 (2021/05/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -49,8 +49,8 @@ final class Contains extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.1.3 (2020/09/29)
-     * @since   Verum 1.0.0
+     * @version 2.1.4 (2021/05/26)
+     * @since Verum 1.0.0
      */
     public function validate(): bool
     {
@@ -63,14 +63,11 @@ final class Contains extends Rule
         }
         $this->valuesToCompare = $this->ruleValues;
 
-        if ($this->fieldValue === 0 || $this->fieldValue === true) {
-            return false;
-        }
         if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
 
-        return in_array($this->fieldValue, $this->valuesToCompare);
+        return in_array($this->fieldValue, $this->valuesToCompare, true);
     }
 
     /**
