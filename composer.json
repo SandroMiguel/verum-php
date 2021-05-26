@@ -43,6 +43,7 @@
         "phpstan": "phpstan analyse src --level 7",
         "psalm": "psalm",
         "test": "phpunit --colors=always tests",
+        "test:filter": "phpunit --filter",
         "test-coverage": "phpunit --coverage-html log/report"
     },
     "scripts-descriptions": {
