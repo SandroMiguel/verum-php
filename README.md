@@ -12,6 +12,7 @@
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
+1. [Custom validations](#custom-validations)
 1. [Available Rules](#available-rules)
 1. [Contributing](#contributing)
 1. [Questions](#questions)
@@ -364,6 +365,21 @@ $validator->addCustomMessages(
 ...
 ```
 
+## Custom validations
+
+You can use your custom validations and inject the error message.
+
+```
+if ($myCustomValidationFail) {
+    $validator->addError(
+        'someFieldName',
+        null,
+        ['no_duplicate' => 'A user already exists with that username')]
+    );
+    // ...
+}
+```
+
 ## Available Rules
 
 ### alpha
@@ -605,19 +621,19 @@ $rules = [
 ];
 ```
 
-| Value               |       email        |  email + required  |
-| ------------------- | :----------------: | :----------------: |
-| `null`              | :heavy_check_mark: |        :x:         |
-| `''`                | :heavy_check_mark: |        :x:         |
-| `'0'`               |        :x:         |        :x:         |
-| `0`                 |        :x:         |        :x:         |
-| `false`             |        :x:         |        :x:         |
-| `[]`                |        :x:         |        :x:         |
-| `-1`                |        :x:         |        :x:         |
-| `1`                 |        :x:         |        :x:         |
-| `true`              |        :x:         |        :x:         |
-| `'text'`            |        :x:         |        :x:         |
-| `'john@domain.com'` | :heavy_check_mark: | :heavy_check_mark: |
+| Value                |       email        |  email + required  |
+| -------------------- | :----------------: | :----------------: |
+| `null`               | :heavy_check_mark: |        :x:         |
+| `''`                 | :heavy_check_mark: |        :x:         |
+| `'0'`                |        :x:         |        :x:         |
+| `0`                  |        :x:         |        :x:         |
+| `false`              |        :x:         |        :x:         |
+| `[]`                 |        :x:         |        :x:         |
+| `-1`                 |        :x:         |        :x:         |
+| `1`                  |        :x:         |        :x:         |
+| `true`               |        :x:         |        :x:         |
+| `'text'`             |        :x:         |        :x:         |
+| `'john@example.com'` | :heavy_check_mark: | :heavy_check_mark: |
 
 ### equals
 
