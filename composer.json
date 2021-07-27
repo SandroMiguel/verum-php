@@ -30,12 +30,12 @@
         "php": "^7.2 || ^8.0"
     },
     "require-dev": {
-        "nunomaduro/phpinsights": "^1.14",
-        "phpmetrics/phpmetrics": "^2.6",
-        "phpstan/phpstan": "^0.12.31",
+        "nunomaduro/phpinsights": "^2.0",
+        "phpmetrics/phpmetrics": "^2.7",
+        "phpstan/phpstan": "^0.12.93",
         "phpunit/phpunit": "8",
         "roave/security-advisories": "dev-master",
-        "vimeo/psalm": "^3.12"
+        "vimeo/psalm": "^4.8"
     },
     "scripts": {
         "phpcs": "phpcs -s src",
