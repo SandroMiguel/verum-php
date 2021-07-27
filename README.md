@@ -212,6 +212,13 @@ Output (pt-pt):
 
 #### Specify the messages language
 
+You can use some built-in translations:
+
+-   'en' -> English (default)
+-   'nl-nl' -> Dutch
+-   'pt-pt' -> Portuguese-Portugal
+-   'pt-br' -> Portuguese-Brazil
+
 ```
 $validator = new Validator($_POST, $rules, 'pt-pt');
 ```
@@ -373,7 +380,7 @@ You can use your custom validations and inject the error message.
 if ($myCustomValidationFail) {
     $validator->addError(
         'someFieldName',
-        null,
+        'Some field name',
         ['no_duplicate' => 'A user already exists with that username')]
     );
     // ...
