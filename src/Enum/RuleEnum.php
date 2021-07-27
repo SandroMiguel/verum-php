@@ -5,13 +5,13 @@
  *
  * PHP Version 7.2.11-3
  *
- * @package   Verum-PHP
- * @license   MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
- * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
+ * @package Verum-PHP
+ * @license MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
+ * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
- * @since     Verum-PHP 1.0.0
- * @version   1.10.0 (10/05/2020)
- * @link      https://github.com/SandroMiguel/verum-php
+ * @since Verum-PHP 1.0.0
+ * @version 1.10.0 (2020/05/10)
+ * @link https://github.com/SandroMiguel/verum-php
  */
 
 declare(strict_types=1);
