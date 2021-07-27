@@ -1,6 +1,5 @@
 {
     "name": "verum-php",
-    "version": "2.0.1",
     "scripts": {
         "postinstall": "husky install",
         "test:phpunit": "./vendor/bin/phpunit --colors=always tests",
