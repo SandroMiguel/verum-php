@@ -6,7 +6,7 @@
 [![Latest Stable Version](https://poser.pugx.org/sandromiguel/verum-php/v)](//packagist.org/packages/sandromiguel/verum-php)
 [![Dependents](https://poser.pugx.org/sandromiguel/verum-php/dependents)](//packagist.org/packages/sandromiguel/verum-php)
 
-**Server-Side Form Validation Library for PHP**
+**Server-Side Validation Library for PHP**
 
 -   Validate arrays (with file support)
 -   Custom error messages
