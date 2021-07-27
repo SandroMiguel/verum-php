@@ -24,6 +24,7 @@ namespace Verum\Enum;
 abstract class LangEnum
 {
     public const EN = 'en';
+    public const NL_NL = 'nl-nl';
     public const PT_PT = 'pt-pt';
 
     /**
