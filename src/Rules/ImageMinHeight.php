@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class ImageMinHeight | core/Verum/Rules/ImageMinHeight.php
+ * Class ImageMinHeight | src/Rules/ImageMinHeight.php
  * Checks whether the image height is not less than a given value.
  */
 final class ImageMinHeight extends Rule
@@ -50,7 +50,7 @@ final class ImageMinHeight extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *

@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   2.0.2 (14/06/2020)
+ * @version   3.0.0 (2020/11/01)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Url | core/Verum/Rules/Url.php
+ * Class Url | src/Rules/Url.php
  * Checks whether the value is a valid URL.
  */
 final class Url extends Rule
@@ -29,7 +29,7 @@ final class Url extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 1.0.0 (10/05/2020)
+     * @version 1.0.0 (2020/05/10)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -38,16 +38,16 @@ final class Url extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
-     * @version 2.0.0 (30/05/2020)
+     * @version 3.0.0 (2020/11/01)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
     {
-        if ($this->fieldValue === '') {
+        if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
 
@@ -59,7 +59,7 @@ final class Url extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 1.0.1 (14/06/2020)
+     * @version 1.0.1 (2020/06/14)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array

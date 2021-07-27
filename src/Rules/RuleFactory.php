@@ -18,11 +18,11 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
- * Class RuleFactory | core/Verum/Rules/RuleFactory.php | Rule factory
+ * Class RuleFactory | src/Rules/RuleFactory.php | Rule factory
  */
 final class RuleFactory
 {

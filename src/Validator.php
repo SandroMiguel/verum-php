@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.2 (25/06/2020)
+ * @version   4.1.0 (2021/05/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,16 +18,23 @@ declare(strict_types=1);
 
 namespace Verum;
 
+use Verum\ArrayHelper;
 use Verum\Enum\LangEnum;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 
 /**
- * Class Validator | core/Verum/Validator.php | Input validation
+ * Class Validator | src/Validator.php | Input validation
  */
 final class Validator
 {
-    /** @var array<mixed> Input field data */
+    /**
+     * [
+     *   'some_field_a' => 'some value A',
+     *   'some_field_b' => 'some value B',
+     * ]
+     *
+     * @var array<mixed> Input field data
+     * */
     private $fieldValues = [];
 
     /**
@@ -49,8 +56,14 @@ final class Validator
 
     /**
      *  [
-     *      'required' => 'This field is required',
-     *      'min_length' => 'The length must be at least %1$s characters',
+     *      'required' => [
+     *           'withLabel' => 'The "{param:1}" field is required.',
+     *           'withoutLabel' => 'This field is required.',
+     *      ],
+     *      'min_length' => [
+     *           'withLabel' => 'The "{param:2}" field must be at least {param:1} characters long.',
+     *           'withoutLabel' => 'This field must be at least {param:1} characters long.',
+     *      ],
      *      ...
      *  ]
      *
@@ -193,11 +206,11 @@ final class Validator
             }
 
             $label = $this->getLabel($fieldConfig['label'] ?? null);
+            $fieldValue = $this->fieldValues[$fieldName] ?? null;
 
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
-                $fieldValue = $this->fieldValues[$fieldName] ?? null;
                 $rule = RuleFactory::loadRule(
                     $this,
                     $fieldValue,
@@ -330,10 +343,10 @@ final class Validator
      * @param string $label Field label.
      * @param array<string, string> $error Error message (e.g.: ['required' => 'This field is required']).
      *
-     * @version 1.0.1 (16/06/2020)
-     * @since   Verum 1.0.0
+     * @version 1.1.0 (2021/05/26)
+     * @since Verum 1.0.0
      */
-    private function addError(
+    public function addError(
         string $fieldName,
         ?string $label,
         array $error
@@ -353,21 +366,25 @@ final class Validator
      * Format Rule Message.
      *
      * @param string $ruleMessage Rule message.
-     * @param array<string> $args Arguments.
+     * @param array<int, mixed> $args Arguments - Error message parameters.
      *
      * @return string Returns the message with the placeholder values ​​filled in.
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.1.0 (03/05/2020)
+     * @version 1.1.1 (2020/09/29)
      * @since   Verum 1.0.0
      */
     private function formatMessage(string $ruleMessage, array $args): string
     {
         $format = preg_replace('/{param:(\d)}/', '%$1$s', $ruleMessage);
         try {
+            if (is_array($args[0])) {
+                $args[0] = ArrayHelper::arrayToString($args[0]);
+            }
+
             return vsprintf($format, $args);
-        } catch (\Exception $ex) {
+        } catch (\Throwable $ex) {
             throw ValidatorException::invalidRuleMessageArgument(
                 $ruleMessage,
                 $args,
@@ -423,7 +440,7 @@ final class Validator
             $ruleName = $value;
             $ruleValues = [];
         } else {
-            // The rule has one or mores values.
+            // The rule has one or mores values (e.g. between => [3, 15]).
             $ruleName = $key;
             $ruleValues = is_array($value) ? $value : [$value];
         }
@@ -441,15 +458,11 @@ final class Validator
      *
      * @return string|null Returns the label or NULL.
      *
-     * @version 1.0.0 (17/06/2020)
+     * @version 1.0.1 (2021/01/25)
      * @since   Verum 1.0.0
      */
-    private function getLabel($label): ?string
+    private function getLabel($label = null): ?string
     {
-        if (!isset($label)) {
-            return null;
-        }
-
         if (is_array($label)) {
             return $label[$this->language];
         }

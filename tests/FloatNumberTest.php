@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.0 (28/05/2020)
+ * @version   1.1.1 (2020/10/19)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,7 +18,6 @@ declare(strict_types=1);
 
 namespace Verum\Tests;
 
-use Verum\Rules\FloatNumber;
 use PHPUnit\Framework\TestCase;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
@@ -29,7 +28,7 @@ use Verum\Validator;
 class FloatNumberTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      *
@@ -55,6 +54,16 @@ class FloatNumberTest extends TestCase
         $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
 
         return $rule->validate();
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null));
     }
 
     /**

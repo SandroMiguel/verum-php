@@ -16,10 +16,10 @@
 
 declare(strict_types=1);
 
-namespace Verum\Exceptions;
+namespace Verum;
 
 /**
- * Class ValidatorException | core/Verum/Exception/ValidatorException.php
+ * ValidatorException class
  */
 final class ValidatorException extends \Exception
 {
@@ -30,7 +30,7 @@ final class ValidatorException extends \Exception
      * @param mixed $argumentValue Argument value.
      * @param string $customMessage Custom message.
      * @param int $code Error code.
-     * @param \Exception $previous Previous exception.
+     * @param \Throwable $previous Previous exception.
      *
      * @return ValidatorException
      *
@@ -42,7 +42,7 @@ final class ValidatorException extends \Exception
         $argumentValue,
         ?string $customMessage = null,
         int $code = 0,
-        ?\Exception $previous = null
+        ?\Throwable $previous = null
     ): self {
         $errorMessage = sprintf(
             'Invalid argument; Argument name: %s; Argument value: %s',
@@ -87,7 +87,7 @@ final class ValidatorException extends \Exception
      * @param string $ruleMessage Rule message.
      * @param array<string> $args Arguments.
      * @param int $code Error code.
-     * @param \Exception $previous Previous exception.
+     * @param \Throwable $previous Previous exception.
      *
      * @return ValidatorException
      *
@@ -98,7 +98,7 @@ final class ValidatorException extends \Exception
         string $ruleMessage,
         array $args,
         int $code,
-        \Exception $previous
+        \Throwable $previous
     ): self {
         $errorMessage = sprintf(
             '%s; Message: %s; Arguments: %s',
@@ -197,7 +197,7 @@ final class ValidatorException extends \Exception
      *
      * @param string $ruleName Rule name.
      * @param int $code Error code.
-     * @param \Exception $previous Previous exception.
+     * @param \Throwable $previous Previous exception.
      *
      * @return ValidatorException
      *
@@ -207,7 +207,7 @@ final class ValidatorException extends \Exception
     public static function ruleNotFound(
         string $ruleName,
         int $code = 0,
-        ?\Exception $previous = null
+        ?\Throwable $previous = null
     ): self {
         $errorMessage = "The \"{$ruleName}\" rule was not found.";
         if ($previous) {

@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.3.1 (25/06/2020)
+ * @version   1.4.0 (2020/10/22)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -19,9 +19,9 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class MaxTest | tests/MaxTest.php | Test for Max
@@ -29,7 +29,7 @@ use Verum\Validator;
 class MaxTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param array $ruleValues Rule values.
@@ -55,6 +55,16 @@ class MaxTest extends TestCase
         $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
 
         return $rule->validate();
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null, [10]));
     }
 
     /**

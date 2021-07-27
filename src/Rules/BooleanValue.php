@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class BooleanValue | core/Verum/Rules/BooleanValue.php
+ * Class BooleanValue | src/Rules/BooleanValue.php
  * Checks whether the value is a boolean value.
  * Returns true for 1/0, '1'/'0', 'on'/'off', 'yes'/'no', true/false.
  */
@@ -39,7 +39,7 @@ final class BooleanValue extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *

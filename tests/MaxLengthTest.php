@@ -19,9 +19,9 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class MaxLengthTest | tests/MaxLengthTest.php | Test for MaxLength
@@ -29,7 +29,7 @@ use Verum\Validator;
 class MaxLengthTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param array $ruleValues Rule values.

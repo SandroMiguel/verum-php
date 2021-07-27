@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   2.0.1 (13/06/2020)
+ * @version   2.0.2 (2020/10/19)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class FloatNumber | core/Verum/Rules/FloatNumber.php
+ * Class FloatNumber | src/Rules/FloatNumber.php
  * Checks whether the value is a floating point number.
  */
 final class FloatNumber extends Rule
@@ -29,7 +29,7 @@ final class FloatNumber extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 1.0.0 (16/05/2020)
+     * @version 1.0.0 (2020/05/16)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -38,16 +38,16 @@ final class FloatNumber extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
-     * @version 2.0.0 (28/05/2020)
+     * @version 2.0.1 (2020/10/19)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
     {
-        if ($this->fieldValue === '') {
+        if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
         if (
@@ -65,7 +65,7 @@ final class FloatNumber extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 1.1.0 (14/06/2020)
+     * @version 1.1.0 (2020/06/14)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array

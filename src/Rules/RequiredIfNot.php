@@ -9,8 +9,8 @@
  * @license   MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
- * @since     Verum-PHP 1.0.0
- * @version   1.0.0 (2020/08/18)
+ * @since     Verum-PHP 2.0.0
+ * @version   1.0.1 (2021/01/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class RequiredIfNot | core/Verum/Rules/RequiredIfNot.php
+ * Class RequiredIfNot | src/Rules/RequiredIfNot.php
  * Checks whether the value is not empty, whenever other Fieldname is empty
  */
 final class RequiredIfNot extends Rule
@@ -46,13 +46,13 @@ final class RequiredIfNot extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.0.0 (2020/08/18)
+     * @version 1.0.1 (2021/01/26)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -78,9 +78,8 @@ final class RequiredIfNot extends Rule
         if ($isEmptyDepends) {
             $isValid = !$this->isEmpty($this->fieldValue);
             return $isValid;
-        } else {
-            return true;
         }
+        return true;
     }
 
     /**
@@ -99,7 +98,7 @@ final class RequiredIfNot extends Rule
 
 
     /**
-     * Check whether the value is empty
+     * Checks whether the value is empty
      *
      * @param mixed $value Value to check.
      *

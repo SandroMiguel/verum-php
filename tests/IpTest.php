@@ -28,7 +28,7 @@ use Verum\Validator;
 class IpTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      *
@@ -54,6 +54,16 @@ class IpTest extends TestCase
         $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
 
         return $rule->validate();
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null));
     }
 
     /**

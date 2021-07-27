@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.0.1 (11/06/2020)
+ * @version   2.0.0 (2020/09/16)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -28,7 +28,7 @@ use Verum\Validator;
 class RequiredTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      *
@@ -97,13 +97,23 @@ class RequiredTest extends TestCase
     }
 
     /**
-     * An Empty Array ([]) value should pass validation.
+     * A Boolean (false) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateFalse(): void
+    {
+        $this->assertTrue($this->validate(false));
+    }
+
+    /**
+     * An Empty Array ([]) value should not pass validation.
      *
      * @return void
      */
     public function testValidateEmptyArray(): void
     {
-        $this->assertTrue($this->validate([]));
+        $this->assertFalse($this->validate([]));
     }
 
     /**
@@ -134,6 +144,16 @@ class RequiredTest extends TestCase
     public function testValidateOne(): void
     {
         $this->assertTrue($this->validate(1));
+    }
+
+    /**
+     * A Boolean (true) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateTrue(): void
+    {
+        $this->assertTrue($this->validate(true));
     }
 
     /**

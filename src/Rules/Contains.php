@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   4.0.1 (25/06/2020)
+ * @version   4.0.3 (2021/05/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class Contains | core/Verum/Rules/Contains.php
+ * Class Contains | src/Rules/Contains.php
  * Checks whether the value is in an array.
  */
 final class Contains extends Rule
@@ -34,7 +34,7 @@ final class Contains extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 2.0.0 (10/06/2020)
+     * @version 2.0.0 (2020/06/10)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -43,14 +43,14 @@ final class Contains extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.1.2 (25/06/2020)
-     * @since   Verum 1.0.0
+     * @version 2.1.4 (2021/05/26)
+     * @since Verum 1.0.0
      */
     public function validate(): bool
     {
@@ -63,19 +63,20 @@ final class Contains extends Rule
         }
         $this->valuesToCompare = $this->ruleValues;
 
-        if ($this->fieldValue === '') {
+        if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
 
-        return in_array($this->fieldValue, $this->valuesToCompare);
+        return in_array($this->fieldValue, $this->valuesToCompare, true);
     }
 
     /**
      * Error Message Parameters.
      *
      * @return array<int, string> Returns the parameters for the error message.
+     * [Field value, Placeholders, Field label]
      *
-     * @version 2.0.0 (16/06/2020)
+     * @version 2.0.1 (2020/09/29)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array

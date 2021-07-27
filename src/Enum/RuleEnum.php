@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Enum;
 
 /**
- * Class RuleEnum | core/Verum/Enum/RuleEnum.php
+ * Class RuleEnum | src/Enum/RuleEnum.php
  */
 abstract class RuleEnum
 {

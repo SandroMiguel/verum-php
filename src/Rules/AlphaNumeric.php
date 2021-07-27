@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   2.1.1 (13/06/2020)
+ * @version   3.0.0 (2020/09/17)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,10 +18,8 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
-
 /**
- * Class AlphaNumeric | core/Verum/Rules/AlphaNumeric.php
+ * Class AlphaNumeric | src/Rules/AlphaNumeric.php
  * Checks whether the value contains only alphanumeric characters.
  */
 final class AlphaNumeric extends Rule
@@ -31,7 +29,7 @@ final class AlphaNumeric extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 1.0.0 (10/05/2020)
+     * @version 1.0.0 (2020/05/10)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -40,18 +38,23 @@ final class AlphaNumeric extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.1.0 (13/06/2020)
+     * @version 3.0.0 (2020/09/17)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
     {
-        if ($this->fieldValue === '') {
+        if (
+            $this->fieldValue === null
+            || $this->fieldValue === ''
+            || $this->fieldValue === 0
+            || $this->fieldValue === 1
+        ) {
             return true;
         }
 
@@ -63,7 +66,7 @@ final class AlphaNumeric extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 1.0.0 (15/05/2020)
+     * @version 1.0.0 (2020/05/15)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array

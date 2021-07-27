@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.2.1 (25/06/2020)
+ * @version   1.3.0 (2020/10/18)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -19,9 +19,9 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class EqualsTest | tests/EqualsTest.php | Test for Equals
@@ -29,7 +29,7 @@ use Verum\Validator;
 class EqualsTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValueUnderTest Field value to validate.
      * @param array $ruleValues Rule values.
@@ -42,6 +42,52 @@ class EqualsTest extends TestCase
     {
         $rule = RuleFactory::loadRule($validator, $fieldValueUnderTest, $ruleValues, $fieldName, 'equals', '');
         return $rule->validate();
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $validator = new Validator(
+            [
+                'some_field_name' => 'some value',
+            ],
+            [
+                'some_field_name' => [
+                    'label' => 'Some Field Name',
+                    'rules' => ['equals' => 'some value'],
+                ],
+            ]
+        );
+        $this->assertTrue(
+            $this->validate(null, ['field_name_a'], 'field_name_b', $validator)
+        );
+    }
+
+    /**
+     * An Empty String ('') value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateEmptyString(): void
+    {
+        $validator = new Validator(
+            [
+                'some_field_name' => 'some value',
+            ],
+            [
+                'some_field_name' => [
+                    'label' => 'Some Field Name',
+                    'rules' => ['equals' => 'some value'],
+                ],
+            ]
+        );
+        $this->assertTrue(
+            $this->validate('', ['field_name_a'], 'field_name_b', $validator)
+        );
     }
 
     /**

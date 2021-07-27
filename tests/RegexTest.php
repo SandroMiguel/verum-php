@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.1 (25/06/2020)
+ * @version   1.2.0 (2020/10/31)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -19,9 +19,9 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class RegexTest | tests/RegexTest.php | Test for Regex
@@ -29,7 +29,7 @@ use Verum\Validator;
 class RegexTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param array $ruleValues Rule values.
@@ -83,6 +83,26 @@ class RegexTest extends TestCase
             "Invalid argument; Argument name: pattern; Argument value: /no-ending-delimiter; preg_match(): No ending delimiter '/' found"
         );
         $this->validate('some input string', ['/no-ending-delimiter']);
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null, ['/hello/']));
+    }
+
+    /**
+     * An Empty String ('') value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateEmptyString(): void
+    {
+        $this->assertTrue($this->validate('', ['/hello/']));
     }
 
     /**

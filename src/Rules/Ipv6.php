@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   2.0.1 (13/06/2020)
+ * @version   2.0.2 (2020/10/21)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -19,7 +19,7 @@ declare(strict_types=1);
 namespace Verum\Rules;
 
 /**
- * Class Ipv6 | core/Verum/Rules/Ipv6.php
+ * Class Ipv6 | src/Rules/Ipv6.php
  * Checks whether the value is a valid IPv6 address.
  */
 final class Ipv6 extends Rule
@@ -29,7 +29,7 @@ final class Ipv6 extends Rule
      *
      * @param mixed $fieldValue Field Value to validate.
      *
-     * @version 1.0.0 (18/05/2020)
+     * @version 1.0.0 (2020/05/18)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -38,16 +38,16 @@ final class Ipv6 extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
-     * @version 2.0.0 (28/05/2020)
+     * @version 2.0.1 (2020/10/21)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
     {
-        if ($this->fieldValue === '') {
+        if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
 
@@ -63,7 +63,7 @@ final class Ipv6 extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 1.0.0 (18/05/2020)
+     * @version 1.0.0 (2020/05/18)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array

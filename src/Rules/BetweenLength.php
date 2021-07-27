@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class BetweenLength | core/Verum/Rules/BetweenLength.php
+ * Class BetweenLength | src/Rules/BetweenLength.php
  * Checks whether the number of characters of the value is between min and max values.
  */
 final class BetweenLength extends Rule
@@ -48,7 +48,7 @@ final class BetweenLength extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *

@@ -19,9 +19,9 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class ImageMaxHeightTest | tests/ImageMaxHeightTest.php | Test for ImageMaxHeight
@@ -35,7 +35,7 @@ class ImageMaxHeightTest extends TestCase
     ];
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param array $ruleValues Rule values.
@@ -64,6 +64,16 @@ class ImageMaxHeightTest extends TestCase
     }
 
     /**
+     * If there is no uploaded file, validation must pass.
+     *
+     * @return void
+     */
+    public function testValidateNoFile(): void
+    {
+        $this->assertTrue($this->validate([], [1000]));
+    }
+
+    /**
      * If the "Max Height" parameter is a (NULL) value, an exception should be thrown.
      *
      * @return void
@@ -85,16 +95,6 @@ class ImageMaxHeightTest extends TestCase
     public function testValidateGreaterThanMax(): void
     {
         $this->assertFalse($this->validate($this->fileMock, [100]));
-    }
-
-    /**
-     * If there is no uploaded file, validation must pass.
-     *
-     * @return void
-     */
-    public function testValidateNoFile(): void
-    {
-        $this->assertTrue($this->validate([], [1000]));
     }
 
     /**

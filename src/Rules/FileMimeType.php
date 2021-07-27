@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class FileMimeType | core/Verum/Rules/FileMimeType.php
+ * Class FileMimeType | src/Rules/FileMimeType.php
  * Checks whether the file type is allowed.
  */
 final class FileMimeType extends Rule
@@ -48,7 +48,7 @@ final class FileMimeType extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *

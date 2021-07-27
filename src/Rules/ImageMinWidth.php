@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class ImageMinWidth | core/Verum/Rules/ImageMinWidth.php
+ * Class ImageMinWidth | src/Rules/ImageMinWidth.php
  * Checks whether the image width is not less than a given value.
  */
 final class ImageMinWidth extends Rule
@@ -50,7 +50,7 @@ final class ImageMinWidth extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *

@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class ImageMaxWidth | core/Verum/Rules/ImageMaxWidth.php
+ * Class ImageMaxWidth | src/Rules/ImageMaxWidth.php
  * Checks whether the image width does not exceed a given value.
  */
 final class ImageMaxWidth extends Rule
@@ -50,7 +50,7 @@ final class ImageMaxWidth extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *

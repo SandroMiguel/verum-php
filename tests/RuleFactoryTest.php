@@ -18,11 +18,11 @@ declare(strict_types=1);
 
 namespace Verum\Tests;
 
-use Verum\Exceptions\ValidatorException;
+use PHPUnit\Framework\TestCase;
 use Verum\Rules\RuleFactory;
 use Verum\Rules\RuleInterface;
-use PHPUnit\Framework\TestCase;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class RuleFactoryTest | tests/RuleFactoryTest.php | Test for RuleFactory

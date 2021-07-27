@@ -8,9 +8,9 @@
  * @package   Verum-PHP
  * @license   MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
- * @copyright 2020 Sandro
+ * @copyright 2021 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.1.2 (25/06/2020)
+ * @version   1.2.0 (2021/05/26)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -19,9 +19,9 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Verum\Exceptions\ValidatorException;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
+use Verum\ValidatorException;
 
 /**
  * Class ContainsTest | tests/ContainsTest.php | Test for Contains
@@ -29,7 +29,7 @@ use Verum\Validator;
 class ContainsTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param array $ruleValues Rule values.
@@ -71,13 +71,13 @@ class ContainsTest extends TestCase
     }
 
     /**
-     * The String ('hello') value should not pass validation.
+     * Null value should pass validation (ignored field).
      *
      * @return void
      */
-    public function testValidateHelloLowerCase(): void
+    public function testValidateNull(): void
     {
-        $this->assertFalse($this->validate('hello', ['HELLO', 'WORLD']));
+        $this->assertTrue($this->validate(null, ['HELLO', 'WORLD']));
     }
 
     /**
@@ -91,7 +91,97 @@ class ContainsTest extends TestCase
     }
 
     /**
-     * The String ('HELLO') value should not pass validation.
+     * A Zero String ('0') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroString(): void
+    {
+        $this->assertFalse($this->validate('0', ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The Zero Number (0) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroNumber(): void
+    {
+        $this->assertFalse($this->validate(0, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * A Boolean (false) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateFalse(): void
+    {
+        $this->assertFalse($this->validate(false, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * An Empty Array ([]) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateEmptyArray(): void
+    {
+        $this->assertFalse($this->validate([], ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The Minus One (-1) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateMinusOne(): void
+    {
+        $this->assertFalse($this->validate(-1, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The One (1) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateOne(): void
+    {
+        $this->assertFalse($this->validate(1, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * A Boolean (true) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateTrue(): void
+    {
+        $this->assertFalse($this->validate(true, ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * A Boolean (true) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateBooleanTrue(): void
+    {
+        $this->assertTrue($this->validate(true, [true]));
+    }
+
+    /**
+     * The String ('hello') value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateHelloLowerCase(): void
+    {
+        $this->assertFalse($this->validate('hello', ['HELLO', 'WORLD']));
+    }
+
+    /**
+     * The String ('HELLO') value should pass validation.
      *
      * @return void
      */

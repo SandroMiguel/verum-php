@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   3.0.3 (25/06/2020)
+ * @version   3.0.3 (2020/06/25)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class FileMaxSize | core/Verum/Rules/FileMaxSize.php
+ * Class FileMaxSize | src/Rules/FileMaxSize.php
  * Checks whether the file size does not exceed a given value.
  */
 final class FileMaxSize extends Rule
@@ -39,7 +39,7 @@ final class FileMaxSize extends Rule
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 2.0.1 (24/06/2020)
+     * @version 2.0.1 (2020/06/24)
      * @since   Verum 1.0.0
      */
     public function __construct($fieldValue)
@@ -48,13 +48,13 @@ final class FileMaxSize extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
      * @throws ValidatorException Validator Exception.
      *
-     * @version 1.2.2 (25/06/2020)
+     * @version 1.2.2 (2020/06/25)
      * @since   Verum 1.0.0
      */
     public function validate(): bool
@@ -82,7 +82,7 @@ final class FileMaxSize extends Rule
      *
      * @return array<int, string> Returns the parameters for the error message.
      *
-     * @version 2.0.0 (16/06/2020)
+     * @version 2.0.0 (2020/06/16)
      * @since   Verum 1.0.0
      */
     public function getErrorMessageParameters(): array
@@ -103,7 +103,7 @@ final class FileMaxSize extends Rule
      *
      * @return string Returns the value as appropriate.
      *
-     * @version 1.1.2 (25/06/2020)
+     * @version 1.1.2 (2020/06/25)
      * @since   Verum 1.0.0
      */
     public static function formatBytes(int $bytes, int $precision = 2): string

@@ -28,7 +28,7 @@ use Verum\Validator;
 class EmailTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      *
@@ -56,17 +56,27 @@ class EmailTest extends TestCase
     }
 
     /**
-     * The String ('invalid@domain') value should not pass validation.
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null));
+    }
+
+    /**
+     * The String ('invalid@example') value should NOT pass the validation.
      *
      * @return void
      */
     public function testValidateInvalidEmail(): void
     {
-        $this->assertFalse($this->validate('invalid@domain'));
+        $this->assertFalse($this->validate('invalid@example'));
     }
 
     /**
-     * An Empty String ('') value should pass validation (ignored field).
+     * An Empty String ('') value should pass the validation (ignored field).
      *
      * @return void
      */
@@ -76,12 +86,12 @@ class EmailTest extends TestCase
     }
 
     /**
-     * The String ('john@domain.com') value should pass validation.
+     * The String ('john@example.com') value should pass the validation.
      *
      * @return void
      */
     public function testValidateValidEmail(): void
     {
-        $this->assertTrue($this->validate('john@domain.com'));
+        $this->assertTrue($this->validate('john@example.com'));
     }
 }

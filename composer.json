@@ -27,7 +27,7 @@
         "sort-packages": true
     },
     "require": {
-        "php": ">=7.2.0"
+        "php": "^7.2 || ^8.0"
     },
     "require-dev": {
         "nunomaduro/phpinsights": "^1.14",
@@ -43,6 +43,7 @@
         "phpstan": "phpstan analyse src --level 7",
         "psalm": "psalm",
         "test": "phpunit --colors=always tests",
+        "test:filter": "phpunit --filter",
         "test-coverage": "phpunit --coverage-html log/report"
     },
     "scripts-descriptions": {

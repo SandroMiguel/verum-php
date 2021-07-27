@@ -10,7 +10,7 @@
  * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @copyright 2020 Sandro
  * @since     Verum-PHP 1.0.0
- * @version   1.2.0 (10/06/2020)
+ * @version   1.3.0 (2020/09/30)
  * @link      https://github.com/SandroMiguel/verum-php
  */
 
@@ -28,7 +28,7 @@ use Verum\Validator;
 class DateTest extends TestCase
 {
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @param mixed $fieldValue Field Value to validate.
      * @param array $ruleValues Rule values.
@@ -53,6 +53,26 @@ class DateTest extends TestCase
         );
         $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
         return $rule->validate();
+    }
+
+    /**
+     * Null value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    public function testValidateNull(): void
+    {
+        $this->assertTrue($this->validate(null));
+    }
+
+    /**
+     * The Zero Number (0) value should not pass validation.
+     *
+     * @return void
+     */
+    public function testValidateZeroNumber(): void
+    {
+        $this->assertFalse($this->validate(0));
     }
 
     /**
@@ -93,5 +113,25 @@ class DateTest extends TestCase
     public function testValidateCustomFormat(): void
     {
         $this->assertTrue($this->validate('19.05.2020', ['d.m.Y']));
+    }
+
+    /**
+     * The String ('2020') value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateNumericStringCustomFormat(): void
+    {
+        $this->assertTrue($this->validate('2020', ['Y']));
+    }
+
+    /**
+     * The Integer (2020) value should pass validation.
+     *
+     * @return void
+     */
+    public function testValidateNumberCustomFormat(): void
+    {
+        $this->assertTrue($this->validate(2020, ['Y']));
     }
 }

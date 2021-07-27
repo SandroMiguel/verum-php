@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class Equals | core/Verum/Rules/Equals.php
+ * Class Equals | src/Rules/Equals.php
  * Checks whether the value is equal to another.
  */
 final class Equals extends Rule
@@ -54,7 +54,7 @@ final class Equals extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *
@@ -73,6 +73,10 @@ final class Equals extends Rule
             );
         }
         $this->fieldNameToCompare = $this->ruleValues[0];
+
+        if ($this->fieldValue === null || $this->fieldValue === '') {
+            return true;
+        }
 
         $fieldValues = $this->validator->getFieldValues();
         if (array_key_exists($this->fieldNameToCompare, $fieldValues)) {

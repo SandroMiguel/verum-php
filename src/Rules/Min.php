@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 namespace Verum\Rules;
 
-use Verum\Exceptions\ValidatorException;
+use Verum\ValidatorException;
 
 /**
- * Class Min | core/Verum/Rules/Min.php
+ * Class Min | src/Rules/Min.php
  * Checks whether the value is not less than a given value.
  */
 final class Min extends Rule
@@ -45,7 +45,7 @@ final class Min extends Rule
     }
 
     /**
-     * Validate.
+     * Validates the field value against the rule.
      *
      * @return bool Returns TRUE if it passes the validation, FALSE otherwise.
      *

@@ -381,6 +381,20 @@ $rules = [
 ];
 ```
 
+| Value                |       alpha        |  alpha + required  |
+| -------------------- | :----------------: | :----------------: |
+| `null`               | :heavy_check_mark: |        :x:         |
+| `''`                 | :heavy_check_mark: |        :x:         |
+| `'0'`                |        :x:         |        :x:         |
+| `0`                  |        :x:         |        :x:         |
+| `false`              |        :x:         |        :x:         |
+| `[]`                 |        :x:         |        :x:         |
+| `-1`                 |        :x:         |        :x:         |
+| `1`                  |        :x:         |        :x:         |
+| `true`               |        :x:         |        :x:         |
+| `'text'`             | :heavy_check_mark: | :heavy_check_mark: |
+| `'text with spaces'` |        :x:         |        :x:         |
+
 ### alpha_numeric
 
 Checks whether the value contains only alphanumeric characters.
@@ -395,6 +409,20 @@ $rules = [
     ],
 ];
 ```
+
+| Value                |   alpha_numeric    | alpha_numeric + required |
+| -------------------- | :----------------: | :----------------------: |
+| `null`               | :heavy_check_mark: |           :x:            |
+| `''`                 | :heavy_check_mark: |           :x:            |
+| `'0'`                | :heavy_check_mark: |    :heavy_check_mark:    |
+| `0`                  | :heavy_check_mark: |    :heavy_check_mark:    |
+| `false`              |        :x:         |           :x:            |
+| `[]`                 |        :x:         |           :x:            |
+| `-1`                 |        :x:         |           :x:            |
+| `1`                  | :heavy_check_mark: |    :heavy_check_mark:    |
+| `true`               |        :x:         |           :x:            |
+| `'text'`             | :heavy_check_mark: |    :heavy_check_mark:    |
+| `'text with spaces'` |        :x:         |           :x:            |
 
 ### between
 
@@ -411,6 +439,19 @@ $rules = [
 ];
 ```
 
+| Value         |  between [1, 10]   | between [1, 10] + required |
+| ------------- | :----------------: | :------------------------: |
+| `null`        | :heavy_check_mark: |            :x:             |
+| `''`          | :heavy_check_mark: |            :x:             |
+| `'0'`         |        :x:         |            :x:             |
+| `0`           |        :x:         |            :x:             |
+| `false`       |        :x:         |            :x:             |
+| `[]`          |        :x:         |            :x:             |
+| `-1`          |        :x:         |            :x:             |
+| `1`           | :heavy_check_mark: |     :heavy_check_mark:     |
+| `true`        |        :x:         |            :x:             |
+| `'some text'` |        :x:         |            :x:             |
+
 ### between_length
 
 Checks whether the number of characters of the value is between min and max values.
@@ -425,6 +466,21 @@ $rules = [
     ],
 ];
 ```
+
+| Value                       | between_length [5,25] | between_length [5,25] + required |
+| --------------------------- | :-------------------: | :------------------------------: |
+| `null`                      |  :heavy_check_mark:   |               :x:                |
+| `''`                        |  :heavy_check_mark:   |               :x:                |
+| `'0'`                       |          :x:          |               :x:                |
+| `0`                         |          :x:          |               :x:                |
+| `false`                     |          :x:          |               :x:                |
+| `[]`                        |          :x:          |               :x:                |
+| `-1`                        |          :x:          |               :x:                |
+| `1`                         |          :x:          |               :x:                |
+| `12345`                     |  :heavy_check_mark:   |        :heavy_check_mark:        |
+| `true`                      |          :x:          |               :x:                |
+| `'text'`                    |          :x:          |               :x:                |
+| `'text with 23 characters'` |  :heavy_check_mark:   |        :heavy_check_mark:        |
 
 ### boolean_value
 
@@ -442,6 +498,24 @@ $rules = [
 ];
 ```
 
+| Value    |   boolean_value    | boolean_value + required |
+| -------- | :----------------: | :----------------------: |
+| `null`   | :heavy_check_mark: |           :x:            |
+| `''`     | :heavy_check_mark: |           :x:            |
+| `'0'`    | :heavy_check_mark: |    :heavy_check_mark:    |
+| `0`      | :heavy_check_mark: |    :heavy_check_mark:    |
+| `false`  | :heavy_check_mark: |    :heavy_check_mark:    |
+| `[]`     |        :x:         |           :x:            |
+| `-1`     |        :x:         |           :x:            |
+| `'1'`    | :heavy_check_mark: |    :heavy_check_mark:    |
+| `1`      | :heavy_check_mark: |    :heavy_check_mark:    |
+| `true`   | :heavy_check_mark: |    :heavy_check_mark:    |
+| `'text'` |        :x:         |           :x:            |
+| `'on'`   | :heavy_check_mark: |    :heavy_check_mark:    |
+| `'off'`  | :heavy_check_mark: |    :heavy_check_mark:    |
+| `'yes'`  | :heavy_check_mark: |    :heavy_check_mark:    |
+| `'no' `  | :heavy_check_mark: |    :heavy_check_mark:    |
+
 ### contains
 
 Checks whether the value is in an array.
@@ -457,9 +531,26 @@ $rules = [
 ];
 ```
 
+| Value    | contains ['low','high'] | contains ['low','high'] + required |
+| -------- | :---------------------: | :--------------------------------: |
+| `null`   |   :heavy_check_mark:    |                :x:                 |
+| `''`     |   :heavy_check_mark:    |                :x:                 |
+| `'0'`    |           :x:           |                :x:                 |
+| `0`      |           :x:           |                :x:                 |
+| `false`  |           :x:           |                :x:                 |
+| `[]`     |           :x:           |                :x:                 |
+| `-1`     |           :x:           |                :x:                 |
+| `1`      |           :x:           |                :x:                 |
+| `true`   |           :x:           |                :x:                 |
+| `'text'` |           :x:           |                :x:                 |
+| `'low'`  |   :heavy_check_mark:    |         :heavy_check_mark:         |
+| `'high'` |   :heavy_check_mark:    |         :heavy_check_mark:         |
+
 ### date
 
 Checks whether the value is a valid date (Y-m-d) or a custom format.
+
+#### Default format (Y-m-d)
 
 ```
 $rules = [
@@ -471,6 +562,33 @@ $rules = [
     ],
 ];
 ```
+
+#### Custom format (e.g. d.m.Y)
+
+```
+$rules = [
+    'dob' => [
+        'label' => 'Date of birth',
+        'rules' => [
+            RuleEnum::DATE => ['d.m.Y'],
+        ],
+    ],
+];
+```
+
+| Value          |    date [Y-m-d]    | date [Y-m-d] + required |
+| -------------- | :----------------: | :---------------------: |
+| `null`         | :heavy_check_mark: |           :x:           |
+| `''`           | :heavy_check_mark: |           :x:           |
+| `'0'`          |        :x:         |           :x:           |
+| `0`            |        :x:         |           :x:           |
+| `false`        |        :x:         |           :x:           |
+| `[]`           |        :x:         |           :x:           |
+| `-1`           |        :x:         |           :x:           |
+| `1`            |        :x:         |           :x:           |
+| `true`         |        :x:         |           :x:           |
+| `'text'`       |        :x:         |           :x:           |
+| `'2020-09-30'` | :heavy_check_mark: |   :heavy_check_mark:    |
 
 ### email
 
@@ -487,6 +605,20 @@ $rules = [
 ];
 ```
 
+| Value               |       email        |  email + required  |
+| ------------------- | :----------------: | :----------------: |
+| `null`              | :heavy_check_mark: |        :x:         |
+| `''`                | :heavy_check_mark: |        :x:         |
+| `'0'`               |        :x:         |        :x:         |
+| `0`                 |        :x:         |        :x:         |
+| `false`             |        :x:         |        :x:         |
+| `[]`                |        :x:         |        :x:         |
+| `-1`                |        :x:         |        :x:         |
+| `1`                 |        :x:         |        :x:         |
+| `true`              |        :x:         |        :x:         |
+| `'text'`            |        :x:         |        :x:         |
+| `'john@domain.com'` | :heavy_check_mark: | :heavy_check_mark: |
+
 ### equals
 
 Checks whether the value is equal to another.
@@ -501,6 +633,22 @@ $rules = [
     ],
 ];
 ```
+
+Comparison with `'text'`
+
+| Value            |       equals       | equals + required  |
+| ---------------- | :----------------: | :----------------: |
+| `null`           | :heavy_check_mark: |        :x:         |
+| `''`             | :heavy_check_mark: |        :x:         |
+| `'0'`            |        :x:         |        :x:         |
+| `0`              |        :x:         |        :x:         |
+| `false`          |        :x:         |        :x:         |
+| `[]`             |        :x:         |        :x:         |
+| `-1`             |        :x:         |        :x:         |
+| `1`              |        :x:         |        :x:         |
+| `true`           |        :x:         |        :x:         |
+| `'text'`         | :heavy_check_mark: | :heavy_check_mark: |
+| `'another text'` |        :x:         |        :x:         |
 
 ### file_max_size
 
@@ -519,6 +667,14 @@ $rules = [
 ];
 ```
 
+Comparison with `102400` bytes
+
+| Value    |   file_max_size    | file_max_size + required |
+| -------- | :----------------: | :----------------------: |
+| `null`   | :heavy_check_mark: |           :x:            |
+| `50000`  | :heavy_check_mark: |    :heavy_check_mark:    |
+| `150000` |        :x:         |           :x:            |
+
 ### file_mime_type
 
 Checks whether the file type is allowed.
@@ -533,6 +689,12 @@ $rules = [
     ],
 ];
 ```
+
+| Value        |   file_mime_type   | file_mime_type + required |
+| ------------ | :----------------: | :-----------------------: |
+| `null`       | :heavy_check_mark: |            :x:            |
+| `image/png`  | :heavy_check_mark: |    :heavy_check_mark:     |
+| `text/plain` |        :x:         |            :x:            |
 
 ### float_number
 
@@ -549,6 +711,22 @@ $rules = [
 ];
 ```
 
+| Value                |    float_number    | float_number + required |
+| -------------------- | :----------------: | :---------------------: |
+| `null`               | :heavy_check_mark: |           :x:           |
+| `''`                 | :heavy_check_mark: |           :x:           |
+| `'0'`                |        :x:         |           :x:           |
+| `0`                  |        :x:         |           :x:           |
+| `false`              |        :x:         |           :x:           |
+| `[]`                 |        :x:         |           :x:           |
+| `-1`                 |        :x:         |           :x:           |
+| `1`                  |        :x:         |           :x:           |
+| `12345`              |        :x:         |           :x:           |
+| `123.45`             | :heavy_check_mark: |   :heavy_check_mark:    |
+| `true`               |        :x:         |           :x:           |
+| `'text'`             |        :x:         |           :x:           |
+| `'text with spaces'` |        :x:         |           :x:           |
+
 ### image_max_height
 
 Checks whether the image height does not exceed a given value.
@@ -563,6 +741,12 @@ $rules = [
     ],
 ];
 ```
+
+| Value  |  image_max_height  | image_max_height + required |
+| ------ | :----------------: | :-------------------------: |
+| `null` | :heavy_check_mark: |             :x:             |
+| 500px  | :heavy_check_mark: |     :heavy_check_mark:      |
+| 1000px |        :x:         |             :x:             |
 
 ### image_max_width
 
@@ -579,6 +763,12 @@ $rules = [
 ];
 ```
 
+| Value  |  image_max_width   | image_max_width + required |
+| ------ | :----------------: | :------------------------: |
+| `null` | :heavy_check_mark: |            :x:             |
+| 500px  | :heavy_check_mark: |     :heavy_check_mark:     |
+| 1500px |        :x:         |            :x:             |
+
 ### image_min_height
 
 Checks whether the image height is not less than a given value.
@@ -593,6 +783,12 @@ $rules = [
     ],
 ];
 ```
+
+| Value  |  image_min_height  | image_min_height + required |
+| ------ | :----------------: | :-------------------------: |
+| `null` | :heavy_check_mark: |             :x:             |
+| 100px  |        :x:         |             :x:             |
+| 500px  | :heavy_check_mark: |     :heavy_check_mark:      |
 
 ### image_min_width
 
@@ -609,6 +805,12 @@ $rules = [
 ];
 ```
 
+| Value  |  image_min_width   | image_min_width + required |
+| ------ | :----------------: | :------------------------: |
+| `null` | :heavy_check_mark: |            :x:             |
+| 400px  |        :x:         |            :x:             |
+| 600px  | :heavy_check_mark: |     :heavy_check_mark:     |
+
 ### ip
 
 Checks whether the value is a valid IP address.
@@ -623,6 +825,21 @@ $rules = [
     ],
 ];
 ```
+
+| Value                    |         ip         |   ip + required    |
+| ------------------------ | :----------------: | :----------------: |
+| `null`                   | :heavy_check_mark: |        :x:         |
+| `''`                     | :heavy_check_mark: |        :x:         |
+| `'0'`                    |        :x:         |        :x:         |
+| `0`                      |        :x:         |        :x:         |
+| `false`                  |        :x:         |        :x:         |
+| `[]`                     |        :x:         |        :x:         |
+| `-1`                     |        :x:         |        :x:         |
+| `1`                      |        :x:         |        :x:         |
+| `true`                   |        :x:         |        :x:         |
+| `'text'`                 |        :x:         |        :x:         |
+| `'10.10.10.10'`          | :heavy_check_mark: | :heavy_check_mark: |
+| `'2607:f0d0:1002:51::4'` | :heavy_check_mark: | :heavy_check_mark: |
 
 ### ipv4
 
@@ -639,6 +856,21 @@ $rules = [
 ];
 ```
 
+| Value                    |        ipv4        |  ipv4 + required   |
+| ------------------------ | :----------------: | :----------------: |
+| `null`                   | :heavy_check_mark: |        :x:         |
+| `''`                     | :heavy_check_mark: |        :x:         |
+| `'0'`                    |        :x:         |        :x:         |
+| `0`                      |        :x:         |        :x:         |
+| `false`                  |        :x:         |        :x:         |
+| `[]`                     |        :x:         |        :x:         |
+| `-1`                     |        :x:         |        :x:         |
+| `1`                      |        :x:         |        :x:         |
+| `true`                   |        :x:         |        :x:         |
+| `'text'`                 |        :x:         |        :x:         |
+| `'10.10.10.10'`          | :heavy_check_mark: | :heavy_check_mark: |
+| `'2607:f0d0:1002:51::4'` |        :x:         |        :x:         |
+
 ### ipv6
 
 Checks whether the value is a valid IPv6 address.
@@ -653,6 +885,21 @@ $rules = [
     ],
 ];
 ```
+
+| Value                    |        ipv6        |  ipv6 + required   |
+| ------------------------ | :----------------: | :----------------: |
+| `null`                   | :heavy_check_mark: |        :x:         |
+| `''`                     | :heavy_check_mark: |        :x:         |
+| `'0'`                    |        :x:         |        :x:         |
+| `0`                      |        :x:         |        :x:         |
+| `false`                  |        :x:         |        :x:         |
+| `[]`                     |        :x:         |        :x:         |
+| `-1`                     |        :x:         |        :x:         |
+| `1`                      |        :x:         |        :x:         |
+| `true`                   |        :x:         |        :x:         |
+| `'text'`                 |        :x:         |        :x:         |
+| `'10.10.10.10'`          |        :x:         |        :x:         |
+| `'2607:f0d0:1002:51::4'` | :heavy_check_mark: | :heavy_check_mark: |
 
 ### max
 
@@ -669,6 +916,21 @@ $rules = [
 ];
 ```
 
+| Value     |        max         |   max + required   |
+| --------- | :----------------: | :----------------: |
+| `null`    | :heavy_check_mark: |        :x:         |
+| `''`      | :heavy_check_mark: |        :x:         |
+| `'0'`     | :heavy_check_mark: | :heavy_check_mark: |
+| `0`       | :heavy_check_mark: | :heavy_check_mark: |
+| `false`   |        :x:         |        :x:         |
+| `[]`      |        :x:         |        :x:         |
+| `-1`      | :heavy_check_mark: | :heavy_check_mark: |
+| `1`       | :heavy_check_mark: | :heavy_check_mark: |
+| `true`    |        :x:         |        :x:         |
+| `'text'`  |        :x:         |        :x:         |
+| `12345`   |        :x:         |        :x:         |
+| `'12345'` |        :x:         |        :x:         |
+
 ### max_length
 
 Checks whether the number of characters of the value does not exceed a given value.
@@ -678,11 +940,26 @@ $rules = [
     'nickname' => [
         'label' => 'Nickname',
         'rules' => [
-            RuleEnum::MAX_LENGTH => [15],
+            RuleEnum::MAX_LENGTH => [2],
         ],
     ],
 ];
 ```
+
+| Value     |     max_length     | max_length + required |
+| --------- | :----------------: | :-------------------: |
+| `null`    | :heavy_check_mark: |          :x:          |
+| `''`      | :heavy_check_mark: |          :x:          |
+| `'0'`     | :heavy_check_mark: |  :heavy_check_mark:   |
+| `0`       | :heavy_check_mark: |  :heavy_check_mark:   |
+| `false`   | :heavy_check_mark: |  :heavy_check_mark:   |
+| `[]`      |        :x:         |          :x:          |
+| `-1`      | :heavy_check_mark: |  :heavy_check_mark:   |
+| `1`       | :heavy_check_mark: |  :heavy_check_mark:   |
+| `true`    | :heavy_check_mark: |  :heavy_check_mark:   |
+| `'text'`  |        :x:         |          :x:          |
+| `12345`   |        :x:         |          :x:          |
+| `'12345'` |        :x:         |          :x:          |
 
 ### min
 
@@ -699,6 +976,21 @@ $rules = [
 ];
 ```
 
+| Value     |        min         |   min + required   |
+| --------- | :----------------: | :----------------: |
+| `null`    | :heavy_check_mark: |        :x:         |
+| `''`      | :heavy_check_mark: |        :x:         |
+| `'0'`     |        :x:         |        :x:         |
+| `0`       |        :x:         |        :x:         |
+| `false`   |        :x:         |        :x:         |
+| `[]`      |        :x:         |        :x:         |
+| `-1`      |        :x:         |        :x:         |
+| `1`       |        :x:         |        :x:         |
+| `true`    |        :x:         |        :x:         |
+| `'text'`  |        :x:         |        :x:         |
+| `12345`   | :heavy_check_mark: | :heavy_check_mark: |
+| `'12345'` | :heavy_check_mark: | :heavy_check_mark: |
+
 ### min_length
 
 Checks whether the number of characters of the value is not less than a given value.
@@ -713,6 +1005,21 @@ $rules = [
     ],
 ];
 ```
+
+| Value     |     max_length     | max_length + required |
+| --------- | :----------------: | :-------------------: |
+| `null`    | :heavy_check_mark: |          :x:          |
+| `''`      |        :x:         |          :x:          |
+| `'0'`     |        :x:         |          :x:          |
+| `0`       |        :x:         |          :x:          |
+| `false`   |        :x:         |          :x:          |
+| `[]`      |        :x:         |          :x:          |
+| `-1`      | :heavy_check_mark: |  :heavy_check_mark:   |
+| `1`       |        :x:         |          :x:          |
+| `true`    |        :x:         |          :x:          |
+| `'text'`  | :heavy_check_mark: |  :heavy_check_mark:   |
+| `12345`   | :heavy_check_mark: |  :heavy_check_mark:   |
+| `'12345'` | :heavy_check_mark: |  :heavy_check_mark:   |
 
 ### numeric
 
@@ -729,6 +1036,19 @@ $rules = [
 ];
 ```
 
+| Value    |      numeric       | numeric + required |
+| -------- | :----------------: | :----------------: |
+| `null`   | :heavy_check_mark: |        :x:         |
+| `''`     | :heavy_check_mark: |        :x:         |
+| `'0'`    | :heavy_check_mark: | :heavy_check_mark: |
+| `0`      | :heavy_check_mark: | :heavy_check_mark: |
+| `false`  |        :x:         |        :x:         |
+| `[]`     |        :x:         |        :x:         |
+| `-1`     | :heavy_check_mark: | :heavy_check_mark: |
+| `1`      | :heavy_check_mark: | :heavy_check_mark: |
+| `true`   |        :x:         |        :x:         |
+| `'text'` |        :x:         |        :x:         |
+
 ### regex
 
 Checks whether the value matches a given regular expression.
@@ -738,11 +1058,28 @@ $rules = [
     'path' => [
         'label' => 'Path',
         'rules' => [
-            RuleEnum::REGEX => ['/client/[0-9a-f]+$'],
+            RuleEnum::REGEX => ['/\/client\/[0-9a-f]+$/'],
         ],
     ],
 ];
 ```
+
+Validation with the `'/\/client\/[0-9a-f]+$/'` pattern
+
+| Value                                        |       regex        |  regex + required  |
+| -------------------------------------------- | :----------------: | :----------------: |
+| `null`                                       | :heavy_check_mark: |        :x:         |
+| `''`                                         | :heavy_check_mark: |        :x:         |
+| `'0'`                                        |        :x:         |        :x:         |
+| `0`                                          |        :x:         |        :x:         |
+| `false`                                      |        :x:         |        :x:         |
+| `[]`                                         |        :x:         |        :x:         |
+| `-1`                                         |        :x:         |        :x:         |
+| `1`                                          |        :x:         |        :x:         |
+| `true`                                       |        :x:         |        :x:         |
+| `'text'`                                     |        :x:         |        :x:         |
+| `'/client/77c9e105d1f548b29958f0512967de87'` | :heavy_check_mark: | :heavy_check_mark: |
+| `'/client/invalid-uuid'`                     |        :x:         |        :x:         |
 
 ### required
 
@@ -759,6 +1096,19 @@ $rules = [
 ];
 ```
 
+| Value         |      required      |
+| ------------- | :----------------: |
+| `null`        |        :x:         |
+| `''`          |        :x:         |
+| `'0'`         | :heavy_check_mark: |
+| `0`           | :heavy_check_mark: |
+| `false`       | :heavy_check_mark: |
+| `[]`          |        :x:         |
+| `-1`          | :heavy_check_mark: |
+| `1`           | :heavy_check_mark: |
+| `true`        | :heavy_check_mark: |
+| `'some text'` | :heavy_check_mark: |
+
 ### slug
 
 Checks whether the value is a valid Slug (e.g. hello-world_123).
@@ -774,6 +1124,21 @@ $rules = [
 ];
 ```
 
+| Value                |        slug        |  slug + required   |
+| -------------------- | :----------------: | :----------------: |
+| `null`               | :heavy_check_mark: |        :x:         |
+| `''`                 | :heavy_check_mark: |        :x:         |
+| `'0'`                |        :x:         |        :x:         |
+| `0`                  |        :x:         |        :x:         |
+| `false`              |        :x:         |        :x:         |
+| `[]`                 |        :x:         |        :x:         |
+| `-1`                 |        :x:         |        :x:         |
+| `1`                  |        :x:         |        :x:         |
+| `true`               |        :x:         |        :x:         |
+| `'text'`             | :heavy_check_mark: | :heavy_check_mark: |
+| `'text with spaces'` |        :x:         |        :x:         |
+| `'hello-world_123'`  | :heavy_check_mark: | :heavy_check_mark: |
+
 ### url
 
 Checks whether the value is a valid URL.
@@ -788,6 +1153,20 @@ $rules = [
     ],
 ];
 ```
+
+| Value                          |        url         |   url + required   |
+| ------------------------------ | :----------------: | :----------------: |
+| `null`                         | :heavy_check_mark: |        :x:         |
+| `''`                           | :heavy_check_mark: |        :x:         |
+| `'0'`                          |        :x:         |        :x:         |
+| `0`                            |        :x:         |        :x:         |
+| `false`                        |        :x:         |        :x:         |
+| `[]`                           |        :x:         |        :x:         |
+| `-1`                           |        :x:         |        :x:         |
+| `1`                            |        :x:         |        :x:         |
+| `true`                         |        :x:         |        :x:         |
+| `'text'`                       |        :x:         |        :x:         |
+| `'http://www.some-domain.com'` | :heavy_check_mark: | :heavy_check_mark: |
 
 ## Contributing
 
