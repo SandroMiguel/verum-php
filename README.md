@@ -5,9 +5,14 @@
 [![License](https://poser.pugx.org/sandromiguel/verum-php/license)](//packagist.org/packages/sandromiguel/verum-php)
 [![Latest Stable Version](https://poser.pugx.org/sandromiguel/verum-php/v)](//packagist.org/packages/sandromiguel/verum-php)
 [![Dependents](https://poser.pugx.org/sandromiguel/verum-php/dependents)](//packagist.org/packages/sandromiguel/verum-php)
-[![Build Status](https://travis-ci.com/SandroMiguel/verum-php.svg?branch=master)](https://travis-ci.com/SandroMiguel/verum-php)
 
 **Server-Side Form Validation Library for PHP**
+
+-   Validate arrays (with file support)
+-   Custom error messages
+-   Custom rules
+-   Built-in translations
+-   Zero dependencies
 
 ## Table of Contents
 
