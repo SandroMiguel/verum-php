@@ -5,13 +5,19 @@
 [![License](https://poser.pugx.org/sandromiguel/verum-php/license)](//packagist.org/packages/sandromiguel/verum-php)
 [![Latest Stable Version](https://poser.pugx.org/sandromiguel/verum-php/v)](//packagist.org/packages/sandromiguel/verum-php)
 [![Dependents](https://poser.pugx.org/sandromiguel/verum-php/dependents)](//packagist.org/packages/sandromiguel/verum-php)
-[![Build Status](https://travis-ci.com/SandroMiguel/verum-php.svg?branch=master)](https://travis-ci.com/SandroMiguel/verum-php)
 
-**Server-Side Form Validation Library for PHP**
+**Server-Side Validation Library for PHP**
+
+-   Validate arrays (with file support)
+-   Custom error messages
+-   Custom rules
+-   Built-in translations
+-   Zero dependencies
 
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
+1. [Custom validations](#custom-validations)
 1. [Available Rules](#available-rules)
 1. [Contributing](#contributing)
 1. [Questions](#questions)
@@ -211,6 +217,13 @@ Output (pt-pt):
 
 #### Specify the messages language
 
+You can use some built-in translations:
+
+-   'en' -> English (default)
+-   'nl-nl' -> Dutch
+-   'pt-pt' -> Portuguese-Portugal
+-   'pt-br' -> Portuguese-Brazil
+
 ```
 $validator = new Validator($_POST, $rules, 'pt-pt');
 ```
@@ -362,6 +375,21 @@ $validator->addCustomMessages(
     ]
 );
 ...
+```
+
+## Custom validations
+
+You can use your custom validations and inject the error message.
+
+```
+if ($myCustomValidationFail) {
+    $validator->addError(
+        'someFieldName',
+        'Some field name',
+        ['no_duplicate' => 'A user already exists with that username')]
+    );
+    // ...
+}
 ```
 
 ## Available Rules
@@ -605,19 +633,19 @@ $rules = [
 ];
 ```
 
-| Value               |       email        |  email + required  |
-| ------------------- | :----------------: | :----------------: |
-| `null`              | :heavy_check_mark: |        :x:         |
-| `''`                | :heavy_check_mark: |        :x:         |
-| `'0'`               |        :x:         |        :x:         |
-| `0`                 |        :x:         |        :x:         |
-| `false`             |        :x:         |        :x:         |
-| `[]`                |        :x:         |        :x:         |
-| `-1`                |        :x:         |        :x:         |
-| `1`                 |        :x:         |        :x:         |
-| `true`              |        :x:         |        :x:         |
-| `'text'`            |        :x:         |        :x:         |
-| `'john@domain.com'` | :heavy_check_mark: | :heavy_check_mark: |
+| Value                |       email        |  email + required  |
+| -------------------- | :----------------: | :----------------: |
+| `null`               | :heavy_check_mark: |        :x:         |
+| `''`                 | :heavy_check_mark: |        :x:         |
+| `'0'`                |        :x:         |        :x:         |
+| `0`                  |        :x:         |        :x:         |
+| `false`              |        :x:         |        :x:         |
+| `[]`                 |        :x:         |        :x:         |
+| `-1`                 |        :x:         |        :x:         |
+| `1`                  |        :x:         |        :x:         |
+| `true`               |        :x:         |        :x:         |
+| `'text'`             |        :x:         |        :x:         |
+| `'john@example.com'` | :heavy_check_mark: | :heavy_check_mark: |
 
 ### equals
 

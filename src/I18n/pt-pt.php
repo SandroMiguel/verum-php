@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Validator messages (P ortuguese-Portugal).
+ * Validator messages (Portuguese-Portugal).
  *
  * PHP Version 7.2.11-3
  *
