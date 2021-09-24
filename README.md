@@ -394,6 +394,35 @@ if ($myCustomValidationFail) {
 
 ## Available Rules
 
+1. [alpha](#alpha)
+1. [alpha_numeric](#alphanumeric)
+1. [between](#between)
+1. [between_length](#betweenlength)
+1. [boolean_value](#booleanvalue)
+1. [contains](#contains)
+1. [date](#date)
+1. [email](#email)
+1. [equals](#equals)
+1. [file_max_size](#filemaxsize)
+1. [file_mime_type](#filemimetype)
+1. [float_number](#floatnumber)
+1. [image_max_height](#imagemaxheight)
+1. [image_max_width](#imagemaxwidth)
+1. [image_min_height](#imageminheight)
+1. [image_min_width](#imageminwidth)
+1. [ip](#ip)
+1. [ipv4](#ipv4)
+1. [ipv6](#ipv6)
+1. [max](#max)
+1. [max_length](#maxlength)
+1. [min](#min)
+1. [min_length](#minlength)
+1. [numeric](#numeric)
+1. [regex](#regex)
+1. [required](#required)
+1. [slug](#slug)
+1. [url](#url)
+
 ### alpha
 
 Checks whether the value contains only alphabetic characters.
