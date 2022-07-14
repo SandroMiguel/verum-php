@@ -4,7 +4,7 @@ php:
     - "8.0"
 
 before_script:
-    - composer update
+    - composer update --ignore-platform-reqs
     - composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
     - composer install --prefer-source --no-interaction --dev
 
