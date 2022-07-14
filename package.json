@@ -1,6 +1,6 @@
 {
     "name": "verum-php",
-    "version": "2.0.4",
+    "version": "2.1.0",
     "scripts": {
         "postinstall": "husky install",
         "test:phpunit": "./vendor/bin/phpunit --colors=always tests",
@@ -12,10 +12,10 @@
         }
     },
     "devDependencies": {
-        "@commitlint/cli": "^13.1.0",
-        "@commitlint/config-conventional": "^13.1.0",
+        "@commitlint/cli": "^17.0.3",
+        "@commitlint/config-conventional": "^17.0.3",
         "cz-conventional-changelog": "^3.3.0",
-        "husky": "^7.0.1",
-        "standard-version": "^9.3.1"
+        "husky": "^8.0.1",
+        "standard-version": "^9.5.0"
     }
 }

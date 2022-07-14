@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/SandroMiguel/verum-php/compare/v2.0.4...v2.1.0) (2022-07-14)
+
+
+### Features
+
+* new rule: integer ([437ca1e](https://github.com/SandroMiguel/verum-php/commit/437ca1e8bc4086c5e1732e0878f13e8f2c530c3f))
+
 ### [2.0.4](https://github.com/SandroMiguel/verum-php/compare/v2.0.3...v2.0.4) (2021-07-27)
 
 ### [2.0.1](https://github.com/SandroMiguel/verum-php/compare/v1.0.1...v2.0.1) (2021-07-27)
