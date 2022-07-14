@@ -27,15 +27,15 @@
         "sort-packages": true
     },
     "require": {
-        "php": "^7.2 || ^8.0"
+        "php": "^7.4 || ^8.0"
     },
     "require-dev": {
-        "nunomaduro/phpinsights": "^2.0",
-        "phpmetrics/phpmetrics": "^2.7",
+        "nunomaduro/phpinsights": "^2.4",
+        "phpmetrics/phpmetrics": "^2.8",
         "phpstan/phpstan": "^0.12.93",
         "phpunit/phpunit": "8",
         "roave/security-advisories": "dev-master",
-        "vimeo/psalm": "^4.8"
+        "vimeo/psalm": "^4.24"
     },
     "scripts": {
         "phpcs": "phpcs -s src",
