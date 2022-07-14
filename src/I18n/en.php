@@ -83,6 +83,10 @@ return [
         'withLabel' => 'The uploaded image width of the "{param:3}" field is {param:1}px. The minimum width is {param:2}px.',
         'withoutLabel' => 'The uploaded image width of this field is {param:1}px. The minimum width is {param:2}px.',
     ],
+    RuleEnum::INTEGER => [
+        'withLabel' => 'The "{param:1}" field must be integer.',
+        'withoutLabel' => 'This field must be integer.',
+    ],
     RuleEnum::IP => [
         'withLabel' => 'The "{param:1}" field must be a valid IP address.',
         'withoutLabel' => 'This field must be a valid IP address.',

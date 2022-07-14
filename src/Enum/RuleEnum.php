@@ -39,6 +39,7 @@ abstract class RuleEnum
     public const IMAGE_MAX_WIDTH = 'image_max_width';
     public const IMAGE_MIN_HEIGHT = 'image_min_height';
     public const IMAGE_MIN_WIDTH = 'image_min_width';
+    public const INTEGER = 'integer';
     public const IP = 'ip';
     public const IPV4 = 'ipv4';
     public const IPV6 = 'ipv6';

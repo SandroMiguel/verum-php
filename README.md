@@ -410,6 +410,7 @@ if ($myCustomValidationFail) {
 1. [image_max_width](#image_max_width)
 1. [image_min_height](#image_min_height)
 1. [image_min_width](#image_min_width)
+1. [integer](#integer)
 1. [ip](#ip)
 1. [ipv4](#ipv4)
 1. [ipv6](#ipv6)
@@ -867,6 +868,34 @@ $rules = [
 | `null` | :heavy_check_mark: |            :x:             |
 | 400px  |        :x:         |            :x:             |
 | 600px  | :heavy_check_mark: |     :heavy_check_mark:     |
+
+### integer
+
+Checks whether the value is integer.
+
+```
+$rules = [
+    'distance' => [
+        'label' => 'Distance',
+        'rules' => [
+            RuleEnum::INTEGER,
+        ],
+    ],
+];
+```
+
+| Value    |      numeric       | numeric + required |
+| -------- | :----------------: | :----------------: |
+| `null`   | :heavy_check_mark: |        :x:         |
+| `''`     | :heavy_check_mark: |        :x:         |
+| `'0'`    |        :x:         |        :x:         |
+| `0`      | :heavy_check_mark: | :heavy_check_mark: |
+| `false`  |        :x:         |        :x:         |
+| `[]`     |        :x:         |        :x:         |
+| `-1`     | :heavy_check_mark: | :heavy_check_mark: |
+| `1`      | :heavy_check_mark: | :heavy_check_mark: |
+| `true`   |        :x:         |        :x:         |
+| `'text'` |        :x:         |        :x:         |
 
 ### ip
 

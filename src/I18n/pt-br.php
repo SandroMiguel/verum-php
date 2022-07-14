@@ -83,6 +83,10 @@ return [
         'withLabel' => 'A largura da imagem enviada no campo "{param:3}" é de {param:1}px. A largura mínima é de {param:2}px.',
         'withoutLabel' => 'A largura da imagem enviada neste campo é de {param:1}px. A largura mínima é de {param:2}px.',
     ],
+    RuleEnum::INTEGER => [
+        'withLabel' => 'O campo "{param:1}" deve ser um número inteiro.',
+        'withoutLabel' => 'Este campo deve ser um número inteiro.',
+    ],
     RuleEnum::IP => [
         'withLabel' => 'O campo "{param:1}" deve ser um endereço IP válido.',
         'withoutLabel' => 'Este campo deve ser um endereço IP válido.',

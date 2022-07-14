@@ -16,116 +16,130 @@
 
 declare(strict_types=1);
 
+use Verum\Enum\RuleEnum;
+
 return [
-    'alpha' => [
+    RuleEnum::ALPHA => [
         'withLabel' => 'Het veld "{param:1}" moet letters (a-z) bevatten.',
         'withoutLabel' => 'Dit veld moet letters (a-z) bevatten.',
     ],
-    'alpha_numeric' => [
+    RuleEnum::ALPHA_NUMERIC => [
         'withLabel' => 'Het veld "{param:1}" moet letters (a-z) en/of cijfers (0-9) bevatten.',
         'withoutLabel' => 'Dit veld moet letters (a-z) en/of cijfers (0-9) bevatten.',
     ],
-    'between' => [
+    RuleEnum::BETWEEN => [
         'withLabel' => 'De waarde van het veld "{param:3}" moet tussen {param:1} en {param:2} liggen.',
         'withoutLabel' => 'De waarde van dit veld moet tussen {param:1} en {param:2} liggen.',
     ],
-    'between_length' => [
+    RuleEnum::BETWEEN_LENGTH => [
         'withLabel' => 'De waarde van het veld "{param:3}" moet tussen {param:1} en {param:2} tekens liggen.',
         'withoutLabel' => 'De waarde van dit veld moet tussen {param:1} en {param:2} tekens liggen.',
     ],
-    'boolean_value' => [
+    RuleEnum::BOOLEAN_VALUE => [
         'withLabel' => 'Het veld "{param:1}" moet een boolean bevatten.',
         'withoutLabel' => 'Dit veld moet een boolean bevatten.',
     ],
-    'contains' => [
+    RuleEnum::CONTAINS => [
         'withLabel' => 'Het veld "{param:3}" moet de waarde "{param:1}" bevatten. Geldige waardes zijn: {param:2}',
         'withoutLabel' => 'Dit veld moet de waarde "{param:1}" bevatten. Geldige waardes zijn: {param:2}',
     ],
-    'date' => [
+    RuleEnum::DATE => [
         'withLabel' => 'Het veld "{param:2}" moet een geldige datum in dit formaat bevatten: "{param:1}"',
         'withoutLabel' => 'Dit veld moet een geldige datum in dit formaat bevatten: "{param:1}"',
     ],
-    'email' => [
+    RuleEnum::EMAIL => [
         'withLabel' => 'Het veld "{param:1}" moet een geldig e-mail adres bevatten.',
         'withoutLabel' => 'Dit veld moet een geldig e-mail adres bevatten.',
     ],
-    'equals' => [
+    RuleEnum::EQUALS => [
         'withLabel' => 'De velden {param:1} en {param:2} moeten hetzelfde zijn.',
         'withoutLabel' => 'De velden moeten hetzelfde zijn.',
     ],
-    'file_max_size' => [
+    RuleEnum::FILE_MAX_SIZE => [
         'withLabel' => 'Het veld "{param:3}" bevat een bestandsgrootte van {param:1}. De waarde moet minder zijn dan {param:2}.',
         'withoutLabel' => 'Dit veld bevat een bestandsgrootte van {param:1}. De waarde moet minder zijn dan {param:2}.',
     ],
-    'file_mime_type' => [
+    RuleEnum::FILE_MIME_TYPE => [
         'withLabel' => 'Het veld "{param:3}" bevat een bestand van het type {param:1}. Het type moet {param:2} zijn.',
         'withoutLabel' => 'Dit veld bevat een bestand van het type {param:1}. Het type moet {param:2} zijn.',
     ],
-    'float_number' => [
+    RuleEnum::FLOAT_NUMBER => [
         'withLabel' => 'Het veld "{param:1}" moet een getal met een punt als komma bevatten.',
         'withoutLabel' => 'Dit veld moet een getal met een punt als komma bevatten.',
     ],
-    'image_max_height' => [
+    RuleEnum::IMAGE_MAX_HEIGHT => [
         'withLabel' => 'De hoogte van de geüploade afbeelding in het veld "{param:3}" is {param:1}px. De maximale hoogte is {param:2} px.',
         'withoutLabel' => 'De hoogte van de geüploade afbeelding is {param:1}px. De maximale hoogte is {param:2} px.',
     ],
-    'image_max_width' => [
+    RuleEnum::IMAGE_MAX_WIDTH => [
         'withLabel' => 'De hoogte van de geüploade afbeelding in het veld "{param:3}" is {param:1}px. De maximale breedte is {param:2} px.',
         'withoutLabel' => 'De hoogte van de geüploade afbeelding is {param:1}px. De maximale breedte is {param:2} px.',
     ],
-    'image_min_height' => [
+    RuleEnum::IMAGE_MIN_HEIGHT => [
         'withLabel' => 'De hoogte van de geüploade afbeelding in het veld "{param:3}" is {param:1}px. De minimale hoogte is {param:2} px.',
         'withoutLabel' => 'De hoogte van de geüploade afbeelding is {param:1}px. De minimale hoogte is {param:2} px.',
     ],
-    'image_min_width' => [
+    RuleEnum::IMAGE_MIN_WIDTH => [
         'withLabel' => 'De breedte van de geüploade afbeelding in het veld "{param:3}" is {param:1}px. De minimale breedte is {param:2} px.',
         'withoutLabel' => 'De breedte van de geüploade afbeelding is {param:1}px. De minimale breedte is {param:2} px.',
     ],
-    'ip' => [
+    RuleEnum::INTEGER => [
+        'withLabel' => 'Het veld "{param:1}" moet een geheel getal zijn.',
+        'withoutLabel' => 'Dit veld moet een geheel getal zijn.',
+    ],
+    RuleEnum::IP => [
         'withLabel' => 'Het veld "{param:1}" moet een geldig IP-adres bevatten.',
         'withoutLabel' => 'Dit veld moet een geldig IP-adres bevatten.',
     ],
-    'ipv4' => [
+    RuleEnum::IPV4 => [
         'withLabel' => 'Het veld "{param:1}" moet een geldig IPv4-adres bevatten.',
         'withoutLabel' => 'Dit veld moet een geldig IPv4-adres bevatten.',
     ],
-    'ipv6' => [
+    RuleEnum::IPV6 => [
         'withLabel' => 'Het veld "{param:1}" moet een geldig IPv6-adres bevatten.',
         'withoutLabel' => 'Dit veld moet een geldig IPv6-adres bevatten.',
     ],
-    'max' => [
+    RuleEnum::MAX => [
         'withLabel' => 'Het veld "{param:2}" mag niet hoger dan {param:1} zijn.',
         'withoutLabel' => 'Dit veld mag niet hoger dan {param:1} zijn.',
     ],
-    'max_length' => [
+    RuleEnum::MAX_LENGTH => [
         'withLabel' => 'Het veld "{param:2}" mag niet groter zijn dan {param:1} tekens.',
         'withoutLabel' => 'Dit veld mag niet groter zijn dan {param:1} tekens.',
     ],
-    'min' => [
+    RuleEnum::MIN => [
         'withLabel' => 'Het veld "{param:2}" moet minstens {param:1} zijn.',
         'withoutLabel' => 'De waarde van dit veld moet minstens {param:1} zijn.',
     ],
-    'min_length' => [
+    RuleEnum::MIN_LENGTH => [
         'withLabel' => 'Het veld "{param:2}" moet minimaal {param:1} tekens lang zijn.',
         'withoutLabel' => 'Dit veld moet minimaal {param:1} tekens lang zijn.',
     ],
-    'numeric' => [
+    RuleEnum::NUMERIC => [
         'withLabel' => 'Het veld "{param:1}" moet een numerieke waarde hebben.',
         'withoutLabel' => 'Het veld moet een numerieke waarde hebben.',
     ],
-    'regex' => [
+    RuleEnum::REGEX => [
         'withLabel' => 'Het veld "{param:2}" voldoet niet aan het juiste patroon {param:1}.',
         'withoutLabel' => 'Dit veld voldoet niet aan het juiste patroon {param:1}.',
     ],
-    'required' => [
+    RuleEnum::REQUIRED => [
         'withLabel' => 'Het veld "{param:1}" is verplicht.',
         'withoutLabel' => 'Dit veld is verplicht.',
     ],
-    'slug' => [
+    RuleEnum::REQUIRED_IF => [
+        'withLabel' => 'Het veld "{param:1}" is verplicht.',
+        'withoutLabel' => 'Dit veld is verplicht.',
+    ],
+    RuleEnum::REQUIRED_IF_NOT => [
+        'withLabel' => 'Het veld "{param:1}" is verplicht.',
+        'withoutLabel' => 'Dit veld is verplicht.',
+    ],
+    RuleEnum::SLUG => [
         'withLabel' => 'Het veld "{param:1}" moet een geldige slug bevatten (bijv. hallo-wereld_123).',
         'withoutLabel' => 'Dit veld moet een geldige slug bevatten (bijv. hallo-wereld_123).',
     ],
-    'url' => [
+    RuleEnum::URL => [
         'withLabel' => 'Het veld "{param:1}" moet een geldige URL bevatten.',
         'withoutLabel' => 'Dit veld moet een geldige URL bevatten.',
     ],
