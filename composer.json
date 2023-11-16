@@ -24,7 +24,10 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "require": {
         "php": "^8.0"
@@ -33,7 +36,7 @@
         "nunomaduro/phpinsights": "^2.4",
         "phpmetrics/phpmetrics": "^2.8",
         "phpstan/phpstan": "^0.12.93",
-        "phpunit/phpunit": "8",
+        "phpunit/phpunit": "^9",
         "roave/security-advisories": "dev-master",
         "vimeo/psalm": "^4.24"
     },
