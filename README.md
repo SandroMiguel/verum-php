@@ -37,7 +37,7 @@ composer require sandromiguel/verum-php
 
 #### Simple usage example
 
-Validate a simple registration form
+Validate a simple registration form (name, email and age)
 
 ```
 use Verum\Validator;
@@ -219,10 +219,10 @@ Output (pt-pt):
 
 You can use some built-in translations:
 
--   'en' -> English (default)
--   'nl-nl' -> Dutch
--   'pt-pt' -> Portuguese-Portugal
--   'pt-br' -> Portuguese-Brazil
+-   `'en'` -> English (default)
+-   `'nl-nl'` -> Dutch
+-   `'pt-pt'` -> Portuguese-Portugal
+-   `'pt-br'` -> Portuguese-Brazil
 
 ```
 $validator = new Validator($_POST, $rules, 'pt-pt');

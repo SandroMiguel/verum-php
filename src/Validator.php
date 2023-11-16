@@ -208,6 +208,7 @@ final class Validator
             $label = $this->getLabel($fieldConfig['label'] ?? null);
             $fieldValue = $this->fieldValues[$fieldName] ?? null;
 
+            // Names of rules and their respective values
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
@@ -423,7 +424,8 @@ final class Validator
     }
 
     /**
-     * Get Rule Name and Values.
+     * Retrieves the name and values of a validation rule.
+     * E.g. between => [3, 15]
      *
      * @param mixed $key Key.
      * @param mixed $value Value.
