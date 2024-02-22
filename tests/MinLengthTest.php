@@ -82,6 +82,16 @@ class MinLengthTest extends TestCase
     }
 
     /**
+     * An Empty String ('') value should pass validation (ignored field).
+     *
+     * @return void
+     */
+    // public function testValidateEmptyString(): void
+    // {
+    //     $this->assertTrue($this->validate('', [5]));
+    // }
+
+    /**
      * The String ('text with 23 characters') value should violate the rule with min length of 30 characters.
      *
      * @return void

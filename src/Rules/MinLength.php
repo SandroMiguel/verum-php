@@ -69,7 +69,8 @@ final class MinLength extends Rule
 
         $this->minLength = $this->ruleValues[0];
 
-        if ($this->fieldValue === null) {
+        // if ($this->fieldValue === null) {
+        if ($this->fieldValue === null || $this->fieldValue === '') {
             return true;
         }
 
