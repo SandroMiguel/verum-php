@@ -81,6 +81,15 @@ class MaxLengthTest extends TestCase
         $this->assertTrue($this->validate(null, [5]));
     }
 
+
+    /**
+     * An Empty String ('') value should pass validation (ignored field).
+     */
+    public function testValidateEmptyString(): void
+    {
+        $this->assertTrue($this->validate('', [5]));
+    }
+
     /**
      * The String ('text with 23 characters') value should violate the rule with max length of 20 characters.
      *

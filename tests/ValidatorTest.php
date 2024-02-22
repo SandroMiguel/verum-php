@@ -40,10 +40,10 @@ class ValidatorTest extends TestCase
     ];
 
     /** @var array One field value OK */
-    private $oneFieldValueOk = ['name' => 'John'];
+    private $oneFieldValue = ['name' => 'John'];
 
-    /** @var array One field value NOK */
-    private $oneFieldValueNok = ['name' => ''];
+    /** @var array One field value with empty string */
+    private $oneFieldValueEmptyString = ['name' => ''];
 
     /** @var array Field without label */
     private $nameFieldWithoutLabelRequiredRule = [
@@ -176,7 +176,7 @@ class ValidatorTest extends TestCase
     {
         $this->expectException(ValidatorException::class);
         $this->expectExceptionMessage('The "non_existent" rule was not found.');
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldNonExistentRule);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldNonExistentRule);
         $validator->validate();
     }
 
@@ -192,7 +192,7 @@ class ValidatorTest extends TestCase
             'Invalid argument; Argument name: $lang; Argument value: zz-ZZ; Language not available'
         );
         $validator = new Validator(
-            $this->oneFieldValueNok,
+            $this->oneFieldValueEmptyString,
             $this->nameFieldRequiredRule,
             'zz-ZZ'
         );
@@ -210,7 +210,7 @@ class ValidatorTest extends TestCase
         $this->expectExceptionMessage(
             'The arguments array must contain 3 items, 2 given; Message: Message "min_length" rule. val1 = {param:1}, val2 = {param:2}, val3 = {param:3}.; Arguments: 5,Name'
         );
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldMinLengthRule);
+        $validator = new Validator($this->oneFieldValue, $this->nameFieldMinLengthRule);
         $validator->addSimpleCustomMessage(
             'min_length',
             'Message "min_length" rule. val1 = {param:1}, val2 = {param:2}, val3 = {param:3}.'
@@ -225,7 +225,7 @@ class ValidatorTest extends TestCase
      */
     public function testValidateRuleViolation(): void
     {
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldRequiredRule);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldRequiredRule);
         $isValid = $validator->validate();
         $this->assertFalse($isValid);
     }
@@ -245,7 +245,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldRequiredRule);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldRequiredRule);
         $validator->validate();
         $errors = $validator->getErrors();
         $this->assertTrue(
@@ -267,7 +267,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldWithoutLabelRequiredRule);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldWithoutLabelRequiredRule);
         $validator->validate();
         $errors = $validator->getErrors();
         $this->assertTrue(
@@ -289,7 +289,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldRequiredRule);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldRequiredRule);
         $validator->validate();
         $errors = $validator->getErrors();
         $this->assertTrue(
@@ -312,7 +312,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldMultipleLabelsRequiredRule);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldMultipleLabelsRequiredRule);
         $validator->validate();
         $errors = $validator->getErrors();
         $this->assertTrue(
@@ -335,7 +335,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldRequiredRule, LangEnum::PT_PT);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldRequiredRule, LangEnum::PT_PT);
         $validator->validate();
         $errors = $validator->getErrors();
         $this->assertTrue(
@@ -358,7 +358,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldRequiredRule, LangEnum::PT_PT);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldRequiredRule, LangEnum::PT_PT);
         $validator->addSimpleCustomMessage('required', 'Custom message for the "required" rule.');
         $validator->validate();
         $errors = $validator->getErrors();
@@ -382,7 +382,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldWithoutLabelRequiredRule, LangEnum::PT_PT);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldWithoutLabelRequiredRule, LangEnum::PT_PT);
         $validator->addCustomMessage(
             'required',
             'Custom message with label for required rule. Label: {param:1}.',
@@ -410,7 +410,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldRequiredRule);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldRequiredRule);
         $validator->addCustomMessage(
             'required',
             'Custom message with label for required rule. Label: {param:1}.',
@@ -439,7 +439,7 @@ class ValidatorTest extends TestCase
             ],
         ];
         $validator = new Validator(
-            $this->oneFieldValueNok,
+            $this->oneFieldValueEmptyString,
             $this->nameFieldMultipleLabelsRequiredRule,
             LangEnum::PT_PT
         );
@@ -470,12 +470,11 @@ class ValidatorTest extends TestCase
             'name' => [
                 'label' => 'Name',
                 'rules' => [
-                    'min_length' => 'Custom message for the "min_length" rule.',
                     'required' => 'Custom message for the "required" rule.',
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldRequiredAndMinLengthRules, LangEnum::PT_PT);
+        $validator = new Validator($this->oneFieldValueEmptyString, $this->nameFieldRequiredAndMinLengthRules, LangEnum::PT_PT);
         $validator->addCustomMessages($customErrorMessages);
         $validator->validate();
         $errors = $validator->getErrors();
@@ -500,7 +499,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueOk, $this->nameFieldWithoutLabelNumericAndMinLengthRules);
+        $validator = new Validator($this->oneFieldValue, $this->nameFieldWithoutLabelNumericAndMinLengthRules);
         $validator->addCustomMessages($this->customErrorMessages);
         $validator->validate();
         $errors = $validator->getErrors();
@@ -528,7 +527,7 @@ class ValidatorTest extends TestCase
             ],
         ];
         $validator = new Validator(
-            $this->oneFieldValueOk,
+            $this->oneFieldValue,
             $this->nameFieldMultipleLabelsMinLengthRule,
             LangEnum::PT_PT
         );
@@ -555,7 +554,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldMinLengthRule);
+        $validator = new Validator($this->oneFieldValue, $this->nameFieldMinLengthRule);
         $validator->validate();
         $errors = $validator->getErrors();
         $this->assertTrue(
@@ -579,7 +578,7 @@ class ValidatorTest extends TestCase
                 ],
             ],
         ];
-        $validator = new Validator($this->oneFieldValueNok, $this->nameFieldMinLengthRule);
+        $validator = new Validator($this->oneFieldValue, $this->nameFieldMinLengthRule);
         $validator->addSimpleCustomMessage('min_length', 'Custom message for the "min_length" rule.');
         $validator->validate();
         $errors = $validator->getErrors();
@@ -622,7 +621,7 @@ class ValidatorTest extends TestCase
      */
     public function testValidateNoRuleViolation(): void
     {
-        $validator = new Validator($this->oneFieldValueOk, $this->nameFieldRequiredRule);
+        $validator = new Validator($this->oneFieldValue, $this->nameFieldRequiredRule);
         $isValid = $validator->validate();
         $this->assertTrue($isValid);
     }
