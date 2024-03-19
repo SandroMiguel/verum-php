@@ -40,18 +40,27 @@ class RequiredTest extends TestCase
         $fieldLabel = 'Some Field Name';
         $ruleName = 'required';
         $ruleValues = [];
-        $validator = new Validator(
-            [
-                $fieldName => $fieldValue,
+        $fieldValues = [
+            $fieldName => $fieldValue,
+        ];
+        $fieldRules = [
+            $fieldName => [
+                'label' => $fieldLabel,
+                'rules' => [$ruleName => $ruleValues],
             ],
-            [
-                $fieldName => [
-                    'label' => $fieldLabel,
-                    'rules' => [$ruleName => $ruleValues],
-                ],
-            ]
+        ];
+        $validator = new Validator(
+            $fieldValues,
+            $fieldRules
         );
-        $rule = RuleFactory::loadRule($validator, $fieldValue, $ruleValues, $fieldLabel, $ruleName, '');
+        $rule = RuleFactory::loadRule(
+            $validator,
+            $fieldValue,
+            $ruleValues,
+            $fieldLabel,
+            $ruleName,
+            ''
+        );
 
         return $rule->validate();
     }

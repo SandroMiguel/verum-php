@@ -625,4 +625,177 @@ class ValidatorTest extends TestCase
         $isValid = $validator->validate();
         $this->assertTrue($isValid);
     }
+
+    /**
+     * Tests the validation of multilingual fields with explicit field name
+     *  along with language.
+     */
+    public function testValidateMultilangFields(): void
+    {
+        $fieldValues = [
+            'title.en' => 'Engineer',
+            'title.pt' => 'Engenheiro',
+        ];
+
+        $fieldRules = [
+            'title.en' => [
+                'label' => 'Title in English',
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+            'title.pt' => [
+                'label' => 'Título em Português',
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+
+        $isValid = $validator->validate();
+
+        $this->assertTrue($isValid);
+    }
+
+    /**
+     * Tests the validation of multilingual fields without explicitly
+     *  specifying the language in the field name.
+     */
+    public function testValidateMultilangFieldsWithoutExplicitLanguage(): void
+    {
+        $fieldValues = [
+            'age' => 30,
+            'title.en' => 'Engineer',
+            'title.pt' => 'Engenheiro',
+        ];
+
+        $fieldRules = [
+            'age' => [
+                'rules' => [
+                    RuleEnum::REQUIRED,
+                    RuleEnum::NUMERIC,
+                ],
+            ],
+            'title.*' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+
+        $isValid = $validator->validate();
+
+        $this->assertTrue($isValid);
+    }
+
+    /**
+     * Tests the validation of multilingual fields without explicitly
+     * specifying the language in the field name, with a missing required value.
+     */
+    public function testValidateMultilangFieldsWithoutExplicitLanguageMissingValue(): void
+    {
+        $fieldValues = [
+            'title.en' => 'Engineer',
+            // Missing value for the Portuguese language
+            'title.pt' => '',
+        ];
+
+        $fieldRules = [
+            'title.*' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+
+        $isValid = $validator->validate();
+
+        $this->assertFalse($isValid);
+    }
+
+    /**
+     * Tests the handling of multi-name fields that do not require validation.
+     */
+    public function testMultinameFieldsWithoutValidation(): void
+    {
+        $fieldValues = [
+            'name' => 'John Doe',
+            'title.en' => 'Engineer',
+            'title.pt' => 'Engenheiro',
+        ];
+
+        $fieldRules = [
+            'name' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+
+        $isValid = $validator->validate();
+
+        $this->assertTrue($isValid);
+    }
+
+    /**
+     * Tests the handling of multi-name fields that do not require validation
+     *  but other fields require numeric validation.
+     */
+    public function testMultinameFieldsWithoutValidationPlusNumeric(): void
+    {
+        $fieldValues = [
+            'name' => 'John Doe',
+            'age' => 30,
+            'title.en' => 'Engineer',
+            'title.pt' => 'Engenheiro',
+        ];
+
+        $fieldRules = [
+            'age' => [
+                'rules' => [RuleEnum::NUMERIC],
+            ],
+            'name' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+
+        $isValid = $validator->validate();
+
+        $this->assertTrue($isValid);
+    }
+
+    /**
+     * Tests the validation of multi-name fields and ensures that the field
+     *  name in the result matches the full name with the language.
+     */
+    public function testValidateMultiNameFieldsFullnameMatch(): void
+    {
+        $fieldValues = [
+            'title.en' => '',
+        ];
+
+        $fieldRules = [
+            'title.*' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $expected = [
+            'title.en' => [
+                'label' => null,
+                'rules' => [
+                    'required' => 'This field is required.',
+                ],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+        $validator->validate();
+        $errors = $validator->getErrors();
+
+        $this->assertEquals(
+            \json_encode($expected),
+            \json_encode($errors)
+        );
+    }
 }

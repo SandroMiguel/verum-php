@@ -3,22 +3,17 @@
 /**
  * Validator.
  *
- * PHP Version 7.2.11-3
- *
- * @package   Verum-PHP
- * @license   MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
- * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
- * @copyright 2020 Sandro
- * @since     Verum-PHP 1.0.0
- * @version   4.1.0 (2021/05/26)
- * @link      https://github.com/SandroMiguel/verum-php
+ * @package Verum-PHP
+ * @license MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
+ * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
+ * @link https://github.com/SandroMiguel/verum-php
+ * @version 4.2.0 (2024-03-19)
  */
 
 declare(strict_types=1);
 
 namespace Verum;
 
-use Verum\ArrayHelper;
 use Verum\Enum\LangEnum;
 use Verum\Rules\RuleFactory;
 
@@ -192,14 +187,12 @@ final class Validator
      * @return bool Returns TRUE if all fields pass validation, FALSE otherwise.
      *
      * @throws ValidatorException Validator Exception.
-     *
-     * @version 2.1.0 (17/06/2020)
-     * @since   Verum 1.0.0
      */
     public function validate(): bool
     {
         $isValid = true;
 
+        // For each field rules
         foreach ($this->fieldRules as $fieldName => $fieldConfig) {
             if (!$this->hasRules($fieldConfig['rules'])) {
                 continue;
@@ -208,28 +201,41 @@ final class Validator
             $label = $this->getLabel($fieldConfig['label'] ?? null);
             $fieldValue = $this->fieldValues[$fieldName] ?? null;
 
-            // Names of rules and their respective values
+            // For each name of rule and their respective values
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
-                $rule = RuleFactory::loadRule(
-                    $this,
-                    $fieldValue,
-                    $ruleValues,
-                    $fieldName,
-                    $ruleName,
-                    $label
-                );
+                // For each field values
+                foreach ($this->fieldValues as $fullFieldName => $fieldValue) {
+                    $newFieldName = \strpos($fullFieldName, '.')
+                        ? \explode('.', $fullFieldName)[0]
+                        : $fullFieldName;
 
-                if (!$rule->validate()) {
+                    if (\strpos($fieldName, $newFieldName) !== 0) {
+                        continue;
+                    }
+
+                    $rule = RuleFactory::loadRule(
+                        $this,
+                        $fieldValue,
+                        $ruleValues,
+                        $newFieldName,
+                        $ruleName,
+                        $label
+                    );
+
+                    if ($rule->validate()) {
+                        continue;
+                    }
+
                     $errorMessage = $this->getErrorMessage(
-                        $fieldName,
+                        $fullFieldName,
                         $ruleName,
                         $rule->getErrorMessageParameters()
                     );
 
                     $this->addError(
-                        $fieldName,
+                        $fullFieldName,
                         $label,
                         $errorMessage
                     );

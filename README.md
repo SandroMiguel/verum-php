@@ -1,10 +1,12 @@
 <p align="center"><img src="http://sandromiguel.com/host/verum-php.png" alt="Verum PHP" /></p>
 
-# Welcome to Verum PHP Validator
-
 [![License](https://poser.pugx.org/sandromiguel/verum-php/license)](//packagist.org/packages/sandromiguel/verum-php)
 [![Latest Stable Version](https://poser.pugx.org/sandromiguel/verum-php/v)](//packagist.org/packages/sandromiguel/verum-php)
 [![Dependents](https://poser.pugx.org/sandromiguel/verum-php/dependents)](//packagist.org/packages/sandromiguel/verum-php)
+
+# Verum PHP
+
+Verum PHP is a server-side validation library for PHP that allows you to validate arrays (with file support) with ease. It comes with custom error messages, rules, built-in translations, and zero dependencies.
 
 **Server-Side Validation Library for PHP**
 
@@ -17,6 +19,7 @@
 ## Table of Contents
 
 1. [Getting Started](#getting-started)
+1. [Usage](#usage)
 1. [Custom validations](#custom-validations)
 1. [Available Rules](#available-rules)
 1. [Contributing](#contributing)
@@ -39,7 +42,7 @@ composer require sandromiguel/verum-php
 
 Validate a simple registration form (name, email and age)
 
-```
+```php
 use Verum\Validator;
 
 $rules = [
@@ -75,7 +78,7 @@ echo json_encode(
 
 Input:
 
-```
+```json
 [
     'name' => 'John Doe',
     'email' => 'johndoe@example.com',
@@ -85,7 +88,7 @@ Input:
 
 Output:
 
-```
+```json
 {
     "valid": true,
     "errors": []
@@ -96,7 +99,7 @@ Output:
 
 Input:
 
-```
+```json
 [
     'name' => '',
     'email' => 'some text',
@@ -106,7 +109,7 @@ Input:
 
 Output:
 
-```
+```json
 {
     "valid": false,
     "errors": {
@@ -136,7 +139,7 @@ Output:
 
 You can use the `RuleEnum` class to access all rule names.
 
-```
+```php
 use Verum\Validator;
 use Verum\Enum\RuleEnum;
 
@@ -152,7 +155,7 @@ $rules = [
 
 #### Specify the fields label (naming inputs)
 
-```
+```php
 $rules = [
     'name' => [
         'label' => 'Name',
@@ -166,7 +169,7 @@ $rules = [
 
 Output:
 
-```
+```json
 {
     ...
     "errors": {
@@ -183,7 +186,7 @@ Output:
 
 #### Specify field labels for each language
 
-```
+```php
 $rules = [
     'name' => [
         'label' => [
@@ -200,7 +203,7 @@ $rules = [
 
 Output (pt-pt):
 
-```
+```json
 {
     ...
     "errors": {
@@ -224,13 +227,13 @@ You can use some built-in translations:
 -   `'pt-pt'` -> Portuguese-Portugal
 -   `'pt-br'` -> Portuguese-Brazil
 
-```
+```php
 $validator = new Validator($_POST, $rules, 'pt-pt');
 ```
 
 #### Specify the messages language using the `LangEnum` class
 
-```
+```php
 use Verum\Validator;
 use Verum\Enum\LangEnum;
 
@@ -244,7 +247,7 @@ $validator = new Validator($_POST, $rules, LangEnum::PT_PT);
 -   Useful to override the default error message.
 -   Useful for localization.
 
-```
+```php
 ...
 $validator = new Validator($_POST, $rules);
 $validator->addSimpleCustomMessage('min_length', 'Min Length rule custom error message');
@@ -253,7 +256,7 @@ $validator->addSimpleCustomMessage('min_length', 'Min Length rule custom error m
 
 Output example:
 
-```
+```json
 {
     ...
     "errors": {
@@ -270,7 +273,7 @@ Output example:
 
 #### Specify a custom error message with placeholders
 
-```
+```php
 ...
 $validator = new Validator($_POST, $rules);
 $validator->addSimpleCustomMessage('min_length', 'Number of characters detected: {param:1}. Field name: "{param:2}".');
@@ -279,7 +282,7 @@ $validator->addSimpleCustomMessage('min_length', 'Number of characters detected:
 
 Output example:
 
-```
+```json
 {
     ...
     "errors": {
@@ -296,7 +299,7 @@ Output example:
 
 #### Specify a custom error message for fields with and without a label
 
-```
+```php
 ...
 $validator = new Validator($_POST, $rules);
 $validator->addCustomMessage(
@@ -309,7 +312,7 @@ $validator->addCustomMessage(
 
 Output - Field with label:
 
-```
+```json
 {
     ...
     "errors": {
@@ -326,7 +329,7 @@ Output - Field with label:
 
 Output - Field without label:
 
-```
+```json
 {
     ...
     "errors": {
@@ -343,7 +346,7 @@ Output - Field without label:
 
 #### Specify multiple custom error messages at once
 
-```
+```php
 ...
 $validator = new Validator($_POST, $rules);
 $validator->addCustomMessages(
@@ -358,7 +361,7 @@ $validator->addCustomMessages(
 
 #### Specify multiple custom error messages at once for fields with and without a label
 
-```
+```php
 ...
 $validator = new Validator($_POST, $rules);
 $validator->addCustomMessages(
@@ -377,11 +380,70 @@ $validator->addCustomMessages(
 ...
 ```
 
+#### Handling Multi-Name Fields
+
+With Verum PHP, you can handle multi-name fields more effectively. These are fields that include language identifiers or other variations in their names. For example, if you have fields like `title.en`, `title.pt`, `description.en`, and `description.pt`, you can specify rules for them using wildcards.
+
+```php
+$rules = [
+    'title.*' => [
+        'rules' => [
+            RuleEnum::REQUIRED,
+        ],
+    ],
+    'description.*' => [
+        'rules' => [
+            RuleEnum::REQUIRED,
+            RuleEnum::MIN_LENGTH => 10,
+        ],
+    ],
+];
+
+$validator = new Validator($_POST, $rules);
+// ...
+```
+
+Output example:
+
+```json
+{
+    "valid": false,
+    "errors": {
+        "title.en": {
+            "label": null,
+            "rules": {
+                "required": "This field is required."
+            }
+        },
+        "title.pt": {
+            "label": null,
+            "rules": {
+                "required": "This field is required."
+            }
+        },
+        "description.en": {
+            "label": null,
+            "rules": {
+                "required": "This field is required.",
+                "min_length": "This field must be at least 10 characters long."
+            }
+        },
+        "description.pt": {
+            "label": null,
+            "rules": {
+                "required": "This field is required.",
+                "min_length": "This field must be at least 10 characters long."
+            }
+        }
+    }
+}
+```
+
 ## Custom validations
 
 You can use your custom validations and inject the error message.
 
-```
+```php
 if ($myCustomValidationFail) {
     $validator->addError(
         'someFieldName',
@@ -428,7 +490,7 @@ if ($myCustomValidationFail) {
 
 Checks whether the value contains only alphabetic characters.
 
-```
+```php
 $rules = [
     'nickname' => [
         'label' => 'Nickname',
@@ -457,7 +519,7 @@ $rules = [
 
 Checks whether the value contains only alphanumeric characters.
 
-```
+```php
 $rules = [
     'nickname' => [
         'label' => 'Nickname',
@@ -486,7 +548,7 @@ $rules = [
 
 Checks whether the value is between two values.
 
-```
+```php
 $rules = [
     'age' => [
         'label' => 'Age',
@@ -514,7 +576,7 @@ $rules = [
 
 Checks whether the number of characters of the value is between min and max values.
 
-```
+```php
 $rules = [
     'nickname' => [
         'label' => 'Nickname',
@@ -545,7 +607,7 @@ $rules = [
 Checks whether the value is a boolean value.
 Returns true for 1/0, '1'/'0', 'on'/'off', 'yes'/'no', true/false.
 
-```
+```php
 $rules = [
     'light' => [
         'label' => 'Light',
@@ -578,7 +640,7 @@ $rules = [
 
 Checks whether the value is in an array.
 
-```
+```php
 $rules = [
     'priority' => [
         'label' => 'Priority',
@@ -610,7 +672,7 @@ Checks whether the value is a valid date (Y-m-d) or a custom format.
 
 #### Default format (Y-m-d)
 
-```
+```php
 $rules = [
     'dob' => [
         'label' => 'Date of birth',
@@ -623,7 +685,7 @@ $rules = [
 
 #### Custom format (e.g. d.m.Y)
 
-```
+```php
 $rules = [
     'dob' => [
         'label' => 'Date of birth',
@@ -652,7 +714,7 @@ $rules = [
 
 Checks whether the value has a valid email format.
 
-```
+```php
 $rules = [
     'email' => [
         'label' => 'Email',
@@ -681,7 +743,7 @@ $rules = [
 
 Checks whether the value is equal to another.
 
-```
+```php
 $rules = [
     'repeat_password' => [
         'label' => 'Repeat Password',
@@ -714,7 +776,7 @@ Checks whether the file size does not exceed a given value.
 
 Enter a value in bytes.
 
-```
+```php
 $rules = [
     'profile_photo' => [
         'label' => 'Profile Photo',
@@ -737,7 +799,7 @@ Comparison with `102400` bytes
 
 Checks whether the file type is allowed.
 
-```
+```php
 $rules = [
     'profile_photo' => [
         'label' => 'Profile Photo',
@@ -758,7 +820,7 @@ $rules = [
 
 Checks whether the value is a floating point number.
 
-```
+```php
 $rules = [
     'price' => [
         'label' => 'Price',
@@ -789,7 +851,7 @@ $rules = [
 
 Checks whether the image height does not exceed a given value.
 
-```
+```php
 $rules = [
     'profile_photo' => [
         'label' => 'Profile Photo',
@@ -810,7 +872,7 @@ $rules = [
 
 Checks whether the image width does not exceed a given value.
 
-```
+```php
 $rules = [
     'profile_photo' => [
         'label' => 'Profile Photo',
@@ -831,7 +893,7 @@ $rules = [
 
 Checks whether the image height is not less than a given value.
 
-```
+```php
 $rules = [
     'profile_photo' => [
         'label' => 'Profile Photo',
@@ -852,7 +914,7 @@ $rules = [
 
 Checks whether the image width is not less than a given value.
 
-```
+```php
 $rules = [
     'profile_photo' => [
         'label' => 'Profile Photo',
@@ -873,7 +935,7 @@ $rules = [
 
 Checks whether the value is integer.
 
-```
+```php
 $rules = [
     'distance' => [
         'label' => 'Distance',
@@ -901,7 +963,7 @@ $rules = [
 
 Checks whether the value is a valid IP address.
 
-```
+```php
 $rules = [
     'ip' => [
         'label' => 'IP',
@@ -931,7 +993,7 @@ $rules = [
 
 Checks whether the value is a valid IPv4 address.
 
-```
+```php
 $rules = [
     'ipv4' => [
         'label' => 'IPv4',
@@ -961,7 +1023,7 @@ $rules = [
 
 Checks whether the value is a valid IPv6 address.
 
-```
+```php
 $rules = [
     'ipv6' => [
         'label' => 'IPv6',
@@ -991,7 +1053,7 @@ $rules = [
 
 Checks whether the value does not exceed a given value.
 
-```
+```php
 $rules = [
     'people' => [
         'label' => 'People',
@@ -1021,7 +1083,7 @@ $rules = [
 
 Checks whether the number of characters of the value does not exceed a given value.
 
-```
+```php
 $rules = [
     'nickname' => [
         'label' => 'Nickname',
@@ -1051,7 +1113,7 @@ $rules = [
 
 Checks whether the value is not less than a given value.
 
-```
+```php
 $rules = [
     'people' => [
         'label' => 'People',
@@ -1081,7 +1143,7 @@ $rules = [
 
 Checks whether the number of characters of the value is not less than a given value.
 
-```
+```php
 $rules = [
     'nickname' => [
         'label' => 'Nickname',
@@ -1111,7 +1173,7 @@ $rules = [
 
 Checks whether the value is numeric.
 
-```
+```php
 $rules = [
     'age' => [
         'label' => 'Age',
@@ -1139,7 +1201,7 @@ $rules = [
 
 Checks whether the value matches a given regular expression.
 
-```
+```php
 $rules = [
     'path' => [
         'label' => 'Path',
@@ -1171,7 +1233,7 @@ Validation with the `'/\/client\/[0-9a-f]+$/'` pattern
 
 Checks whether the value is not empty.
 
-```
+```php
 $rules = [
     'name' => [
         'label' => 'Name',
@@ -1199,7 +1261,7 @@ $rules = [
 
 Checks whether the value is a valid Slug (e.g. hello-world_123).
 
-```
+```php
 $rules = [
     'slug' => [
         'label' => 'Slug',
@@ -1229,7 +1291,7 @@ $rules = [
 
 Checks whether the value is a valid URL.
 
-```
+```php
 $rules = [
     'url' => [
         'label' => 'URL',

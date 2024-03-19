@@ -51,6 +51,7 @@
     },
     "scripts-descriptions": {
         "test": "Run all tests!",
+        "test:filter": "Run tests with filtering.",
         "test-coverage": "Run code coverage"
     }
 }
