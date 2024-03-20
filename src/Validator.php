@@ -200,19 +200,7 @@ final class Validator
 
         // For each field rules
         foreach ($this->fieldRules as $fieldName => $fieldConfig) {
-            if ($this->debugMode) {
-                echo "\n--------------------";
-                echo "\n1 Ruled field name    >>>> " . $fieldName;
-                echo "\n1.1 Field config >>>> ";
-                \var_export($fieldConfig);
-            }
-
-            $label = $this->getLabel($fieldConfig['label'] ?? null);
-
-            if ($this->debugMode) {
-                echo "\n1.2 fieldValues (all) >>>> ";
-                \var_export($this->fieldValues);
-            }
+            $this->debugFieldRules($fieldName, $fieldConfig);
 
             // For each field rule and their respective values
             foreach ($fieldConfig['rules'] as $key => $value) {
@@ -267,6 +255,7 @@ final class Validator
                         echo "\n3.3 Field value   >>>> " . ($fieldValue === null ? 'NULL' : $fieldValue);
                     }
 
+                    $label = $this->getLabel($fieldConfig['label'] ?? null);
                     $rule = RuleFactory::loadRule(
                         $this,
                         $fieldValue,
@@ -338,6 +327,29 @@ final class Validator
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    /**
+     * Output debug information related to the field rules.
+     *
+     * @param string $fieldName The name of the field being processed.
+     * @param array<mixed> $fieldConfig The configuration array for the field
+     *  rules.
+     */
+    private function debugFieldRules(
+        string $fieldName,
+        array $fieldConfig,
+    ): void {
+        if (!$this->debugMode) {
+            return;
+        }
+
+        echo "\n--------------------";
+        echo "\n1 Ruled field name >>>> " . $fieldName;
+        echo "\n1.1 Field config >>>> ";
+        \var_export($fieldConfig);
+        echo "\n1.2 fieldValues (all) >>>> ";
+        \var_export($this->fieldValues);
     }
 
     /**
