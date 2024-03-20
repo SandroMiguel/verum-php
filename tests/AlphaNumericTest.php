@@ -60,7 +60,7 @@ class AlphaNumericTest extends TestCase
      *
      * @return void
      */
-    public function testValidateNull(): void
+    public function testValidateNullB(): void
     {
         $this->assertTrue($this->validate(null));
     }

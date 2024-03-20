@@ -22,6 +22,9 @@ use Verum\Rules\RuleFactory;
  */
 final class Validator
 {
+    /** @var bool Debug mode. */
+    private bool $debugMode;
+
     /**
      * [
      *   'some_field_a' => 'some value A',
@@ -91,7 +94,8 @@ final class Validator
      *
      * @param array<mixed> $fieldValues Input field data.
      * @param array<mixed> $fieldRules Field rules.
-     * @param string $lang Language.
+     * @param string|null $lang Language.
+     * @param bool|null $debugMode Debug mode.
      *
      * @throws ValidatorException Validator Exception.
      *
@@ -101,7 +105,8 @@ final class Validator
     public function __construct(
         array $fieldValues,
         array $fieldRules,
-        string $lang = 'en'
+        ?string $lang = 'en',
+        ?bool $debugMode = false,
     ) {
         if ($this->isEmptyArray($fieldValues)) {
             throw ValidatorException::noFields();
@@ -121,6 +126,7 @@ final class Validator
         $this->fieldRules = $fieldRules;
         $this->language = $lang;
         $this->loadMessages($lang);
+        $this->debugMode = $debugMode;
     }
 
     /**
@@ -194,37 +200,111 @@ final class Validator
 
         // For each field rules
         foreach ($this->fieldRules as $fieldName => $fieldConfig) {
-            if (!$this->hasRules($fieldConfig['rules'])) {
-                continue;
+            if ($this->debugMode) {
+                echo "\n--------------------";
+                echo "\n1 Ruled field name    >>>> " . $fieldName;
+                echo "\n1.1 Field config >>>> ";
+                \var_export($fieldConfig);
             }
 
             $label = $this->getLabel($fieldConfig['label'] ?? null);
-            $fieldValue = $this->fieldValues[$fieldName] ?? null;
 
-            // For each name of rule and their respective values
+            if ($this->debugMode) {
+                echo "\n1.2 fieldValues (all) >>>> ";
+                \var_export($this->fieldValues);
+            }
+
+            // For each field rule and their respective values
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
+                if ($this->debugMode) {
+                    echo "\n-";
+                    echo "\n2 Rule name     >>>> " . $ruleName;
+                }
+
+                // Check if is a multi-name field
+                $isMultiNameField = \strpos($fieldName, '.') !== false;
+
+                if (!$isMultiNameField) {
+                    $fieldValue = $this->fieldValues[$fieldName] ?? null;
+                } else {
+                    $fieldValue = [];
+                    // Filter by base field name
+                    $baseFieldName = \explode('.', $fieldName)[0];
+                    $fieldValues = \array_filter(
+                        $this->fieldValues,
+                        static fn ($key) => \strpos($key, $baseFieldName) === 0,
+                        \ARRAY_FILTER_USE_KEY
+                    );
+
+                    if ($this->debugMode) {
+                        echo "\n2.1 Field values (filtered) >>>> \n";
+                        \var_export($fieldValues);
+                    }
+
+                    foreach ($fieldValues as $fullFieldName => $value) {
+                        [$baseFieldName] = \explode('.', $fullFieldName);
+
+                        if (\strpos($fullFieldName, $baseFieldName) !== 0) {
+                            continue;
+                        }
+                        
+                        $fieldValue[$fullFieldName] = $value;
+                    }
+                }
+
+                $fieldValues = \is_array($fieldValue)
+                    ? $fieldValue
+                    : [$fieldName => $fieldValue];
+
+                if ($this->debugMode) {
+                    echo "\n2.2 fieldValues >>>> ";
+                    \var_export($fieldValues);
+                }
+
                 // For each field values
-                foreach ($this->fieldValues as $fullFieldName => $fieldValue) {
-                    $newFieldName = \strpos($fullFieldName, '.')
+                foreach ($fieldValues as $fullFieldName => $fieldValue) {
+                    if ($this->debugMode) {
+                        echo "\n-";
+                        echo "\n3 Full field name    >>>> " . $fullFieldName;
+                    }
+
+                    $baseFieldName = \strpos($fullFieldName, '.')
                         ? \explode('.', $fullFieldName)[0]
                         : $fullFieldName;
 
-                    if (\strpos($fieldName, $newFieldName) !== 0) {
+                    if ($this->debugMode) {
+                        echo "\n3.1 Base field name    >>>> " . $baseFieldName;
+                    }
+
+                    if (\strpos($fieldName, $baseFieldName) !== 0) {
+                        if ($this->debugMode) {
+                            echo "\n4 Rule not applicable for this field";
+                        }
+
                         continue;
+                    }
+
+                    if ($this->debugMode) {
+                        echo "\n3.2 Rule applicable: " . $fullFieldName . ' - ' . $ruleName;
+                        echo "\n3.3 Field value   >>>> " . ($fieldValue === null ? 'NULL' : $fieldValue);
                     }
 
                     $rule = RuleFactory::loadRule(
                         $this,
                         $fieldValue,
                         $ruleValues,
-                        $newFieldName,
+                        $baseFieldName,
                         $ruleName,
                         $label
                     );
 
                     if ($rule->validate()) {
+                        if ($this->debugMode) {
+                            echo "\n4 Rule passed ✔️\n";
+                        }
+
                         continue;
                     }
 
@@ -239,6 +319,10 @@ final class Validator
                         $label,
                         $errorMessage
                     );
+
+                    if ($this->debugMode) {
+                        echo "\n4 Rule failed ❌\n";
+                    }
                     $isValid = false;
                 }
             }
