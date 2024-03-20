@@ -7,7 +7,7 @@
  * @license MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @link https://github.com/SandroMiguel/verum-php
- * @version 4.2.0 (2024-03-19)
+ * @version 4.2.1 (2024-03-20)
  */
 
 declare(strict_types=1);
@@ -226,33 +226,9 @@ final class Validator
                 // Check if is a multi-name field
                 $isMultiNameField = \strpos($fieldName, '.') !== false;
 
-                if (!$isMultiNameField) {
-                    $fieldValue = $this->fieldValues[$fieldName] ?? null;
-                } else {
-                    $fieldValue = [];
-                    // Filter by base field name
-                    $baseFieldName = \explode('.', $fieldName)[0];
-                    $fieldValues = \array_filter(
-                        $this->fieldValues,
-                        static fn ($key) => \strpos($key, $baseFieldName) === 0,
-                        \ARRAY_FILTER_USE_KEY
-                    );
-
-                    if ($this->debugMode) {
-                        echo "\n2.1 Field values (filtered) >>>> \n";
-                        \var_export($fieldValues);
-                    }
-
-                    foreach ($fieldValues as $fullFieldName => $value) {
-                        [$baseFieldName] = \explode('.', $fullFieldName);
-
-                        if (\strpos($fullFieldName, $baseFieldName) !== 0) {
-                            continue;
-                        }
-                        
-                        $fieldValue[$fullFieldName] = $value;
-                    }
-                }
+                $fieldValue = $isMultiNameField
+                    ? $this->getMultiNameFieldValues($fieldName)
+                    : $this->fieldValues[$fieldName] ?? null;
 
                 $fieldValues = \is_array($fieldValue)
                     ? $fieldValue
@@ -406,6 +382,40 @@ final class Validator
                 $ruleValues
             ),
         ];
+    }
+
+    /**
+     * Get field values for a multi-name field.
+     *
+     * @param string $fieldName The name of the multi-name field.
+     *
+     * @return array<string,mixed> The field values for the multi-name field.
+     */
+    private function getMultiNameFieldValues(string $fieldName): array
+    {
+        [$baseFieldName] = \explode('.', $fieldName);
+        $fieldValues = \array_filter(
+            $this->fieldValues,
+            static fn ($key) => \strpos($key, $baseFieldName) === 0,
+            \ARRAY_FILTER_USE_KEY
+        );
+
+        if ($this->debugMode) {
+            echo "\n2.1 Field values (filtered) >>>> \n";
+            \var_export($fieldValues);
+        }
+
+        $multiNameFieldValues = [];
+
+        foreach ($fieldValues as $fullFieldName => $value) {
+            if (\strpos($fullFieldName, $baseFieldName) !== 0) {
+                continue;
+            }
+
+            $multiNameFieldValues[$fullFieldName] = $value;
+        }
+
+        return $multiNameFieldValues;
     }
 
     /**
