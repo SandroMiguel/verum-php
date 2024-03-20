@@ -206,11 +206,6 @@ final class Validator
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
-                if ($this->debugMode) {
-                    echo "\n-";
-                    echo "\n2 Rule name     >>>> " . $ruleName;
-                }
-
                 // Check if is a multi-name field
                 $isMultiNameField = \strpos($fieldName, '.') !== false;
 
@@ -222,10 +217,7 @@ final class Validator
                     ? $fieldValue
                     : [$fieldName => $fieldValue];
 
-                if ($this->debugMode) {
-                    echo "\n2.2 fieldValues >>>> ";
-                    \var_export($fieldValues);
-                }
+                $this->debugRuleAndFieldValues($ruleName, $fieldValues);
 
                 // For each field values
                 foreach ($fieldValues as $fullFieldName => $fieldValue) {
@@ -345,11 +337,32 @@ final class Validator
         }
 
         echo "\n--------------------";
-        echo "\n1 Ruled field name >>>> " . $fieldName;
+        echo "\n1. Ruled field name >>>> " . $fieldName;
         echo "\n1.1 Field config >>>> ";
         \var_export($fieldConfig);
         echo "\n1.2 fieldValues (all) >>>> ";
         \var_export($this->fieldValues);
+    }
+
+    /**
+     * Output debug information related to the rule name and field values.
+     *
+     * @param string $ruleName The name of the rule being processed.
+     * @param array<mixed> $fieldValues The values of the fields being
+     *  processed.
+     */
+    private function debugRuleAndFieldValues(
+        string $ruleName,
+        array $fieldValues,
+    ): void {
+        if (!$this->debugMode) {
+            return;
+        }
+
+        echo "\n-";
+        echo "\n2.1 Rule name >>>> " . $ruleName;
+        echo "\n2.2 fieldValues >>>> ";
+        \var_export($fieldValues);
     }
 
     /**
@@ -413,7 +426,8 @@ final class Validator
         );
 
         if ($this->debugMode) {
-            echo "\n2.1 Field values (filtered) >>>> \n";
+            echo "\n-";
+            echo "\n2. Field values (filtered) >>>> \n";
             \var_export($fieldValues);
         }
 
