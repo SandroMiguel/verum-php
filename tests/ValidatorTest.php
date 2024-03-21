@@ -873,6 +873,53 @@ class ValidatorTest extends TestCase
     }
 
     /**
+     * Tests the validation when a multi-name field defined in the rules does
+     *  not exist in the payload.
+     */
+    public function testValidateMultiNameFieldNotInPayload(): void
+    {
+        $fieldValues = [
+            'age' => 'Text value',
+        ];
+
+        $fieldRules = [
+            'age' => [
+                'label' => 'Age',
+                'rules' => [
+                    RuleEnum::NUMERIC,
+                ],
+            ],
+            'multiName.*' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $expected = [
+            'age' => [
+                'label' => 'Age',
+                'rules' => [
+                    'numeric' => 'The "Age" field must be numeric.',
+                ],
+            ],
+            'multiName.*' => [
+                'label' => null,
+                'rules' => [
+                    'required' => 'This field is required.',
+                ],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules, debugMode: true);
+        $validator->validate();
+        $errors = $validator->getErrors();
+
+        $this->assertEquals(
+            \json_encode($expected),
+            \json_encode($errors)
+        );
+    }
+
+    /**
      * Test validation with a payload containing numeric keys in an array field.
      */
     public function testValidationWithNumericKeysInArrayField(): void
@@ -905,7 +952,8 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * Test validation with an empty idTranslationValues field, which should fail due to its required nature.
+     * Test validation with an empty idTranslationValues field, which should
+     *  fail due to its required nature.
      */
     public function testValidationWithEmptyIdTranslationValuesField(): void
     {
@@ -944,6 +992,9 @@ class ValidatorTest extends TestCase
         $errors = $validator->getErrors();
 
         // Assert that the validation errors match the expected errors
-        $this->assertEquals(json_encode($expectedErrors), json_encode($errors));
+        $this->assertEquals(
+            \json_encode($expectedErrors),
+            \json_encode($errors)
+        );
     }
 }
