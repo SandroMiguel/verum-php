@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.3](https://github.com/SandroMiguel/verum-php/compare/v2.2.2...v2.2.3) (2024-03-21)
+
+
+### Bug Fixes
+
+* **validator.php:** fix validation of multi-name fields to ensure presence in payload ([5530b9f](https://github.com/SandroMiguel/verum-php/commit/5530b9f1a6284edb46320cdacb8c4cd8f36e2755))
+
 ## [2.2.2](https://github.com/SandroMiguel/verum-php/compare/v2.2.1...v2.2.2) (2024-03-21)
 
 
