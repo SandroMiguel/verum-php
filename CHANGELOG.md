@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.2](https://github.com/SandroMiguel/verum-php/compare/v2.2.1...v2.2.2) (2024-03-21)
+
+
+### Bug Fixes
+
+* **validator.php:** fix indexed fields validation bug ([588c9e7](https://github.com/SandroMiguel/verum-php/commit/588c9e76319b4c55e7def420ca590d3284962b9c))
+
 ## [2.2.1](https://github.com/SandroMiguel/verum-php/compare/v2.2.0...v2.2.1) (2024-03-21)
 
 
