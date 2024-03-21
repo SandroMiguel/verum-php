@@ -49,7 +49,7 @@ final class RuleFactory
         array $ruleValues,
         string $fieldName,
         string $ruleName,
-        ?string $label
+        ?string $label,
     ): object {
         $className = 'Verum\\Rules\\' . self::snakeCaseToPascalCase($ruleName);
         if (!class_exists($className)) {

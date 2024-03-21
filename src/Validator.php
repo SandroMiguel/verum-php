@@ -7,7 +7,7 @@
  * @license MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @link https://github.com/SandroMiguel/verum-php
- * @version 4.2.0 (2024-03-19)
+ * @version 4.2.1 (2024-03-20)
  */
 
 declare(strict_types=1);
@@ -22,6 +22,9 @@ use Verum\Rules\RuleFactory;
  */
 final class Validator
 {
+    /** @var bool Debug mode. */
+    private bool $debugMode;
+
     /**
      * [
      *   'some_field_a' => 'some value A',
@@ -91,7 +94,8 @@ final class Validator
      *
      * @param array<mixed> $fieldValues Input field data.
      * @param array<mixed> $fieldRules Field rules.
-     * @param string $lang Language.
+     * @param string|null $lang Language.
+     * @param bool|null $debugMode Debug mode.
      *
      * @throws ValidatorException Validator Exception.
      *
@@ -101,7 +105,8 @@ final class Validator
     public function __construct(
         array $fieldValues,
         array $fieldRules,
-        string $lang = 'en'
+        ?string $lang = 'en',
+        ?bool $debugMode = false,
     ) {
         if ($this->isEmptyArray($fieldValues)) {
             throw ValidatorException::noFields();
@@ -121,6 +126,7 @@ final class Validator
         $this->fieldRules = $fieldRules;
         $this->language = $lang;
         $this->loadMessages($lang);
+        $this->debugMode = $debugMode;
     }
 
     /**
@@ -194,37 +200,61 @@ final class Validator
 
         // For each field rules
         foreach ($this->fieldRules as $fieldName => $fieldConfig) {
-            if (!$this->hasRules($fieldConfig['rules'])) {
-                continue;
-            }
+            $this->debugFieldRules($fieldName, $fieldConfig);
 
-            $label = $this->getLabel($fieldConfig['label'] ?? null);
-            $fieldValue = $this->fieldValues[$fieldName] ?? null;
-
-            // For each name of rule and their respective values
+            // For each field rule and their respective values
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
+                // Check if is a multi-name field
+                $isMultiNameField = \strpos($fieldName, '.') !== false;
+
+                $fieldValue = $isMultiNameField
+                    ? $this->getMultiNameFieldValues($fieldName)
+                    : $this->fieldValues[$fieldName] ?? null;
+
+                $fieldValues = \is_array($fieldValue)
+                    ? $fieldValue
+                    : [$fieldName => $fieldValue];
+
+                $this->debugRuleAndFieldValues($ruleName, $fieldValues);
+
                 // For each field values
-                foreach ($this->fieldValues as $fullFieldName => $fieldValue) {
-                    $newFieldName = \strpos($fullFieldName, '.')
+                foreach ($fieldValues as $fullFieldName => $fieldValue) {
+                    $baseFieldName = \strpos($fullFieldName, '.')
                         ? \explode('.', $fullFieldName)[0]
                         : $fullFieldName;
 
-                    if (\strpos($fieldName, $newFieldName) !== 0) {
+                    $this->debugFieldName($fullFieldName, $baseFieldName);
+
+                    if (\strpos($fieldName, $baseFieldName) !== 0) {
+                        if ($this->debugMode) {
+                            echo "\n4 Rule not applicable for this field";
+                        }
+
                         continue;
                     }
 
+                    if ($this->debugMode) {
+                        echo "\n3.2 Rule applicable: " . $fullFieldName . ' - ' . $ruleName;
+                        echo "\n3.3 Field value   >>>> " . ($fieldValue === null ? 'NULL' : $fieldValue);
+                    }
+
+                    $label = $this->getLabel($fieldConfig['label'] ?? null);
                     $rule = RuleFactory::loadRule(
                         $this,
                         $fieldValue,
                         $ruleValues,
-                        $newFieldName,
+                        $baseFieldName,
                         $ruleName,
                         $label
                     );
 
                     if ($rule->validate()) {
+                        if ($this->debugMode) {
+                            echo "\n4 Rule passed ✔️\n";
+                        }
+
                         continue;
                     }
 
@@ -239,6 +269,10 @@ final class Validator
                         $label,
                         $errorMessage
                     );
+
+                    if ($this->debugMode) {
+                        echo "\n4 Rule failed ❌\n";
+                    }
                     $isValid = false;
                 }
             }
@@ -278,6 +312,69 @@ final class Validator
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    /**
+     * Output debug information related to the field rules.
+     *
+     * @param string $fieldName The name of the field being processed.
+     * @param array<mixed> $fieldConfig The configuration array for the field
+     *  rules.
+     */
+    private function debugFieldRules(
+        string $fieldName,
+        array $fieldConfig,
+    ): void {
+        if (!$this->debugMode) {
+            return;
+        }
+
+        echo "\n--------------------";
+        echo "\n1. Ruled field name >>>> " . $fieldName;
+        echo "\n1.1 Field config >>>> ";
+        \var_export($fieldConfig);
+        echo "\n1.2 fieldValues (all) >>>> ";
+        \var_export($this->fieldValues);
+    }
+
+    /**
+     * Output debug information related to the rule name and field values.
+     *
+     * @param string $ruleName The name of the rule being processed.
+     * @param array<mixed> $fieldValues The values of the fields being
+     *  processed.
+     */
+    private function debugRuleAndFieldValues(
+        string $ruleName,
+        array $fieldValues,
+    ): void {
+        if (!$this->debugMode) {
+            return;
+        }
+
+        echo "\n-";
+        echo "\n2.1 Rule name >>>> " . $ruleName;
+        echo "\n2.2 fieldValues >>>> ";
+        \var_export($fieldValues);
+    }
+
+    /**
+     * Debug the full and base field names.
+     *
+     * @param string $fullFieldName The full name of the field.
+     * @param string $baseFieldName The base name of the field.
+     */
+    private function debugFieldName(
+        string $fullFieldName,
+        string $baseFieldName,
+    ): void {
+        if (!$this->debugMode) {
+            return;
+        }
+
+        echo "\n-";
+        echo "\n3.1 Full field name >>>> $fullFieldName";
+        echo "\n3.2 Base field name >>>> $baseFieldName";
     }
 
     /**
@@ -322,6 +419,41 @@ final class Validator
                 $ruleValues
             ),
         ];
+    }
+
+    /**
+     * Get field values for a multi-name field.
+     *
+     * @param string $fieldName The name of the multi-name field.
+     *
+     * @return array<string,mixed> The field values for the multi-name field.
+     */
+    private function getMultiNameFieldValues(string $fieldName): array
+    {
+        [$baseFieldName] = \explode('.', $fieldName);
+        $fieldValues = \array_filter(
+            $this->fieldValues,
+            static fn ($key) => \strpos($key, $baseFieldName) === 0,
+            \ARRAY_FILTER_USE_KEY
+        );
+
+        if ($this->debugMode) {
+            echo "\n-";
+            echo "\n2. Field values (filtered) >>>> \n";
+            \var_export($fieldValues);
+        }
+
+        $multiNameFieldValues = [];
+
+        foreach ($fieldValues as $fullFieldName => $value) {
+            if (\strpos($fullFieldName, $baseFieldName) !== 0) {
+                continue;
+            }
+
+            $multiNameFieldValues[$fullFieldName] = $value;
+        }
+
+        return $multiNameFieldValues;
     }
 
     /**

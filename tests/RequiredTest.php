@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace Verum\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Verum\Enum\RuleEnum;
 use Verum\Rules\RuleFactory;
 use Verum\Validator;
 
@@ -173,5 +174,85 @@ class RequiredTest extends TestCase
     public function testPassValidateText(): void
     {
         $this->assertTrue($this->validate('some text'));
+    }
+
+    /**
+     * A Null (null) value for multi-lang fields should not pass validation.
+     */
+    public function testValidateNullForMultiLang(): void
+    {
+        $fieldNameEn = 'title.en';
+        $fieldNamePt = 'title.pt';
+        $fieldValue = null;
+
+        $fieldValues = [
+            $fieldNameEn => $fieldValue,
+            $fieldNamePt => $fieldValue,
+        ];
+
+        $fieldRules = [
+            'title.*' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+        $isValid = $validator->validate();
+
+        $this->assertFalse($isValid);
+    }
+
+    /**
+     * A Null (null) value for a mix of multi-lang and standard fields should
+     *  not pass validation.
+     */
+    public function testValidateNullForMixedFields(): void
+    {
+        $fieldNameEn = 'title.en';
+        $fieldNamePt = 'title.pt';
+        $standardFieldName = 'description';
+        $fieldValue = null;
+
+        $fieldValues = [
+            $fieldNameEn => $fieldValue,
+            $fieldNamePt => $fieldValue,
+            $standardFieldName => $fieldValue,
+        ];
+
+        $fieldRules = [
+            'title.*' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+            $standardFieldName => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+        $isValid = $validator->validate();
+
+        $this->assertFalse($isValid);
+    }
+
+    /**
+     * A field with a rule defined but not present in the payload should not
+     *  pass validation.
+     */
+    public function testFieldWithRuleNotPresentInPayload(): void
+    {
+        $payload = [
+            'description' => 'Some description',
+        ];
+
+        $fieldRules = [
+            'title' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($payload, $fieldRules);
+        $isValid = $validator->validate();
+
+        $this->assertFalse($isValid);
     }
 }
