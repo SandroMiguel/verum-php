@@ -221,18 +221,11 @@ final class Validator
 
                 // For each field values
                 foreach ($fieldValues as $fullFieldName => $fieldValue) {
-                    if ($this->debugMode) {
-                        echo "\n-";
-                        echo "\n3 Full field name    >>>> " . $fullFieldName;
-                    }
-
                     $baseFieldName = \strpos($fullFieldName, '.')
                         ? \explode('.', $fullFieldName)[0]
                         : $fullFieldName;
 
-                    if ($this->debugMode) {
-                        echo "\n3.1 Base field name    >>>> " . $baseFieldName;
-                    }
+                    $this->debugFieldName($fullFieldName, $baseFieldName);
 
                     if (\strpos($fieldName, $baseFieldName) !== 0) {
                         if ($this->debugMode) {
@@ -363,6 +356,25 @@ final class Validator
         echo "\n2.1 Rule name >>>> " . $ruleName;
         echo "\n2.2 fieldValues >>>> ";
         \var_export($fieldValues);
+    }
+
+    /**
+     * Debug the full and base field names.
+     *
+     * @param string $fullFieldName The full name of the field.
+     * @param string $baseFieldName The base name of the field.
+     */
+    private function debugFieldName(
+        string $fullFieldName,
+        string $baseFieldName,
+    ): void {
+        if (!$this->debugMode) {
+            return;
+        }
+
+        echo "\n-";
+        echo "\n3.1 Full field name >>>> $fullFieldName";
+        echo "\n3.2 Base field name >>>> $baseFieldName";
     }
 
     /**
