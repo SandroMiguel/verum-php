@@ -871,4 +871,79 @@ class ValidatorTest extends TestCase
             \json_encode($errors)
         );
     }
+
+    /**
+     * Test validation with a payload containing numeric keys in an array field.
+     */
+    public function testValidationWithNumericKeysInArrayField(): void
+    {
+        // Given a payload with numeric keys in an array field
+        $payload = [
+            'formToken' => '123...abc',
+            'idTranslationValues' => [
+                0 => 'add_link',
+                1 => 'remove_link',
+            ],
+        ];
+
+        // Define the field rules with the required rule for the idTranslationValues field
+        $fieldRules = [
+            'idTranslationValues' => [
+                'rules' => [
+                    'required' => true,
+                ],
+            ],
+        ];
+
+        // Create a Validator instance with the payload and rules
+        $validator = new Validator($payload, $fieldRules, debugMode: true);
+
+        // Perform validation
+        $isValid = $validator->validate();
+
+        $this->assertTrue($isValid);
+    }
+
+    /**
+     * Test validation with an empty idTranslationValues field, which should fail due to its required nature.
+     */
+    public function testValidationWithEmptyIdTranslationValuesField(): void
+    {
+        // Given a payload with an empty idTranslationValues field
+        $payload = [
+            'formToken' => '123...abc',
+            'idTranslationValues' => null,
+        ];
+
+        // Define the field rules with the required rule for the idTranslationValues field
+        $fieldRules = [
+            'idTranslationValues' => [
+                'rules' => [
+                    'required' => true,
+                ],
+            ],
+        ];
+
+        // Define the expected errors for the empty idTranslationValues field
+        $expectedErrors = [
+            'idTranslationValues' => [
+                'label' => null,
+                'rules' => [
+                    'required' => 'This field is required.',
+                ],
+            ],
+        ];
+
+        // Create a Validator instance with the payload and rules
+        $validator = new Validator($payload, $fieldRules, debugMode: true);
+
+        // Perform validation
+        $validator->validate();
+
+        // Get the validation errors
+        $errors = $validator->getErrors();
+
+        // Assert that the validation errors match the expected errors
+        $this->assertEquals(json_encode($expectedErrors), json_encode($errors));
+    }
 }

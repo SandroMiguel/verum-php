@@ -213,6 +213,18 @@ final class Validator
                     ? $this->getMultiNameFieldValues($fieldName)
                     : $this->fieldValues[$fieldName] ?? null;
 
+                // Check if the field is an indexed array
+                if (
+                    \is_array($fieldValue)
+                    && \array_keys($fieldValue)
+                    === \range(
+                        0,
+                        \count($fieldValue) - 1
+                    )
+                ) {
+                    continue;
+                }
+
                 $fieldValues = \is_array($fieldValue)
                     ? $fieldValue
                     : [$fieldName => $fieldValue];
