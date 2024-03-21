@@ -7,7 +7,7 @@
  * @license MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
  * @link https://github.com/SandroMiguel/verum-php
- * @version 4.2.1 (2024-03-20)
+ * @version 4.2.2 (2024-03-21)
  */
 
 declare(strict_types=1);
@@ -222,6 +222,10 @@ final class Validator
                         \count($fieldValue) - 1
                     )
                 ) {
+                    if ($this->debugMode) {
+                        echo "\n2.3 Field is an indexed array - Ignore";
+                    }
+
                     continue;
                 }
 
@@ -456,6 +460,11 @@ final class Validator
         }
 
         $multiNameFieldValues = [];
+
+        // Ensure that the field name is in the payload and validate it against null
+        if (\count($fieldValues) === 0) {
+            return [$fieldName => null];
+        }
 
         foreach ($fieldValues as $fullFieldName => $value) {
             if (\strpos($fullFieldName, $baseFieldName) !== 0) {
