@@ -6,8 +6,7 @@
  * @package Verum-PHP
  * @license MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
  * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
- * @link https://github.com/SandroMiguel/verum-php
- * @version 4.2.1 (2024-03-20)
+ * @version 4.2.2 (2024-10-21)
  */
 
 declare(strict_types=1);
@@ -82,7 +81,7 @@ final class Validator
      *      ...
      *  ]
      *
-     * @var array<mixed> Errors list
+     * @var array<string,array<string,mixed>> Errors list
      */
     private $errors = [];
 
@@ -316,10 +315,7 @@ final class Validator
     /**
      * Errors messages.
      *
-     * @return array<mixed> Returns the error messages.
-     *
-     * @version 1.0.0 (30/04/2020)
-     * @since   Verum 1.0.0
+     * @return array<string,array<string,mixed>> Returns the error messages.
      */
     public function getErrors(): array
     {
@@ -445,7 +441,7 @@ final class Validator
         [$baseFieldName] = \explode('.', $fieldName);
         $fieldValues = \array_filter(
             $this->fieldValues,
-            static fn ($key) => \strpos($key, $baseFieldName) === 0,
+            static fn($key) => \strpos($key, $baseFieldName) === 0,
             \ARRAY_FILTER_USE_KEY
         );
 
