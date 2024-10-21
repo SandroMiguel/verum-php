@@ -63,7 +63,7 @@ final class MinLength extends Rule
                 'Rule "min_length": the rule value is mandatory'
             );
         }
-        if (!is_int($this->ruleValues[0])) {
+        if (!\is_numeric($this->ruleValues[0])) {
             throw ValidatorException::noIntegerValue($this->ruleValues[0]);
         }
 

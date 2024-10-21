@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/SandroMiguel/verum-php/compare/v2.2.3...v2.3.0) (2024-10-21)
+
+
+### Features
+
+* **src/validator.php:** improve phpdoc ([b50eb57](https://github.com/SandroMiguel/verum-php/commit/b50eb5729429d3423d8a2e05bfbf62785263bac5))
+
+
+### Bug Fixes
+
+* **src/rules/minlength.php:** a numeric string, e.g. '10', should be accepted as rule value ([f931c61](https://github.com/SandroMiguel/verum-php/commit/f931c618c98354e75199d10bf0ff3455f6529313))
+
 ## [2.2.3](https://github.com/SandroMiguel/verum-php/compare/v2.2.2...v2.2.3) (2024-03-21)
 
 
