@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/SandroMiguel/verum-php/compare/v2.3.0...v2.4.0) (2025-01-20)
+
+
+### Features
+
+* **validator.php:** add support for specific variant multilingual fields ([cbcb293](https://github.com/SandroMiguel/verum-php/commit/cbcb2933ebcc25d2059e67f4deae825d4f667c95))
+
 ## [2.3.0](https://github.com/SandroMiguel/verum-php/compare/v2.2.3...v2.3.0) (2024-10-21)
 
 
