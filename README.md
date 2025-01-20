@@ -382,7 +382,11 @@ $validator->addCustomMessages(
 
 #### Handling Multi-Name Fields
 
-With Verum PHP, you can handle multi-name fields more effectively. These are fields that include language identifiers or other variations in their names. For example, if you have fields like `title.en`, `title.pt`, `description.en`, and `description.pt`, you can specify rules for them using wildcards.
+With Verum PHP, you can handle multi-name fields more effectively. These are fields that include language identifiers or other variations in their names. For example, if you have fields like `title.en`, `title.pt`, `description.en`, and `description.pt`, you can specify rules for them using wildcards or by targeting specific fields.
+
+##### Using Wildcards to Apply Rules to All Variants
+
+You can define rules for all variants of a field using the `*` wildcard. For example:
 
 ```php
 $rules = [
@@ -438,6 +442,41 @@ Output example:
     }
 }
 ```
+
+##### Validating Specific Variants
+
+If you only want to validate a specific variant of a field, you can target it directly. For example, to validate only the English title and make titles in other languages optional:
+
+```php
+$rules = [
+    'title.en' => [
+        'rules' => [
+            RuleEnum::REQUIRED,
+        ],
+    ],
+];
+
+$validator = new Validator($_POST, $rules);
+// ...
+```
+
+Output example:
+
+```json
+{
+    "valid": false,
+    "errors": {
+        "title.en": {
+            "label": null,
+            "rules": {
+                "required": "This field is required."
+            }
+        }
+    }
+}
+```
+
+This allows you to apply rules more precisely, ensuring flexibility in how multi-name fields are handled based on your application's needs.
 
 ## Custom validations
 

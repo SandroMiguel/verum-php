@@ -3,15 +3,10 @@
 /**
  * RequiredTest.
  *
- * PHP Version 7.2.11-3
- *
- * @package   Verum-PHP
- * @license   MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
- * @author    Sandro Miguel Marques <sandromiguel@sandromiguel.com>
- * @copyright 2020 Sandro
- * @since     Verum-PHP 1.0.0
- * @version   2.0.0 (2020/09/16)
- * @link      https://github.com/SandroMiguel/verum-php
+ * @package Verum-PHP
+ * @license MIT https://github.com/SandroMiguel/verum-php/blob/master/LICENSE
+ * @author Sandro Miguel Marques <sandromiguel@sandromiguel.com>
+ * @version 2.0.0 (2020/09/16)
  */
 
 declare(strict_types=1);
@@ -232,6 +227,33 @@ class RequiredTest extends TestCase
         $isValid = $validator->validate();
 
         $this->assertFalse($isValid);
+    }
+
+    /**
+     * A required rule for "subject.pt" should fail if its value is null, even if
+     * "subject.en" is valid.
+     */
+    public function testValidateRequiredForSpecificCompositeField(): void
+    {
+        $fieldValues = [
+            'subject.en' => 'hello en',
+        ];
+
+        $fieldRules = [
+            'subject.pt' => [
+                'rules' => [RuleEnum::REQUIRED],
+            ],
+        ];
+
+        $validator = new Validator($fieldValues, $fieldRules);
+        $isValid = $validator->validate();
+
+        $this->assertFalse($isValid);
+        $this->assertArrayHasKey('subject.pt', $validator->getErrors());
+        $this->assertEquals(
+            'This field is required.',
+            $validator->getErrors()['subject.pt']['rules']['required']
+        );
     }
 
     /**
