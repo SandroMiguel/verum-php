@@ -205,8 +205,8 @@ final class Validator
             foreach ($fieldConfig['rules'] as $key => $value) {
                 [$ruleName, $ruleValues] = $this->getRuleData($key, $value);
 
-                // Check if is a multi-name field
-                $isMultiNameField = \strpos($fieldName, '.') !== false;
+                // Check if the field is a multi-language field with uniform rules
+                $isMultiNameField = \strpos($fieldName, '.*') !== false;
 
                 $fieldValue = $isMultiNameField
                     ? $this->getMultiNameFieldValues($fieldName)
@@ -242,6 +242,8 @@ final class Validator
 
                     $this->debugFieldName($fullFieldName, $baseFieldName);
 
+                    // Check if the rule is applicable for this field
+                    // echo "\n - Rule: " . $ruleName . ' - ' . $fieldName . ' - ' . $baseFieldName;
                     if (\strpos($fieldName, $baseFieldName) !== 0) {
                         if ($this->debugMode) {
                             echo "\n4 Rule not applicable for this field";
