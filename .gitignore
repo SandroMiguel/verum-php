@@ -14,6 +14,9 @@ yarn-error.log*
 npm-debug.log*
 *.log
 
+## PHPUnit result cache
+.phpunit.result.cache
+
 ## Ignore generated files
 *.map
 *.bak
