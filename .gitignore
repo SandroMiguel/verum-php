@@ -1,23 +1,29 @@
-## Editor directory
+## Editor directories
 **/.vscode
+**/.idea
+**/.cache
 
-## Ignore NPM 'node_modules' directory
+## Ignore Node.js and Composer dependencies
 **/node_modules
-
-## Ignore Composer 'vendor' directory
 **/vendor
 
-## Ignore log files
+## Ignore logs and debug files
+**/logs
 **/log
 yarn-error.log*
+npm-debug.log*
+*.log
 
-## Ignore generated source maps
+## Ignore generated files
 *.map
+*.bak
 
-## Other files to ignore (e.g. credentials)
+## Ignore environment file (secrets inside)
 .env
+
+## Ignore NPM configuration file
 .npmrc
-**/*.bak
+
+## Ignore storage and miscellaneous files
 **/storage
 **/.misc
-.phpunit.result.cache
